@@ -3,9 +3,7 @@
   --border-clr: #e2e6e9;
   --max-width: 1136px;
 }
-body {
-  overflow: hidden;
-}
+
 @font-face {
   font-family: "Mont-Bold";
   src: url("/fonts/Mont-Bold.otf") format("opentype");
@@ -17,4 +15,17 @@ body {
 @font-face {
   font-family: "Mont";
   src: url("/fonts/Mont-Regular.otf") format("opentype");
+}
+
+.section {
+  max-width: var(--max-width);
+  padding-inline: 16px;
+  margin: auto;
+}
+.section-title {
+  font-size: 1.375rem;
+  font-family: "Mont-Bold", sans-serif;
+  @media screen and (min-width: 640px) {
+    font-size: 2rem;
+  }
 }
