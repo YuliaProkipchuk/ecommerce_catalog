@@ -1,0 +1,25 @@
+.button {
+    display: flex;
+    height: 40px;
+    width: 40px;
+    background-color: #fff;
+    border: 1px solid #B4BDC3;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+    border: 1px solid #313237;
+}
+}
+
+.not_like {
+    background-image: url(/Icons/Button/LikeButton/Favourites.svg);
+    height: 16px;
+    width: 16px;
+}
+
+.like {
+    background-image: url(/Icons/Button/LikeButton/Favourites\ Filled\ \(Heart\ Like\).svg);
+    height: 16px;
+    width: 16px;
+}
