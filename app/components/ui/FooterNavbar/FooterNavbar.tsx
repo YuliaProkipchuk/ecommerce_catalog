@@ -1,6 +1,6 @@
-import React from "react";
-import classes from "./FooterNavbar.module.scss";
-import Link from "next/link";
+import React from 'react';
+import classes from './FooterNavbar.module.scss';
+import Link from 'next/link';
 
 export function FooterNavbar() {
   return (
