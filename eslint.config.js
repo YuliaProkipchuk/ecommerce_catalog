@@ -2,6 +2,7 @@ import tseslint from 'typescript-eslint';
 import prettier from 'eslint-config-prettier';
 import react from 'eslint-plugin-react';
 import globals from 'globals';
+import prettierPlugin from 'eslint-plugin-prettier';
 
 export default [
   {
@@ -24,6 +25,7 @@ export default [
     plugins: {
       react,
       '@typescript-eslint': tseslint.plugin,
+      prettier: prettierPlugin,
     },
     rules: {
       ...tseslint.configs.recommended.rules,
