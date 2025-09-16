@@ -3,7 +3,7 @@ import prettier from 'eslint-config-prettier';
 import react from 'eslint-plugin-react';
 import globals from 'globals';
 import prettierPlugin from 'eslint-plugin-prettier';
-
+import next from 'eslint-plugin-next';
 export default [
   {
     ignores: ['.next/**', 'node_modules/**', 'dist/**'],
@@ -23,10 +23,12 @@ export default [
       react,
       '@typescript-eslint': tseslint.plugin,
       prettier: prettierPlugin,
+      next,
     },
     rules: {
       ...tseslint.configs.recommended.rules,
       ...react.configs.recommended.rules,
+      ...next.configs.recommended.rules,
       'react/react-in-jsx-scope': 'off',
       'prettier/prettier': 'error',
       'no-console': 'error',

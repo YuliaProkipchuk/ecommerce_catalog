@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import classes from './Header.module.scss';
-import headerLogo from '@/public/icons/Logo.svg';
+import headerLogo from '@/public/logo.svg';
 import Link from 'next/link';
 import Image from 'next/image';
 import { HeaderNavbar } from '../../ui/HeaderNavbar/HeaderNavbar';

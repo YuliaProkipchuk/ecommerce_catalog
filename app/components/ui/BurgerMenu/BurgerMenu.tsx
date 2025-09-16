@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './BurgerMenu.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
-import headerLogo from '@/public/icons/Logo.svg';
+import headerLogo from '@/public/logo.svg';
 import closeIcon from '@/public/icons/CloseActive.svg';
 import favouritesHeartLike from '@/public/icons/Button/LikeButton/Favourites.svg';
 import shoppingBagCart from '@/public/icons/ShoppingBag.svg';
