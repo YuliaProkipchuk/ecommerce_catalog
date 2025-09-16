@@ -1,0 +1,40 @@
+.category {
+  &_item {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+
+    transition: transform 0.3s;
+    @media screen and (min-width: 640px) {
+      flex: 1;
+    }
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+  &_img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: aqua;
+  }
+  &_content {
+    padding-top: 24px;
+    flex: 1;
+
+    h4 {
+      margin: 0;
+      margin-bottom: 4px;
+      padding: 0;
+      font-size: 1.25rem;
+      font-family: 'Mont-SemiBold', sans-serif;
+      color: #000;
+    }
+    span {
+      font-size: 0.875rem;
+      font-family: 'Mont-Regular', sans-serif;
+      color: var(--gray-secondary);
+    }
+  }
+}

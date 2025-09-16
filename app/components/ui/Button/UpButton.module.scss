@@ -1,0 +1,16 @@
+.button {
+  height: 32;
+  width: 32px;
+  background-color: #fff;
+  border: 1px solid #b4bdc3;
+}
+
+.button:hover {
+  border: 1px solid #313237;
+}
+
+.up {
+  background-image: url(/Icons/ArrowUpActive.svg);
+  height: 16px;
+  width: 16px;
+}
