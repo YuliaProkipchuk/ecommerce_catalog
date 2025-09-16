@@ -1,3 +1,10 @@
 {
-  "test": "Test"
+  "test": "Test",
+  "links": {
+    "product": "Product",
+    "phones": "Phones",
+    "tablets": "Tablets",
+    "accessories": "Accessories",
+    "favourites": "Favourites"
+  }
 }
