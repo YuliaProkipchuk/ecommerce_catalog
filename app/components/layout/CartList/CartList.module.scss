@@ -1,6 +1,9 @@
-.cart_list{
-    max-width: 752px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+.cart_list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  @media screen and (min-width: 1200px) {
+    width: 752px;
+  }
 }
