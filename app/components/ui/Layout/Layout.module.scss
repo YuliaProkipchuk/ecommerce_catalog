@@ -1,0 +1,10 @@
+.layout {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    gap: 40px;
+
+    @media screen and (min-width: 640px) {
+        gap: 40px 16px;
+    }
+}
