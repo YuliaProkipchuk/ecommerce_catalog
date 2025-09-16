@@ -1,0 +1,40 @@
+.productSpecification {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  padding: 0 17px;
+  
+  @media (min-width: 640px) {
+    gap: 64px;
+    padding: 0 24px;
+  }
+  
+  @media (min-width: 1200px) {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 0 32px;
+  }
+  
+  @media (min-width: 1201px) {
+    padding: 0 153px;
+  }
+}
+
+.contentColumn {
+  width: 100%;
+  
+  @media (min-width: 1200px) {
+    flex: 1;
+    min-width: 0;
+    max-width: calc(100% - 320px);
+  }
+}
+
+.specsColumn {
+  width: 100%;
+  
+  @media (min-width: 1200px) {
+    flex: 0 0 300px;
+  }
+}
