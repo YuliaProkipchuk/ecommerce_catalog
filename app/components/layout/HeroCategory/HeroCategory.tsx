@@ -1,6 +1,6 @@
-import React from "react";
-import classes from "./HeroCategory.module.scss";
-import { CategoryItem } from "../../ui/CategoryItem/CategoryItem";
+import React from 'react';
+import classes from './HeroCategory.module.scss';
+import { CategoryItem } from '../../ui/CategoryItem/CategoryItem';
 
 export function HeroCategory() {
   return (

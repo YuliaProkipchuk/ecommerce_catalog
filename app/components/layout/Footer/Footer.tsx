@@ -1,7 +1,7 @@
-import React from "react";
-import classes from "./Footer.module.scss";
-import { FooterNavbar } from "../../ui/FooterNavbar/FooterNavbar";
-import { Logo } from "../../ui/Logo/Logo";
+import React from 'react';
+import classes from './Footer.module.scss';
+import { FooterNavbar } from '../../ui/FooterNavbar/FooterNavbar';
+import { Logo } from '../../ui/Logo/Logo';
 
 export function Footer() {
   return (
