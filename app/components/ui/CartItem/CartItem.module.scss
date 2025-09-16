@@ -1,0 +1,76 @@
+.cart_item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px;
+  border: 1px solid var(--border-clr);
+  color: var(--text-clr);
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: 'Mont', sans-serif;
+  @media screen and (min-width: 640px) {
+    justify-content: space-between;
+    gap: 24px;
+  }
+}
+
+.image {
+  --size: 80px;
+  width: var(--size);
+  height: var(--size);
+  object-fit: contain;
+}
+
+.price {
+  font-weight: 700;
+  line-height: 100%;
+  font-size: 1.375rem;
+  font-family: 'Mont-Bold', sans-serif;
+  margin-left: auto;
+}
+
+.close_btn {
+  width: 16px;
+  height: 16px;
+  border: none;
+  line-height: 16px;
+  background-color: transparent;
+}
+
+.title {
+  text-wrap: wrap;
+  font-size: 0.875rem;
+  flex: 1;
+}
+
+.amount {
+  margin-inline: 14px;
+  font-size: 0.875rem;
+  line-height: 32px;
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+}
+.quantityControls button {
+  border: 1px solid var(--border-clr);
+  background-color: transparent;
+
+  padding: 8px;
+  height: 32px;
+  width: 32px;
+  box-sizing: border-box;
+  line-height: 100%;
+}
+
+.price_layout {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  @media screen and (min-width: 640px) {
+    width: fit-content;
+    gap: 53px;
+  }
+}
