@@ -1,0 +1,23 @@
+.button__active {
+    height: 32;
+    width: 32px;
+    background-color: #fff;
+    border: 1px solid #B4BDC3;
+    background-image: url(/Icons/ArrowRightActive.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &:hover {
+    border: 1px solid #313237;
+}
+}
+
+.button__disabled {
+    height: 32;
+    width: 32px;
+    background-color: #fff;
+    border: 1px solid #E2E6E9;
+    background-image: url(/Icons/ArrowRight.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}

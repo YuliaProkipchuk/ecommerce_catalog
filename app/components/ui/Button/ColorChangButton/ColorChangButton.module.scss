@@ -1,0 +1,35 @@
+:root {
+    --chang-color: #FCDBC1
+}
+
+.color {
+    height: 30px;
+    width: 30px;
+    border: 2px solid #fff;
+    border-radius: 36px;
+    background-color: var(--chang-color);
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 36px;
+    border: 2px solid #B4BDC3;
+
+     &:hover {
+        border: 2px solid grey;
+    }
+}
+
+.activ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 36px;
+    border: 2px solid #000;
+}
