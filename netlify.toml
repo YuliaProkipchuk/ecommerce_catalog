@@ -1,5 +1,7 @@
+[build.environment]
+  NODE_VERSION = "18"
 [build]
-  command   = "next build"
+    command = "npm rebuild lightningcss && next build"
   publish   = ".next"
 
 [[plugins]]
