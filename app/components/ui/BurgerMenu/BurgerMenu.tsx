@@ -1,11 +1,11 @@
-import React from "react";
-import classes from "./BurgerMenu.module.scss";
-import Link from "next/link";
-import Image from "next/image";
-import headerLogo from "@/public/icons/headerLogo.svg";
-import closeIcon from "@/public/icons/closeIcon.svg";
-import favouritesHeartLike from "@/public/icons/favouritesHeartLike.svg";
-import shoppingBagCart from "@/public/icons/shoppingBagCart.svg";
+import React from 'react';
+import classes from './BurgerMenu.module.scss';
+import Link from 'next/link';
+import Image from 'next/image';
+import headerLogo from '@/public/logo.svg';
+import closeIcon from '@/public/icons/CloseActive.svg';
+import favouritesHeartLike from '@/public/icons/Button/LikeButton/Favourites.svg';
+import shoppingBagCart from '@/public/icons/ShoppingBag.svg';
 
 interface BurgerMenuProps {
   onClose: () => void;
@@ -16,19 +16,10 @@ export function BurgerMenu({ onClose }: BurgerMenuProps) {
     <div className={classes.burger_menu}>
       <div className={classes.burger_menu_header}>
         <Link href="/" className={classes.logo}>
-          <Image
-            src={headerLogo}
-            width={64}
-            height={22}
-            alt="Nice Gadgets logo"
-          />
+          <Image src={'/logo.svg'} width={64} height={22} alt="Nice Gadgets logo" />
         </Link>
-        <button
-          className={classes.close_button}
-          onClick={onClose}
-          aria-label="Close menu"
-        >
-          <Image src={closeIcon} width={16} height={16} alt="Close" />
+        <button className={classes.close_button} onClick={onClose} aria-label="Close menu">
+          <Image src={'/icons/CloseActive.svg'} width={16} height={16} alt="Close" />
         </button>
       </div>
       <nav className={classes.burger_nav}>
@@ -43,58 +34,28 @@ export function BurgerMenu({ onClose }: BurgerMenuProps) {
             </Link>
           </li>
           <li>
-            <Link
-              href="/phones"
-              className={classes.burger_nav_link}
-              onClick={onClose}
-            >
+            <Link href="/phones" className={classes.burger_nav_link} onClick={onClose}>
               phones
             </Link>
           </li>
           <li>
-            <Link
-              href="/tablets"
-              className={classes.burger_nav_link}
-              onClick={onClose}
-            >
+            <Link href="/tablets" className={classes.burger_nav_link} onClick={onClose}>
               tablets
             </Link>
           </li>
           <li>
-            <Link
-              href="/accessories"
-              className={classes.burger_nav_link}
-              onClick={onClose}
-            >
+            <Link href="/accessories" className={classes.burger_nav_link} onClick={onClose}>
               accessories
             </Link>
           </li>
         </ul>
       </nav>
       <div className={classes.burger_menu_footer}>
-        <Link
-          href="/favourites"
-          className={classes.burger_action_button}
-          onClick={onClose}
-        >
-          <Image
-            src={favouritesHeartLike}
-            width={16}
-            height={16}
-            alt="Favourites"
-          />
+        <Link href="/favourites" className={classes.burger_action_button} onClick={onClose}>
+          <Image src={'/icons/Button/LikeButton/Favourites.svg'} width={16} height={16} alt="Favourites" />
         </Link>
-        <Link
-          href="/cart"
-          className={classes.burger_action_button}
-          onClick={onClose}
-        >
-          <Image
-            src={shoppingBagCart}
-            width={16}
-            height={16}
-            alt="Shopping cart"
-          />
+        <Link href="/cart" className={classes.burger_action_button} onClick={onClose}>
+          <Image src={'/ShoppingBag.svg'} width={16} height={16} alt="Shopping cart" />
         </Link>
       </div>
     </div>
