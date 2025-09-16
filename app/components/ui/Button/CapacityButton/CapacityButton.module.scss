@@ -1,0 +1,37 @@
+:root {
+    --active-bg-color: #313237
+}
+
+.button {
+    width: fit-content;
+    height: 32px;
+    padding: 0 8px;
+    background-color: #fff;
+    border: 1px solid #B4BDC3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 500;
+    font-family: "Mont", sans-serif;
+
+    &:hover {
+    box-shadow: 0px 3px 13px 0px #17203166;
+}
+}
+
+.active {
+    width: fit-content;
+    height: 32px;
+    padding: 0 8px;
+    background-color: var(--active-bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 500;
+    font-family: "Mont", sans-serif;
+    color: #fff;
+}

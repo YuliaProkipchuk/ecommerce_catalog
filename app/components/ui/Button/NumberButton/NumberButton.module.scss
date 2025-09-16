@@ -1,0 +1,22 @@
+.button {
+    height: 32px;
+    width: 32px;
+    background-color: #fff;
+    border: 1px solid #B4BDC3;
+    font-size: 14px;
+    color: #000;
+    font-family: 'Mont', sans-serif;
+
+    &:hover {
+    border: 1px solid #313237;
+}
+}
+
+.button__selected {
+    height: 32px;
+    width: 32px;
+    background-color: #313237;
+    font-size: 14px;
+    color: #fff;
+    font-family: 'Mont', sans-serif;
+}
