@@ -18,9 +18,6 @@ export default [
         ...globals.node,
       },
       parser: tseslint.parser,
-      parserOptions: {
-        project: ['./tsconfig.json'],
-      },
     },
     plugins: {
       react,
@@ -32,6 +29,12 @@ export default [
       ...react.configs.recommended.rules,
       'react/react-in-jsx-scope': 'off',
       'prettier/prettier': 'error',
+      'no-console': 'error',
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
     },
   },
   prettier,
