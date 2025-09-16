@@ -1,3 +1,10 @@
 {
-  "test": "Тест"
+  "test": "Тест",
+   "links":{
+    "product":"Продукт",
+    "phones": "Телефони",
+    "tablets": "Планшети",
+    "accessories": "Аксесуари",
+    "favourites": "Улюблені"
+  }
 }

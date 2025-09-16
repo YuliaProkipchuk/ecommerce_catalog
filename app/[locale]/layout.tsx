@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import React from 'react';
 import { Geist, Geist_Mono, Inter } from 'next/font/google';
 import type { Metadata } from 'next';
+import { BreadCrumbs } from '../components/ui/BreadCrumbs/BreadCrumbs';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -27,7 +28,6 @@ export default async function LocaleLayout({
   params: { locale: string };
 }) {
   const { locale } = await params;
-  const foo = 42;
   let messages;
   try {
     messages = (await import(`../../messages/${locale}.json`)).default;
@@ -39,6 +39,7 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <BreadCrumbs />
           {children}
         </NextIntlClientProvider>
       </body>
