@@ -16,10 +16,10 @@ export function BurgerMenu({ onClose }: BurgerMenuProps) {
     <div className={classes.burger_menu}>
       <div className={classes.burger_menu_header}>
         <Link href="/" className={classes.logo}>
-          <Image src={headerLogo} width={64} height={22} alt="Nice Gadgets logo" />
+          <Image src={'/logo.svg'} width={64} height={22} alt="Nice Gadgets logo" />
         </Link>
         <button className={classes.close_button} onClick={onClose} aria-label="Close menu">
-          <Image src={closeIcon} width={16} height={16} alt="Close" />
+          <Image src={'/icons/CloseActive.svg'} width={16} height={16} alt="Close" />
         </button>
       </div>
       <nav className={classes.burger_nav}>
@@ -52,10 +52,10 @@ export function BurgerMenu({ onClose }: BurgerMenuProps) {
       </nav>
       <div className={classes.burger_menu_footer}>
         <Link href="/favourites" className={classes.burger_action_button} onClick={onClose}>
-          <Image src={favouritesHeartLike} width={16} height={16} alt="Favourites" />
+          <Image src={'/icons/Button/LikeButton/Favourites.svg'} width={16} height={16} alt="Favourites" />
         </Link>
         <Link href="/cart" className={classes.burger_action_button} onClick={onClose}>
-          <Image src={shoppingBagCart} width={16} height={16} alt="Shopping cart" />
+          <Image src={'/ShoppingBag.svg'} width={16} height={16} alt="Shopping cart" />
         </Link>
       </div>
     </div>
