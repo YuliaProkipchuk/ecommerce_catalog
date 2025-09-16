@@ -1,0 +1,21 @@
+.page_layout {
+  padding-top: 24px;
+  padding-bottom: 56px;
+  @media screen and (min-width: 640px) {
+    padding-top: 40px;
+    padding-bottom: 64px;
+  }
+  @media screen and (min-width: 1200px) {
+    padding-bottom: 80px;
+  }
+}
+.cart_layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 32px;
+  @media screen and (min-width: 1200px) {
+    flex-direction: row;
+    gap: 16px;
+  }
+}
