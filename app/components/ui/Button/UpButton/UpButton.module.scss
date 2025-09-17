@@ -1,9 +1,10 @@
 .button {
-  height: 32;
+  height: 32px;
   width: 32px;
   background-color: #fff;
   border: 1px solid #b4bdc3;
   cursor: pointer;
+  transition: border-color 0.2s ease;
 }
 
 .button:hover {
