@@ -6,7 +6,7 @@ import headerLogo from '@/public/logo.svg';
 import Link from 'next/link';
 import Image from 'next/image';
 import { HeaderNavbar } from '../../ui/HeaderNavbar/HeaderNavbar';
-import { HeaderActions } from '../../ui/HeaderActions.tsx/HeaderActions';
+import { HeaderActions } from '../../ui/HeaderActions/HeaderActions';
 import { BurgerMenu } from '../../ui/BurgerMenu/BurgerMenu';
 
 export function Header() {
