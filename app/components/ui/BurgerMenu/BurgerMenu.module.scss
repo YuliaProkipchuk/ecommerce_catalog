@@ -96,11 +96,7 @@
   &:last-child {
     border-right: none;
   }
-
-  &:hover {
-    transform: scale(1.1);
-  }
-
+  
    &.active {
     position: relative;
     color: var(--gray-primary, #313237);

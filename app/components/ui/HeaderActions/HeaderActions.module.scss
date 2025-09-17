@@ -28,7 +28,6 @@
   }
 
    &.active {
-    /* ADDED: make pseudo absolutely positioned relative to the button */
     position: relative;
     color: var(--gray-primary, #313237);
 
