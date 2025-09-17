@@ -1,0 +1,18 @@
+.container_title {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+.container_padding_hero {
+  padding: 24px var(--def-pad);
+}
+.h1 {
+  margin: 0;
+  font-family: Mont-Bold;
+  color: var(--gray-primary);
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 41px;
+  letter-spacing: -1%;
+
+}
