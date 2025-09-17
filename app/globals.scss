@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  min-height: 100vh;
 }
 :root {
   --gray-primary: #313237;
@@ -24,9 +25,11 @@ body {
   src: url('/fonts/Mont-Regular.otf') format('opentype');
 }
 .main {
+  min-height: calc(100vh - 254px);
   padding-inline: 16px;
   padding-top: 24px;
   @media screen and (min-width: 640px) {
+    min-height: calc(100vh - 100px);
     padding-inline: 24px;
     padding-top: 40px;
   }
@@ -56,5 +59,21 @@ body {
   font-family: 'Mont-Bold', sans-serif;
   @media screen and (min-width: 640px) {
     font-size: 2rem;
+  }
+}
+
+/* delete after implementing banner slider fakeSimulatedDiv */
+.fakeSimulatedDiv {
+  height: 352px;
+  width: 320px;
+
+  @media screen and (min-width: 640px) and (max-width: 1199px) {
+    height: 221px;
+    width: 592px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    height: 432px;
+    width: 1136px;
   }
 }
