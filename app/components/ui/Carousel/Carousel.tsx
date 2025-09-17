@@ -1,11 +1,28 @@
 "use client";
-import classes from "./Carousel.module.scss";
 import React from "react";
+import classes from "./Carousel.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Navigation } from "swiper/modules";
+import { ProductCard } from "../ProductCard/ProductCard";
 
-export function Carousel() {
+type CarouselProps = {
+  slides?: React.ReactNode[];
+};
+
+export function Carousel({ slides }: CarouselProps) {
+  const defaultSlides = [
+    "Slide 1",
+    "Slide 2",
+    "Slide 3",
+    "Slide 4",
+    "Slide 5",
+    "Slide 6",
+    "Slide 7",
+  ];
+
+  const content = slides ?? defaultSlides;
+
   return (
     <Swiper
       observer={true}
@@ -16,8 +33,7 @@ export function Carousel() {
       breakpoints={{
         320: { slidesPerView: 1.5 },
         640: { slidesPerView: 2.5 },
-        1210: { slidesPerView: 4 },
-        1220: { slidesPerView: 4 },
+        1200: { slidesPerView: 4 },
       }}
       navigation={{
         nextEl: ".custom-next",
@@ -25,28 +41,11 @@ export function Carousel() {
       }}
       loop
     >
-      <SwiperSlide>
-        {/* replacement for card component */}
-        <div className={classes.card}>Slide 1</div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className={classes.card}>Slide 2</div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className={classes.card}>Slide 3</div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className={classes.card}>Slide 4</div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className={classes.card}>Slide 5</div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className={classes.card}>Slide 6</div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className={classes.card}>Slide 7</div>
-      </SwiperSlide>
+      {content.map((slide, idx) => (
+        <SwiperSlide key={idx}>
+          <ProductCard />
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 }
