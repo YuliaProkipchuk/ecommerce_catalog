@@ -21,8 +21,26 @@
     display: flex;
   }
 
+  
+
   &:last-child {
     border-right: none;
+  }
+
+   &.active {
+    /* ADDED: make pseudo absolutely positioned relative to the button */
+    position: relative;
+    color: var(--gray-primary, #313237);
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;                
+      width: 100%;              
+      height: 4px;          
+      background-color: var(--gray-primary, #313237);
+    }
   }
 }
 

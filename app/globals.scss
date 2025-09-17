@@ -8,7 +8,7 @@ body {
   --text-clr: #313237;
   --max-width: 1136px;
   --active-bg-color: #313237;
-  --chang-color: #FCDBC1
+  --chang-color: #fcdbc1;
 }
 
 @font-face {
@@ -25,11 +25,16 @@ body {
 }
 .main {
   padding-inline: 16px;
+  padding-top: 24px;
+  padding-bottom: 56px;
   @media screen and (min-width: 640px) {
     padding-inline: 24px;
+    padding-top: 40px;
+    padding-bottom: 64px;
   }
   @media screen and (min-width: 1200px) {
     padding-inline: 32px;
+    padding-bottom: 80px;
   }
 }
 .main-heading {
@@ -38,8 +43,7 @@ body {
   font-family: 'Mont-Bold', sans-serif;
   font-weight: 800;
 }
-.section,
-.main {
+.section {
   max-width: var(--max-width);
   margin: auto;
 }
@@ -48,5 +52,21 @@ body {
   font-family: 'Mont-Bold', sans-serif;
   @media screen and (min-width: 640px) {
     font-size: 2rem;
+  }
+}
+
+/* delete after implementing banner slider fakeSimulatedDiv */
+.fakeSimulatedDiv {
+  height: 352px;
+  width: 320px;
+
+  @media screen and (min-width: 640px) and (max-width: 1199px) {
+    height: 221px;
+    width: 592px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    height: 432px;
+    width: 1136px;
   }
 }
