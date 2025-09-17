@@ -1,3 +1,4 @@
+@use "./scss/slider_hero";
 body {
   margin: 0;
 }
@@ -9,6 +10,11 @@ body {
   --max-width: 1136px;
   --active-bg-color: #313237;
   --chang-color: #fcdbc1;
+  --def-pad: 16px;
+  --border-color: #B4BDC3;
+  @media (min-width: 640px) {
+    --def-pad: 32px;
+  }
 }
 
 @font-face {
@@ -49,4 +55,7 @@ body {
   @media screen and (min-width: 640px) {
     font-size: 2rem;
   }
+}
+* {
+  box-sizing: border-box;
 }
