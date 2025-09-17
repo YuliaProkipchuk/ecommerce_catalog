@@ -1,20 +1,12 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import { ProductsCarousel } from '../components/layout/ProductsCarousel/ProductsCarousel';
 import { HeroCategory } from '../components/layout/HeroCategory/HeroCategory';
-import { Header } from '../components/layout/Header/Header';
-import { ProductCustomization } from '../components/ui/ProductCustomization/ProductCustomization';
+
+import { ProductsCarousel } from '../components/layout/ProductsCarousel/ProductsCarousel';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/app/stores';
 import { useEffect } from 'react';
 import { getProductsStore } from '@/app/stores/slices/productSlice';
-import { ProductsCarousel } from '../components/layout/ProductsCarousel/ProductsCarousel';
-import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from "@/app/stores";
-import {useEffect} from "react";
-import {getProductsStore} from "@/app/stores/slices/productSlice";
-
 
 export default function Home() {
   const dispatch = useDispatch<AppDispatch>();

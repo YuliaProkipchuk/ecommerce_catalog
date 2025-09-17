@@ -9,8 +9,10 @@ async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   return (
     <>
-      <BackButton />
-      <h1 className="main-heading">{slug}</h1>
+      <section className="section">
+        <BackButton />
+        <h2 className="section-title">{slug}</h2>
+      </section>
       <section className="section">
         <div className={classes.customization_wrapper}>
           <ThumbsGallery />
