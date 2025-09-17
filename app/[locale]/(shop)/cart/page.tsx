@@ -6,8 +6,10 @@ import { BackButton } from '@/app/components/ui/Button/BackButton/BackButton';
 function Page() {
   return (
     <>
-      <BackButton />
-      <h1 className="main-heading">Cart</h1>
+      <section className="section">
+        <BackButton />
+        <h1 className="main-heading">Cart</h1>
+      </section>
       <section className="section">
         <section className={classes.cart_layout}>
           <CartList />
