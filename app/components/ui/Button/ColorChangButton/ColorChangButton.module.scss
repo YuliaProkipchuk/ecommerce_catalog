@@ -1,33 +1,33 @@
 .color {
-    height: 30px;
-    width: 30px;
-    border: 2px solid #fff;
-    border-radius: 36px;
-    background-color: var(--chang-color);
+  height: 30px;
+  width: 30px;
+  border: 2px solid #fff;
+  border-radius: 36px;
+  background-color: var(--chang-color);
 }
 
 .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 36px;
-    border: 2px solid #B4BDC3;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 36px;
+  border: 1px solid var(--border-clr);
+  cursor: pointer;
 
-     &:hover {
-        border: 2px solid grey;
-    }
+  &:hover {
+    border: 1px solid var(--gray-primary);
+  }
 }
 
 .activ {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 36px;
-    border: 2px solid #000;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 36px;
+  border: 2px solid #000;
+  cursor: pointer;
 }
