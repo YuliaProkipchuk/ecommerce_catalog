@@ -3,6 +3,7 @@ import phoneImage from './Image/Phone.png';
 import classes from './ProductCard.module.scss';
 import { AddButton } from '../Button/AddButton/AddButton';
 import { LikeButton } from '../Button/LikeButton/LikeButton';
+import Link from 'next/link';
 
 export function ProductCard() {
   return (
@@ -10,9 +11,9 @@ export function ProductCard() {
       <div className={classes.image}>
         <img src={phoneImage.src} alt="Phone" className={classes.image__img} />
       </div>
-
-      <h4 className={classes.name}>Apple iPhone Xs 64GB Silver (iMT9G2FS/A)</h4>
-
+<Link href={'/phones/123'} className={classes.name}>
+      <h4 >Apple iPhone Xs 64GB Silver (iMT9G2FS/A)</h4>
+</Link>
       <div className={classes.price}>
         <p className={classes.price__current}>$799</p>
         <p className={classes.wrong__price}>$899</p>

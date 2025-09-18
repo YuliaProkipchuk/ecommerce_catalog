@@ -9,21 +9,24 @@ const categories = [
     alt: 'Phones',
     title: 'Mobile phones',
     count: '95 models',
-    class: 'category_phone'
+    class: 'category_phone',
+    href: '/phones'
   },
   {
     src: '/img/category-tablets.png',
     alt: 'Tablets',
     title: 'Tablets',
     count: '24 models',
-    class: 'category_tablets'
+    class: 'category_tablets',
+    href: '/tablets'
   },
   {
     src: '/img/category-accessories.png',
     alt: 'Accessories',
     title: 'Accessories',
     count: '100 models',
-    class: 'category_accessories'
+    class: 'category_accessories',
+    href: '/accessories'
   }
 ];
 
