@@ -4,7 +4,7 @@ import classes from './LeftButton.module.scss';
 export function LeftButton() {
     return (
         
-        <button className={classes.button__disabled}>
+        <button className={classes.button__active}>
         </button>
     );
 }

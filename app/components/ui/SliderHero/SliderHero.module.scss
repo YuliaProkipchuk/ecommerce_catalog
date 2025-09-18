@@ -1,0 +1,25 @@
+.container_slider {
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  button {
+    display: none;
+    max-width: 32px;
+    width: 100%;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    cursor: pointer;
+    svg {
+      stroke: var(--gray-primary);
+    }
+    @media (min-width: 640px) {
+      display: block;
+    }
+  }
+}
+.pagination_custom_hero {
+  padding: 0 var(--def-pad);
+  display: flex;
+  justify-content: center;
+}

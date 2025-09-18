@@ -1,10 +1,22 @@
 .layout {
-    display: flex;
-    flex-wrap: wrap;
-    margin: auto;
-    gap: 40px;
+  max-width: 288px;
 
-    @media screen and (min-width: 640px) {
-        gap: 40px 16px;
-    }
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  gap: 40px;
+  justify-content: flex-start;
+  @media screen and (min-width: 640px) {
+    gap: 40px 16px;
+    max-width: calc(288px * 2 + 16px);
+  }
+
+  @media screen and (min-width: 640px) {
+  }
+  @media screen and (min-width: 768px) {
+    max-width: calc(229px * 3 + 16px * 2);
+  }
+  @media screen and (min-width: 1200px) {
+    max-width: calc(272px * 4 + 16px * 3);
+  }
 }

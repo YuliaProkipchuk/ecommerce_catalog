@@ -1,24 +1,25 @@
-"use client";
-import React from "react";
-import classes from "./Carousel.module.scss";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { Navigation } from "swiper/modules";
-import { ProductCard } from "../ProductCard/ProductCard";
+'use client';
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Navigation } from 'swiper/modules';
+import { ProductCard } from '../ProductCard/ProductCard';
 
 type CarouselProps = {
   slides?: React.ReactNode[];
+  leftBtnClass: string;
+  rightBtnClass: string;
 };
 
-export function Carousel({ slides }: CarouselProps) {
+export function Carousel({ slides, leftBtnClass, rightBtnClass }: CarouselProps) {
   const defaultSlides = [
-    "Slide 1",
-    "Slide 2",
-    "Slide 3",
-    "Slide 4",
-    "Slide 5",
-    "Slide 6",
-    "Slide 7",
+    'Slide 1',
+    'Slide 2',
+    'Slide 3',
+    'Slide 4',
+    'Slide 5',
+    'Slide 6',
+    'Slide 7',
   ];
 
   const content = slides ?? defaultSlides;
@@ -31,19 +32,22 @@ export function Carousel({ slides }: CarouselProps) {
       slidesPerView={3}
       modules={[Navigation]}
       breakpoints={{
-        320: { slidesPerView: 1.5 },
+        320: { slidesPerView: 1.35 },
+        450: { slidesPerView: 2 },
         640: { slidesPerView: 2.5 },
         1200: { slidesPerView: 4 },
       }}
       navigation={{
-        nextEl: ".custom-next",
-        prevEl: ".custom-prev",
+        nextEl: `.${rightBtnClass}`,
+        prevEl: `.${leftBtnClass}`,
       }}
       loop
     >
-      {content.map((slide, idx) => (
+      {content.map((_, idx) => (
         <SwiperSlide key={idx}>
-          <ProductCard />
+          <div className="card_dynamic">
+            <ProductCard />
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>

@@ -14,7 +14,7 @@ interface TechSpecsProps {
 export const TechSpecs: React.FC<TechSpecsProps> = ({ title, specs }) => {
   return (
     <div className={classes.techSpecs}>
-      <h2 className={classes.sectionTitle}>{title}</h2>
+      <h3 className={classes.sectionTitle}>{title}</h3>
       <div className={classes.specsList}>
         {specs.map((spec, index) => (
           <div key={index} className={classes.specItem}>
