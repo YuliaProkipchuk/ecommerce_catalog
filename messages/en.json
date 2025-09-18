@@ -6,5 +6,8 @@
     "tablets": "Tablets",
     "accessories": "Accessories",
     "favourites": "Favourites"
+  },
+  "hero-section": {
+    "title": "Welcome to Nice Gadgets store!"
   }
 }

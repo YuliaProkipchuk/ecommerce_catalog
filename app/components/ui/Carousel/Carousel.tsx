@@ -7,9 +7,11 @@ import { ProductCard } from '../ProductCard/ProductCard';
 
 type CarouselProps = {
   slides?: React.ReactNode[];
+  leftBtnClass: string;
+  rightBtnClass: string;
 };
 
-export function Carousel({ slides }: CarouselProps) {
+export function Carousel({ slides, leftBtnClass, rightBtnClass }: CarouselProps) {
   const defaultSlides = [
     'Slide 1',
     'Slide 2',
@@ -36,14 +38,16 @@ export function Carousel({ slides }: CarouselProps) {
         1200: { slidesPerView: 4 },
       }}
       navigation={{
-        nextEl: '.custom-next',
-        prevEl: '.custom-prev',
+        nextEl: `.${rightBtnClass}`,
+        prevEl: `.${leftBtnClass}`,
       }}
       loop
     >
       {content.map((_, idx) => (
         <SwiperSlide key={idx}>
-          <ProductCard />
+          <div className="card_dynamic">
+            <ProductCard />
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>

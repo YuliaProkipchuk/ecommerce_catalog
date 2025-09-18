@@ -1,0 +1,21 @@
+.main-slider-hero {
+  .slide-slider-content {
+    position: relative;
+  }
+}
+.flex-pag-slider {
+  padding-top: 18px;
+  display: flex;
+  gap: 9px;
+  button {
+    width: 14px;
+    height: 4px;
+    border: none;
+    &.active-pag-btn {
+      background: var(--gray-primary);
+    }
+    &.def-pag-btn {
+      background: var(--border-clr);
+    }
+  }
+}

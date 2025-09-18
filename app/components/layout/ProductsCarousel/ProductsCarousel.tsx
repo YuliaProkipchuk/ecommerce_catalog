@@ -7,22 +7,23 @@ type Props = {
   title?: string;
 };
 export function ProductsCarousel({ title = 'Brand new models' }: Props) {
+  const customLeft = title.split(' ')[0].toLowerCase() + '-custom-prev';
+  const customRight = title.split(' ')[0].toLowerCase() + '-custom-next';
   return (
     <section className="section">
       <div className={classes.carousel_header}>
         <h2 className="section-title">{title}</h2>
         <div className={classes.carousel_navigation}>
-          {/* there will be buttons */}
-          <div className="custom-prev">
+          <div className={customLeft}>
             <LeftButton />
           </div>
-          <div className="custom-next">
+          <div className={customRight}>
             <RightButton />
           </div>
         </div>
       </div>
 
-      <Carousel />
+      <Carousel leftBtnClass={customLeft} rightBtnClass={customRight} />
     </section>
   );
 }
