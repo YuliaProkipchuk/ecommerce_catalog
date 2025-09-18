@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import classes from './HeaderActions.module.scss';
+import { Counter } from '../Counter/Counter';
 
 interface HeaderActionsProps {
   toggleBurgerMenu: () => void;
@@ -28,12 +29,14 @@ export function HeaderActions({ toggleBurgerMenu }: HeaderActionsProps) {
         className={`${classes.action_button} ${pathWithoutLocale === '/favourites' ? classes.active : ''}`}
       >
         <Image src={'/icons/Button/LikeButton/Favourites.svg'} width={16} height={16} alt="Favourites" />
+        <Counter />
       </Link>
       <Link 
         href="/cart" 
         className={`${classes.action_button} ${pathWithoutLocale === '/cart' ? classes.active : ''}`}
       >
         <Image src={'/icons/ShoppingBag.svg'} width={16} height={16} alt="Shopping cart" />
+        <Counter />
       </Link>
       <button className={classes.burger_button} onClick={toggleBurgerMenu} aria-label="Toggle menu">
         <Image src={`/icons/Menu.svg`} width={16} height={16} alt="Menu" />

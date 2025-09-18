@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation';
 import classes from './BurgerMenu.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Counter } from '../Counter/Counter';
 
 interface BurgerMenuProps {
   onClose: () => void;
@@ -64,6 +65,7 @@ export function BurgerMenu({ onClose }: BurgerMenuProps) {
           onClick={onClose}
         >
           <Image src={'/icons/Button/LikeButton/Favourites.svg'} width={16} height={16} alt="Favourites" />
+          <Counter />
         </Link>
         <Link 
           href="/cart" 
@@ -71,6 +73,7 @@ export function BurgerMenu({ onClose }: BurgerMenuProps) {
           onClick={onClose}
         >
           <Image src={'/icons/ShoppingBag.svg'} width={16} height={16} alt="Shopping cart" />
+          <Counter />
         </Link>
       </div>
     </div>
