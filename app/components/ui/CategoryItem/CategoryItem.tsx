@@ -13,13 +13,14 @@ interface CategoryProps {
     title: string;
     count: string;
     class: string;
+    href: string;
   };
 }
 
 
 export function CategoryItem({ categories }: CategoryProps) {
   return (
-    <Link href={'/'} className={classes.category_item}>
+    <Link href={categories.href} className={classes.category_item}>
      <div className={classes.category_img}>
       <img src={categories.src} alt={categories.alt} className={classes[categories.class]} />
       </div>
