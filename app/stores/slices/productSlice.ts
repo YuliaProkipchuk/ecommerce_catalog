@@ -1,31 +1,53 @@
 import {Product} from '../../types/product'
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {getProducts} from "@/app/helpers/products/getProducts";
-interface ProductState  {
+
+interface ProductState {
     products: Product[]
+    clearProduts: Product[]
     loading: boolean;
     error: string | null;
-}
-const initialState:ProductState = {
-    products: [],
-    loading: false,
-    error: null
+    countItemsPage: number
 }
 
-export const getProductsStore = createAsyncThunk('products/get',async () => {
+const initialState: ProductState = {
+    products: [],
+    clearProduts: [],
+    loading: false,
+    error: null,
+    countItemsPage: 10
+}
+
+export const getProductsStore = createAsyncThunk('products/get', async () => {
     return await getProducts()
 })
 
 const productSlice = createSlice({
     name: 'products',
     initialState,
-    reducers: {},
+    reducers: {
+        getPagProducts(state: ProductState) {
+            if (state.clearProduts.length === 0 || state.clearProduts.length === state.products.length) return;
+            state.products = [
+                ...state.products,
+                ...state.clearProduts.slice(state.products.length, state.products.length + state.countItemsPage),
+            ];
+        },
+        changeCountItems(state: ProductState, action: PayloadAction<number>) {
+            if (action.payload < 10) {
+                state.countItemsPage = 10;
+                return
+            }
+            state.countItemsPage = action.payload;
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(getProductsStore.pending, (state) => {
             state.loading = true;
             state.error = null;
-        }).addCase(getProductsStore.fulfilled, (state,action) => {
-            state.products = action.payload;
+        }).addCase(getProductsStore.fulfilled, (state, action) => {
+            state.clearProduts = action.payload;
+            state.products = state.clearProduts.slice(0, state.countItemsPage);
             state.loading = false;
         }).addCase(getProductsStore.rejected, (state, action) => {
             state.loading = false;
@@ -33,5 +55,5 @@ const productSlice = createSlice({
         })
     }
 })
-
+export const {getPagProducts, changeCountItems} = productSlice.actions;
 export default productSlice.reducer
