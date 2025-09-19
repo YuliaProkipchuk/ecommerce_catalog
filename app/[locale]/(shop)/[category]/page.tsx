@@ -1,15 +1,48 @@
+'use client';
 import { Layout } from '@/app/components/ui/Layout/Layout';
 import classes from './Catalog.module.scss';
+import { FilterControls } from '@/app/components/ui/FilterControls/FilterControls';
+import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
+import {
+  getCategoryProducts,
+  getProductsStore,
+  selectTotalByCategory,
+} from '@/app/stores/slices/productSlice';
+import { useParams } from 'next/navigation';
+import { useEffect } from 'react';
+import { Pagination } from '@/app/components/ui/Pagination/Pagination';
+
+const categories = {
+  phones: 'Mobile phones',
+  tablets: 'Tablets',
+  accessories: 'Accessories',
+};
+type CategoryKey = keyof typeof categories;
 const Page = () => {
+  const { category } = useParams();
+  const id = category as CategoryKey;
+  const { products, countItemsPage, sortBy } = useAppSelector((state) => state.products);
+  const dispatch = useAppDispatch();
+  const data = useAppSelector(selectTotalByCategory(id));
+
+  useEffect(() => {
+    dispatch(getProductsStore())
+      .unwrap()
+      .then(() => {
+        dispatch(getCategoryProducts(id));
+      });
+  }, [countItemsPage, sortBy]);
+
   return (
     <>
       <section className="section">
-        <h1 className={`main-heading`}>Mobile phones</h1>
-        <span className={classes.info}>95 models</span>
+        <h1 className={`main-heading`}>{categories[id]}</h1>
+        <span className={classes.info}>{data.length} models</span>
       </section>
       <section className="section">
-         <div className={classes.dropdown}>dropdown</div> {/* future dropdown */}
-        <Layout />
+        <FilterControls />
+        <Layout products={products} />
+        <Pagination category={id} />
       </section>
     </>
   );

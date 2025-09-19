@@ -1,17 +1,50 @@
+'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import classes from './SortDropdown.module.scss';
+import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
+import { changeSortValue, SortBy } from '@/app/stores/slices/productSlice';
 
-interface SortDropdownProps {
-  className?: string;
-}
-
-export const SortDropdown: React.FC<SortDropdownProps> = ({ className }) => {
+export const SortDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState('Newest');
+  // const [selectedValue, setSelectedValue] = useState('Newest');
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  const options = ['Newest', 'Oldest', 'Lowest to Highest', 'Highest to Lowest'];
-
+  const dispatch = useAppDispatch();
+  const { sortBy } = useAppSelector((state) => state.products);
+  // const options = ['Newest', 'Oldest', 'Lowest to Highest', 'Highest to Lowest'];
+  const options: { name: string; value: SortBy }[] = [
+    {
+      name: 'Newest',
+      value: {
+        param: 'year',
+        order: 'desc',
+      },
+    },
+    {
+      name: 'Oldest',
+      value: {
+        param: 'year',
+        order: 'asc',
+      },
+    },
+    {
+      name: 'Lowest to Highest',
+      value: {
+        param: 'price',
+        order: 'asc',
+      },
+    },
+    {
+      name: 'Highest to Lowest',
+      value: {
+        param: 'price',
+        order: 'desc',
+      },
+    },
+  ];
+  const selectedValue =
+    options.find(
+      (option) => option.value.param === sortBy.param && option.value.order === sortBy.order,
+    ) || options[0];
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -29,38 +62,45 @@ export const SortDropdown: React.FC<SortDropdownProps> = ({ className }) => {
     setIsOpen(!isOpen);
   };
 
-  const selectOption = (option: string) => {
-    setSelectedValue(option);
+  const selectOption = (option: SortBy) => {
+    // setSelectedValue(option);
+    dispatch(changeSortValue(option));
     setIsOpen(false);
   };
 
   return (
-    <div ref={dropdownRef} className={`${classes.sortDropdown} ${className || ''}`}>
-      <button 
+    <div ref={dropdownRef} className={classes.sortDropdown}>
+      <button
         className={`${classes.button} ${isOpen ? classes.buttonOpen : ''}`}
         onClick={toggleDropdown}
       >
-        <span className={classes.text}>{selectedValue}</span>
-        <svg 
+        <span className={classes.text}>{selectedValue.name}</span>
+        <svg
           className={`${classes.arrow} ${isOpen ? classes.arrowRotated : ''}`}
-          width="16" 
-          height="16" 
-          viewBox="0 0 16 16" 
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
           fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <use href="/icons/ArrowDown.svg" />
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M12.4715 5.52864C12.7318 5.78899 12.7318 6.2111 12.4715 6.47145L8.47149 10.4714C8.21114 10.7318 7.78903 10.7318 7.52868 10.4714L3.52868 6.47144C3.26833 6.2111 3.26833 5.78899 3.52868 5.52864C3.78903 5.26829 4.21114 5.26829 4.47149 5.52864L8.00008 9.05723L11.5287 5.52864C11.789 5.26829 12.2111 5.26829 12.4715 5.52864Z"
+            // fill="var(--icon-light)"
+          />
         </svg>
       </button>
-      
+
       {isOpen && (
         <div className={classes.menu}>
           {options.map((option) => (
             <button
-              key={option}
+              key={option.name}
               className={`${classes.option} ${selectedValue === option ? classes.optionSelected : ''}`}
-              onClick={() => selectOption(option)}
+              onClick={() => selectOption(option.value)}
             >
-              {option}
+              {option.name}
             </button>
           ))}
         </div>

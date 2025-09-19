@@ -6,7 +6,6 @@ import {useDispatch } from 'react-redux';
 import {AppDispatch } from '@/app/stores';
 import {useEffect} from 'react';
 import {getProductsStore} from '@/app/stores/slices/productSlice';
-import {Pagination} from "@/app/components/ui/Pagination/Pagination";
 
 export default function Home() {
 
@@ -20,13 +19,13 @@ export default function Home() {
             <section className="section"><HeroSection/></section>
 
             <section className="section">
-                <ProductsCarousel title="Brand new models"/>
+                <ProductsCarousel title="Brand new models" param="year"/>
             </section>
             <section className="section">
                 <HeroCategory/>
             </section>
             <section className="section">
-                <ProductsCarousel title="Hot prices"/>
+                <ProductsCarousel title="Hot prices" param="price"/>
             </section>
         </>
     );

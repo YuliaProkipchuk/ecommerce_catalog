@@ -4,7 +4,10 @@ import {AppDispatch, RootState} from "@/app/stores";
 import {useEffect} from "react";
 import {getPagProducts} from "@/app/stores/slices/productSlice";
 import {useTranslations} from "next-intl";
-export const Pagination = () => {
+type Props = {
+    category:string;
+}
+export const Pagination = ({category}:Props) => {
     const dispatch = useDispatch<AppDispatch>();
     const {products} = useSelector((state:RootState) => state.products)
     const t = useTranslations()
@@ -12,11 +15,11 @@ export const Pagination = () => {
         console.log(products)
     }, [products]);
     const handlerLoadMore = () => {
-        dispatch(getPagProducts())
+        dispatch(getPagProducts(category))
     }
     return (
-        <>
+        <div className={cs.pagination_layout}>
             <button className={cs.pagination_button} onClick={handlerLoadMore}><span>{t('load-more')}</span></button>
-        </>
+        </div>
     )
 }

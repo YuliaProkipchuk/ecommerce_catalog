@@ -4,9 +4,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Navigation } from 'swiper/modules';
 import { ProductCard } from '../ProductCard/ProductCard';
+import { Product } from '@/app/types/product';
 
 type CarouselProps = {
-  slides?: React.ReactNode[];
+  slides: Product[];
   leftBtnClass: string;
   rightBtnClass: string;
 };
@@ -43,10 +44,10 @@ export function Carousel({ slides, leftBtnClass, rightBtnClass }: CarouselProps)
       }}
       loop
     >
-      {content.map((_, idx) => (
+      {slides.slice(0, 10).map((product, idx) => (
         <SwiperSlide key={idx}>
           <div className="card_dynamic">
-            <ProductCard />
+            <ProductCard product={product} />
           </div>
         </SwiperSlide>
       ))}

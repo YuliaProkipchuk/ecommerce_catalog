@@ -1,14 +1,18 @@
+import { Product } from '@/app/types/product';
 import { ProductCard } from '../ProductCard/ProductCard';
 import classes from './Layout.module.scss';
-
-export function Layout() {
+type Props = {
+  products?: Product[];
+};
+export function Layout({products}:Props) {
+  if(!products) return;
   return (
-      <div className={classes.layout}>
-        {new Array(10).fill(0).map((_, i) => (
-          <div className="card_layout" key={i}>
-            <ProductCard />
-          </div>
-        ))}
-      </div>
+    <div className={classes.layout}>
+      {products.map((product) => (
+        <div className="card_layout" key={product.id}>
+          <ProductCard product={product}/>
+        </div>
+      ))}
+    </div>
   );
 }
