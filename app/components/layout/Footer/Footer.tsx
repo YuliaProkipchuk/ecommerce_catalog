@@ -9,7 +9,7 @@ export function Footer() {
     <footer className={classes.footer}>
       <div className={classes.footer_content}>
         <div className={classes.logo}>
-          <Logo />
+          <Logo width={89} height={32}/>
         </div>
         <FooterNavbar />
         <div className={classes.scrollToTop_section}>

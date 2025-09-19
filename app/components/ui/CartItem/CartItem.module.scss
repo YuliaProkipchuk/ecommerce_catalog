@@ -4,7 +4,8 @@
   width: 100%;
   box-sizing: border-box;
   padding: 16px;
-  border: 1px solid var(--border-clr);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border-clr);
   color: var(--text-clr);
   flex-wrap: wrap;
   gap: 16px;
@@ -72,5 +73,21 @@
   @media screen and (min-width: 640px) {
     width: fit-content;
     gap: 53px;
+  }
+}
+
+.button {
+  display: flex;
+  height: 40px;
+  width: 40px;
+  background-color: var(--btn-bg-dark);
+  border: 1px solid var(--border-clr);
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid var(--btn-hover-border);
+    background-color: var(--btn-hover-bg);
   }
 }

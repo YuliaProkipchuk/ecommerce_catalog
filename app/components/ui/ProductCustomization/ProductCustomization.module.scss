@@ -67,7 +67,7 @@
 .price__current {
   font-weight: 700;
   line-height: 100%;
-  color: var(--gray-primary);
+  color: var(--text-clr);
   font-size: 2rem;
   font-family: 'Mont-Bold', sans-serif;
   margin: 0;
@@ -111,4 +111,5 @@
 .info {
   margin: 0;
   font-size: 12px;
+  color: var(--text-clr);
 }

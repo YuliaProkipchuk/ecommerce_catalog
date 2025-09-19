@@ -1,24 +1,19 @@
-.button__active {
-    height: 32px;
-    width: 32px;
-    background-color: #fff;
-    border: 1px solid #B4BDC3;
-    background-image: url(/Icons/ArrowLeftActive.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
-    outline: none;
-    &:hover {
-    border: 1px solid #313237;
+.button__active,
+.button__disabled {
+  height: 32px;
+  width: 32px;
+  background-color: var(--btn-bg-dark);
+  border: 1px solid var(--border-clr);
 }
+.button__active {
+  cursor: pointer;
+  outline: none;
+  &:hover {
+    border: 1px solid var(--btn-hover-border);
+    background-color: var(--btn-hover-bg);
+  }
 }
 
 .button__disabled {
-    height: 32;
-    width: 32px;
-    background-color: #fff;
-    border: 1px solid #E2E6E9;
-    background-image: url(/Icons/ArrowLeft.svg);
-    background-repeat: no-repeat;
-    background-position: center;
+  background-color: transparent;
 }

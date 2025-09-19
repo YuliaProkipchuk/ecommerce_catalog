@@ -1,7 +1,7 @@
 .color {
   height: 30px;
   width: 30px;
-  border: 2px solid #fff;
+  border: 2px solid transparent;
   border-radius: 36px;
   background-color: var(--chang-color);
 }
@@ -17,7 +17,7 @@
   cursor: pointer;
 
   &:hover {
-    border: 1px solid var(--gray-primary);
+    border: 1px solid var(--gray-secondary);
   }
 }
 
@@ -28,6 +28,6 @@
   width: 32px;
   height: 32px;
   border-radius: 36px;
-  border: 2px solid #000;
+  border: 2px solid var(--text-clr);
   cursor: pointer;
 }

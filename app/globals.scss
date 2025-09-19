@@ -1,12 +1,16 @@
-@use "./scss/slider_hero";
+@use './scss/slider_hero';
 body {
   margin: 0;
   min-height: 100vh;
+  background-color: var(--main-bg);
 }
 :root {
+  --main-bg: #fff;
   --gray-primary: #313237;
+  --accent: #313237;
   --gray-secondary: #89939a;
   --border-clr: #e2e6e9;
+  --card-border-clr: #e2e6e9;
   --text-clr: #313237;
   --max-width: 1136px;
   --active-bg-color: #313237;
@@ -17,16 +21,50 @@ body {
   --background-tablets-color: #94959a;
 
   --def-pad: 16px;
-  --border-color: #B4BDC3;
-  --button-capacity-border-color: #B4BDC3;
+  --card-bg: transparent;
+  --btn-bg-dark: #fff;
+  --btn-bg-light: #fff;
+  --btn-hover-bg: #fff;
+  --btn-hover-border: #313237;
+  --border-color: #b4bdc3;
+  --button-capacity-border-color: #b4bdc3;
+  --icon-light: #b4bdc4;
   --button-capacity-shadow-color: #1b263922;
+  --red-like: #eb5757;
+  --nav-shadow-clr: #e2e6e9;
+  --selected-label-clr: #27ae60;
+  --round-border: #e2e6e9;
   --color-white: #fff;
   @media (min-width: 640px) {
     --def-pad: 32px;
   }
 
 }
-
+html[data-theme='dark'] {
+  --main-bg: #0f1121;
+  --gray-primary: #905bff;
+  --accent: #905bff;
+  --gray-secondary: #75767f;
+  --border-clr: #3b3e4a;
+  --card-border-clr: #161827;
+  --text-clr: #f1f2f9;
+  --active-bg-color: #fff;
+  --chang-color: #fcdbc1;
+  --btn-bg-dark: #323542;
+  --btn-bg-light: #f1f2f9;
+  --card-bg: #161827;
+  --btn-hover-bg: #4a4d58;
+  --btn-hover-border: transparent;
+  --border-color: #323542;
+  --button-capacity-border-color: #4a4d58;
+  --round-border: #3b3e4a;
+  --btn-border: #3b3e4a;
+  --icon-light: #b4bdc4;
+  --button-capacity-shadow-color: #1b263922;
+  --red-like: #eb5757;
+  --nav-shadow-clr: #323542;
+  --selected-label-clr: #fff;
+}
 @font-face {
   font-family: 'Mont-Bold';
   src: url('/fonts/Mont-Bold.otf') format('opentype');
@@ -45,14 +83,17 @@ body {
   min-height: calc(100vh - 254px);
   padding-inline: 16px;
   padding-top: 24px;
+  padding-bottom: 56px;
   @media screen and (min-width: 640px) {
     min-height: calc(100vh - 100px);
     padding-inline: 24px;
     padding-top: 40px;
+    padding-bottom: 64px;
   }
   @media screen and (min-width: 1200px) {
     padding-inline: 32px;
     padding-top: 24px;
+    padding-bottom: 80px;
   }
 }
 .main-heading {
@@ -68,7 +109,7 @@ body {
     font-size: 3rem;
   }
 }
-.section {
+.section:not(:last-child) {
   margin-bottom: 56px;
   @media screen and (min-width: 640px) {
     margin-bottom: 64px;
@@ -80,28 +121,12 @@ body {
 .section-title {
   font-size: 1.375rem;
   font-family: 'Mont-Bold', sans-serif;
+  color: var(--text-clr);
   @media screen and (min-width: 640px) {
     font-size: 2rem;
   }
 }
 
-
-
-/* delete after implementing banner slider fakeSimulatedDiv */
-.fakeSimulatedDiv {
-  height: 352px;
-  width: 320px;
-
-  @media screen and (min-width: 640px) and (max-width: 1199px) {
-    height: 221px;
-    width: 592px;
-  }
-
-  @media screen and (min-width: 1200px) {
-    height: 432px;
-    width: 1136px;
-  }
-}
 
 .card_dynamic {
   min-width: 212px;

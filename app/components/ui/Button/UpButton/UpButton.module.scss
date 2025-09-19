@@ -1,18 +1,14 @@
 .button {
   height: 32px;
   width: 32px;
-  background-color: #fff;
-  border: 1px solid #b4bdc3;
+  line-height: 100%;
+  background-color: var(--btn-bg-dark);
+  border: 1px solid var(--border-clr);
   cursor: pointer;
   transition: border-color 0.2s ease;
 }
 
 .button:hover {
-  border: 1px solid #313237;
-}
-
-.up {
-  background-image: url(/Icons/ArrowUpActive.svg);
-  height: 16px;
-  width: 16px;
+  border: 1px solid var(--btn-hover-border);
+  background-color: var(--btn-hover-bg);
 }

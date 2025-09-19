@@ -1,12 +1,12 @@
 'use client';
 import classes from './BackButton.module.scss';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { ArrowLeft } from '../../Icons/ArrowLeft';
 export function BackButton() {
   const router = useRouter();
   return (
     <div className={classes.back_btn} onClick={() => router.back()}>
-      <Image src={'/icons/ArrowLeftActive.svg'} alt="arrow left icon" width={16} height={16} />
+      <ArrowLeft />
       <span>Back</span>
     </div>
   );

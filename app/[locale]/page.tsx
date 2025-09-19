@@ -16,12 +16,13 @@ export default function Home() {
     }, [dispatch]);
     return (
         <>
-            <Pagination/>
-            <section><HeroSection/></section>
+
+            <section className="section"><HeroSection/></section>
+
             <section className="section">
                 <ProductsCarousel title="Brand new models"/>
             </section>
-            <section>
+            <section className="section">
                 <HeroCategory/>
             </section>
             <section className="section">
