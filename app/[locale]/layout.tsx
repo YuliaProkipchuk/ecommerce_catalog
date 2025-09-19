@@ -6,6 +6,7 @@ import type { Metadata } from 'next';
 import { Header } from '../components/layout/Header/Header';
 import { Footer } from '../components/layout/Footer/Footer';
 import { BreadCrumbs } from '../components/ui/BreadCrumbs/BreadCrumbs';
+import { ThemeProvider } from '../ThemeProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -30,7 +31,6 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-
   let messages: Record<string, string> | undefined;
   try {
     messages = (await import(`../../messages/${locale}.json`)).default;
@@ -42,12 +42,14 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Header />
-          <main className="main">
-            <BreadCrumbs />
-            {children}
-          </main>
-          <Footer />
+          <ThemeProvider>
+            <Header />
+            <main className="main">
+              <BreadCrumbs />
+              {children}
+            </main>
+            <Footer />
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -11,12 +11,12 @@ export function FooterNavbar() {
         </Link>
       </li>
       <li>
-        <Link href="/" className={classes.nav_link}>
+        <Link href="/contacts" className={classes.nav_link}>
           contacts
         </Link>
       </li>
       <li>
-        <Link href="/" className={classes.nav_link}>
+        <Link href="/rights" className={classes.nav_link}>
           rights
         </Link>
       </li>

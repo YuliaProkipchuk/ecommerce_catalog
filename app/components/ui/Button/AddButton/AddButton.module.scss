@@ -2,7 +2,7 @@
   display: flex;
   height: 40px;
   flex: 1;
-  background: #313237;
+  background: var(--accent);
   justify-content: center;
   align-items: center;
   color: #fff;
@@ -18,8 +18,9 @@
 }
 
 .button__selected {
-  background-color: #e2e6e9ff;
-  color: #27ae60;
+  flex: 1;
+  background-color: var(--btn-bg-dark);
+  color: var(--selected-label-clr);
   display: flex;
   height: 40px;
   width: 100%;
@@ -28,5 +29,7 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 21px;
+  font-family: 'Mont-SemiBold', sans-serif;
+
   cursor: pointer;
 }

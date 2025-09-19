@@ -8,10 +8,14 @@
     max-width: 32px;
     width: 100%;
     border: 1px solid var(--border-color);
-    background: transparent;
+    background: var(--btn-bg-dark);
     cursor: pointer;
+    &:hover {
+      border: 1px solid var(--btn-hover-border);
+      background-color: var(--btn-hover-bg);
+    }
     svg {
-      stroke: var(--gray-primary);
+      stroke: var(--text-clr);
     }
     @media (min-width: 640px) {
       display: block;
@@ -22,4 +26,6 @@
   padding: 0 var(--def-pad);
   display: flex;
   justify-content: center;
+}
+.button {
 }

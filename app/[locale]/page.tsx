@@ -16,7 +16,7 @@ export default function Home() {
     }, [dispatch]);
     return (
         <>
-            <section><HeroSection/></section>
+            <section className="section"><HeroSection/></section>
             <section className="section">
                 <ProductsCarousel title="Brand new models"/>
             </section>

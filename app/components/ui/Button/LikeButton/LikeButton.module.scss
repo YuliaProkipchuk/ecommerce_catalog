@@ -2,25 +2,19 @@
   display: flex;
   height: 40px;
   width: 40px;
-  background-color: #fff;
-  border: 1px solid #b4bdc3;
+  background-color: var(--btn-bg-dark);
+  border: 1px solid var(--border-clr);
   justify-content: center;
   align-items: center;
   cursor: pointer;
 
   &:hover {
-    border: 1px solid #313237;
+    border: 1px solid var(--btn-hover-border);
+    background-color: var(--btn-hover-bg);
   }
 }
 
-.not_like {
-  background-image: url(/Icons/Button/LikeButton/Favourites.svg);
-  height: 16px;
-  width: 16px;
-}
-
-.like {
-  background-image: url(/Icons/Button/LikeButton/Favourites\ Filled\ \(Heart\ Like\).svg);
-  height: 16px;
-  width: 16px;
+.selected{
+  background-color: transparent;
+  border: none;
 }
