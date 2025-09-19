@@ -33,7 +33,7 @@ export function BreadCrumbs() {
       {segments.map((seg, i) => (
         <li key={i} className={classes.segment}>
           <ArrowRight disabled/>
-          <Link href={buildPath(i)}>{transformName(seg)}</Link>
+          <Link href={buildPath(i)}>{t(`links.${seg}`)}</Link>
         </li>
       ))}
     </ul>

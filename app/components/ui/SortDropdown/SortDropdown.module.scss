@@ -8,7 +8,7 @@
   width: 136px;
   height: 59px;
   border: 1px solid var(--border-clr);
-  background: white;
+  background: var(--btn-bg-dark);
   border-radius: 0;
   display: flex;
   align-items: center;
@@ -24,7 +24,7 @@
 
   &:focus {
     outline: none;
-    border-color: var(--text-clr);
+    border-color: var(--accent);
   }
 
   @media (min-width: 640px) and (max-width: 1199px) {
@@ -37,7 +37,7 @@
 }
 
 .buttonOpen {
-  border-color: var(--text-clr);
+  border-color: var(--accent);
   box-shadow: 0 0 0 1px var(--text-clr);
 }
 
@@ -68,7 +68,7 @@
   top: calc(100% + 8px);
   left: 0;
   right: 0;
-  background: white;
+  background: var(--card-bg);
   border: 1px solid var(--border-clr);
   border-radius: 0;
   box-shadow: 0 8px 24px rgba(49, 50, 55, 0.12), 0 2px 4px rgba(49, 50, 55, 0.08);
@@ -80,7 +80,7 @@
 .option {
   width: 100%;
   padding: 16px 20px;
-  background: white;
+  background: var(--card-bg);
   border: none;
   text-align: left;
   font-family: "Mont", sans-serif;
@@ -92,17 +92,17 @@
   transition: all 0.2s ease;
 
   &:hover {
-    background: #f8f9fa;
+    background: var(--btn-hover-bg);
   }
 }
 
 .optionSelected {
-  background: #FAFBFC;
+  background: var(--btn-hover-bg);
   font-weight: 500;
-  color: var(--gray-primary);
+  color: var(--text-clr);
   
   &:hover {
-    background: #FAFBFC;
+    background: var(--btn-hover-bg);
   }
 }
 
