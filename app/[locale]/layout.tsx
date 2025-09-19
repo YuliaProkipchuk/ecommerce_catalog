@@ -7,6 +7,7 @@ import { Header } from '../components/layout/Header/Header';
 import { Footer } from '../components/layout/Footer/Footer';
 import { BreadCrumbs } from '../components/ui/BreadCrumbs/BreadCrumbs';
 import { ThemeProvider } from '../ThemeProvider';
+import {ThemeInit} from "@/app/components/ui/ThemeInit/ThemeInit";
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -43,6 +44,7 @@ export default async function LocaleLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider>
+            <ThemeInit/>
             <Header />
             <main className="main">
               <BreadCrumbs />
