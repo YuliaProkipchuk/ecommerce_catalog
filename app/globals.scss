@@ -15,6 +15,11 @@ body {
   --max-width: 1136px;
   --active-bg-color: #313237;
   --chang-color: #fcdbc1;
+  --count-red-color: #EB5757;
+  --background-accessories-color: #b64267;
+  --background-phone-color: #fee8d3;
+  --background-tablets-color: #94959a;
+
   --def-pad: 16px;
   --card-bg: transparent;
   --btn-bg-dark: #fff;
@@ -29,9 +34,11 @@ body {
   --nav-shadow-clr: #e2e6e9;
   --selected-label-clr: #27ae60;
   --round-border: #e2e6e9;
+  --color-white: #fff;
   @media (min-width: 640px) {
     --def-pad: 32px;
   }
+
 }
 html[data-theme='dark'] {
   --main-bg: #0f1121;
@@ -120,21 +127,6 @@ html[data-theme='dark'] {
   }
 }
 
-/* delete after implementing banner slider fakeSimulatedDiv */
-.fakeSimulatedDiv {
-  height: 352px;
-  width: 320px;
-
-  @media screen and (min-width: 640px) and (max-width: 1199px) {
-    height: 221px;
-    width: 592px;
-  }
-
-  @media screen and (min-width: 1200px) {
-    height: 432px;
-    width: 1136px;
-  }
-}
 
 .card_dynamic {
   min-width: 212px;

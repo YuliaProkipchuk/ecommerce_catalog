@@ -2,6 +2,7 @@ import React from 'react';
 import { usePathname } from 'next/navigation';
 import classes from './BurgerMenu.module.scss';
 import Link from 'next/link';
+
 import { Close } from '../Icons/Close';
 import { Heart } from '../Icons/Heart';
 import { ShoppingBag } from '../Icons/ShoppingBag';
@@ -10,6 +11,9 @@ import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
 import { Sun } from '../Icons/Sun';
 import { Moon } from '../Icons/Moon';
 import { toggleTheme } from '@/app/stores/slices/mainSlice';
+
+import { Counter } from '../Counter/Counter';
+
 
 interface BurgerMenuProps {
   onClose: () => void;
@@ -75,6 +79,7 @@ export function BurgerMenu({ onClose }: BurgerMenuProps) {
           onClick={onClose}
         >
           <Heart />
+          <Counter />
         </Link>
         <Link
           href="/cart"
@@ -82,6 +87,8 @@ export function BurgerMenu({ onClose }: BurgerMenuProps) {
           onClick={onClose}
         >
           <ShoppingBag />
+       
+          <Counter />
         </Link>
       </div>
     </div>

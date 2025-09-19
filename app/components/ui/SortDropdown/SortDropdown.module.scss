@@ -1,0 +1,118 @@
+
+.sortDropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.button {
+  width: 136px;
+  height: 59px;
+  border: 1px solid var(--border-clr);
+  background: white;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Mont", sans-serif;
+
+  &:hover {
+    border-color: var(--gray-secondary);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--text-clr);
+  }
+
+  @media (min-width: 640px) and (max-width: 1199px) {
+    width: 187px;
+  }
+
+  @media (min-width: 1200px) {
+    width: 176px;
+  }
+}
+
+.buttonOpen {
+  border-color: var(--text-clr);
+  box-shadow: 0 0 0 1px var(--text-clr);
+}
+
+.text {
+  color: var(--text-clr);
+  font-family: "Mont", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: left;
+  flex: 1;
+  user-select: none;
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+  fill: var(--gray-secondary);
+}
+
+.arrowRotated {
+  transform: rotate(180deg);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid var(--border-clr);
+  border-radius: 0;
+  box-shadow: 0 8px 24px rgba(49, 50, 55, 0.12), 0 2px 4px rgba(49, 50, 55, 0.08);
+  z-index: 1000;
+  overflow: hidden;
+  animation: slideDown 0.2s ease;
+}
+
+.option {
+  width: 100%;
+  padding: 16px 20px;
+  background: white;
+  border: none;
+  text-align: left;
+  font-family: "Mont", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--gray-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #f8f9fa;
+  }
+}
+
+.optionSelected {
+  background: #FAFBFC;
+  font-weight: 500;
+  color: var(--gray-primary);
+  
+  &:hover {
+    background: #FAFBFC;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

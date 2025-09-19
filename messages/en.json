@@ -1,5 +1,6 @@
 {
   "test": "Test",
+  "load-more": "Load more",
   "links": {
     "product": "Product",
     "phones": "Phones",
