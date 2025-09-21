@@ -6,6 +6,10 @@
     "phones": "Телефони",
     "tablets": "Планшети",
     "accessories": "Аксесуари",
-    "favourites": "Улюблені"
+    "favourites": "Улюблені",
+    "cart": "Кошик"
+  },
+  "hero-section": {
+    "title": "Ласкаво просимо до нашого магазину!"
   }
 }
