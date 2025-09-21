@@ -3,19 +3,16 @@ import { AddButton } from '../Button/AddButton/AddButton';
 import { CapacityButton } from '../Button/CapacityButton/CapacityButton';
 import { ColorChangButton } from '../Button/ColorChangButton/ColorChangButton';
 import { LikeButton } from '../Button/LikeButton/LikeButton';
-import { Product } from '@/app/types/product';
 
-interface ProductCustomizationProps {
-  product: Product;
-}
 
-export function ProductCustomization({ product }: ProductCustomizationProps) {
+export function ProductCustomization() {
   return (
     <div className={classes.castomization}>
       <div>
         <div className={classes.head__text}>
           <p className={classes.color__text}>Available colors</p>
-          <p className={classes.id__text}>ID: {product.id}</p> /* Display product ID instead of hardcoded value */
+          <p className={classes.id__text}>ID: 1234</p> 
+          {/*  Display product ID instead of hardcoded value  */}
         </div>
 
         <div className={classes.available__color}>
@@ -34,19 +31,20 @@ export function ProductCustomization({ product }: ProductCustomizationProps) {
       </div>
 
       <div className={classes.price}>
-        <p className={classes.price__current}>${product.price}</p>
-        <p className={classes.wrong__price}>${product.fullPrice}</p>
+        <p className={classes.price__current}>$799</p>
+        <p className={classes.wrong__price}>$1594</p>
       </div>
 
       <div className={classes.buttons}>
-        <AddButton product={product} />
+        {/* <AddButton product={product} /> */}
+        {/* when data is there */}
         <LikeButton />
       </div>
 
       <div className={classes.blok}>
         <div className={classes.info__blok}>
           <p className={classes.parameter}>Screen</p>
-          <p className={classes.info}>{product.screen}</p>
+          <p className={classes.info}>8.5' IPS</p>
         </div>
 
         <div className={classes.info__blok}>
@@ -61,7 +59,7 @@ export function ProductCustomization({ product }: ProductCustomizationProps) {
 
         <div className={classes.info__blok}>
           <p className={classes.parameter}>RAM</p>
-          <p className={classes.info}>{product.ram}</p>
+          <p className={classes.info}>6 GB</p>
         </div>
       </div>
     </div>
