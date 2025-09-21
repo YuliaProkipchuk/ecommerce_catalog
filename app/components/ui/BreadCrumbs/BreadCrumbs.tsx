@@ -10,7 +10,7 @@ export function BreadCrumbs() {
   const pathname = usePathname();
   const t = useTranslations();
   const segments = pathname.split('/').slice(2);
-  if (segments.length === 0 || segments.includes('cart')) {
+  if (segments.length === 0) {
     return;
   }
 

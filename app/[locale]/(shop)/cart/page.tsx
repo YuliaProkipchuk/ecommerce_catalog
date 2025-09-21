@@ -1,23 +1,41 @@
+'use client';
+
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/app/stores';
+import { CartItem } from '@/app/components/ui/CartItem/CartItem';
+import { CheckoutSummary } from '@/app/components/ui/CheckoutSummary/CheckoutSummary';
 import classes from './Cart.module.scss';
-import { CartList } from '@/app/components/layout/CartList/CartList';
-import { TotalCost } from '@/app/components/ui/TotalCost/TotalCost';
-import { BackButton } from '@/app/components/ui/Button/BackButton/BackButton';
-function Page() {
+
+export default function CartPage() {
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const totalPrice = cartItems.reduce(
+    (sum, item) => sum + item.product.price * item.quantity,
+    0
+  );
+
+  if (cartItems.length === 0) {
+    return (
+      <div className={classes.empty_cart}>
+        <h1>Your cart is empty</h1>
+        <p>Looks like you haven't added anything yet.</p>
+      </div>
+    );
+  }
+
   return (
-    <>
-      <section className="section">
-        <BackButton />
-        <h1 className="main-heading">Cart</h1>
-      </section>
-      <section className="section">
-        <section className={classes.cart_layout}>
-          <CartList />
-          <TotalCost />
-        </section>
-      </section>
-    </>
+    <div className={classes.cart_page}>
+      <h1 className={classes.title}>Cart</h1>
+      <div className={classes.content}>
+        <div className={classes.cart_items_list}>
+          {cartItems.map((item) => (
+            <CartItem key={item.itemId} item={item} />
+          ))}
+        </div>
+        <CheckoutSummary totalItems={totalItems} totalPrice={totalPrice} />
+      </div>
+    </div>
   );
 }
-
-export default Page;

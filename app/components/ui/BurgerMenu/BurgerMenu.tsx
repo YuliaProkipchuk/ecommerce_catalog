@@ -11,8 +11,8 @@ import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
 import { Sun } from '../Icons/Sun';
 import { Moon } from '../Icons/Moon';
 import { toggleTheme } from '@/app/stores/slices/mainSlice';
+import { CartCounter } from '../CartCounter/CartCounter';
 
-import { Counter } from '../Counter/Counter';
 
 
 interface BurgerMenuProps {
@@ -79,7 +79,6 @@ export function BurgerMenu({ onClose }: BurgerMenuProps) {
           onClick={onClose}
         >
           <Heart />
-          <Counter />
         </Link>
         <Link
           href="/cart"
@@ -87,8 +86,7 @@ export function BurgerMenu({ onClose }: BurgerMenuProps) {
           onClick={onClose}
         >
           <ShoppingBag />
-       
-          <Counter />
+          <CartCounter />
         </Link>
       </div>
     </div>
