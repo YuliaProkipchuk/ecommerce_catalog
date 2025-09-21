@@ -41,7 +41,7 @@ export function ProductCard({ product }: ProductProps) {
       </div>
 
       <div className={classes.buttons}>
-        <AddButton />
+        <AddButton product={product} />
         <LikeButton />
       </div>
     </div>

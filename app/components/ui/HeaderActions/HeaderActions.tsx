@@ -10,8 +10,8 @@ import { Sun } from '../Icons/Sun';
 import { Moon } from '../Icons/Moon';
 import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
 import { toggleTheme } from '@/app/stores/slices/mainSlice';
+import { CartCounter } from '../CartCounter/CartCounter';
 
-import { Counter } from '../Counter/Counter';
 
 
 interface HeaderActionsProps {
@@ -44,15 +44,13 @@ export function HeaderActions({ toggleBurgerMenu }: HeaderActionsProps) {
       >
 
         <Heart />
-        <Counter />
       </Link>
       <Link
         href="/cart"
         className={`${classes.action_button} ${pathWithoutLocale === '/cart' ? classes.active : ''}`}
       >
         <ShoppingBag />
-        <Counter />
-
+        <CartCounter />
       </Link>
 
       <button className={classes.burger_button} onClick={toggleBurgerMenu} aria-label="Toggle menu">

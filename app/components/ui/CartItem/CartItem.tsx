@@ -1,29 +1,72 @@
 import classes from './CartItem.module.scss';
-import ItemImg from '../ProductCard/Image/Phone.png';
 import Image from 'next/image';
 import { Close } from '../Icons/Close';
 import { Minus } from '../Icons/Minus';
 import { Plus } from '../Icons/Plus';
-export function CartItem() {
+import { useDispatch } from 'react-redux';
+import {
+  removeItem,
+  incrementQuantity,
+  decrementQuantity,
+} from '@/app/stores/slices/cartSlice';
+import { Product } from '@/app/types/product';
+
+interface CartItemProps {
+  item: {
+    itemId: string;
+    quantity: number;
+    product: Product;
+  };
+}
+
+export function CartItem({ item }: CartItemProps) {
+  const dispatch = useDispatch();
+
+  const handleRemove = () => {
+    dispatch(removeItem(item.itemId));
+  };
+
+  const handleIncrement = () => {
+    dispatch(incrementQuantity(item.itemId));
+  };
+
+  const handleDecrement = () => {
+    dispatch(decrementQuantity(item.itemId));
+  };
+
   return (
     <div className={classes.cart_item}>
-      <button className={classes.close_btn}>
-        <Close disabled/>
+      <button className={classes.close_btn} onClick={handleRemove}>
+        <Close disabled={false} />
       </button>
-      <Image src={ItemImg} alt="item image" width={80} height={80} className={classes.image} />
-      <p className={classes.title}>Apple iPhone 14 Pro 128GB Silver (MQ023)</p>
+      <Image
+        src={`/${item.product.image}`}
+        alt={item.product.name}
+        width={80}
+        height={80}
+        className={classes.image}
+      />
+      <p className={classes.title}>{item.product.name}</p>
       <div className={classes.price_layout}>
         <div className={classes.quantityControls}>
-          <button className={classes.button}>
-            <Minus disabled />
+          <button
+            className={classes.button}
+            onClick={handleDecrement}
+            disabled={item.quantity === 1}
+          >
+            <Minus disabled={item.quantity === 1} />
           </button>
-          <span className={classes.amount}>1</span>
-          <button className={classes.button}>
-            <Plus />
+          <span className={classes.amount}>{item.quantity}</span>
+          <button
+            className={classes.button}
+            onClick={handleIncrement}
+            disabled={item.quantity === 10}
+          >
+            <Plus disabled={item.quantity === 10} />
           </button>
         </div>
 
-        <span className={classes.price}>$799</span>
+        <span className={classes.price}>${item.product.price * item.quantity}</span>
       </div>
     </div>
   );
