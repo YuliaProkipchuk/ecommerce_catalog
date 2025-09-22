@@ -4,14 +4,13 @@ import { CapacityButton } from '../Button/CapacityButton/CapacityButton';
 import { ColorChangButton } from '../Button/ColorChangButton/ColorChangButton';
 import { LikeButton } from '../Button/LikeButton/LikeButton';
 
-
 export function ProductCustomization() {
   return (
     <div className={classes.castomization}>
       <div>
         <div className={classes.head__text}>
           <p className={classes.color__text}>Available colors</p>
-          <p className={classes.id__text}>ID: 1234</p> 
+          <p className={classes.id__text}>ID: 1234</p>
           {/*  Display product ID instead of hardcoded value  */}
         </div>
 
@@ -38,7 +37,7 @@ export function ProductCustomization() {
       <div className={classes.buttons}>
         {/* <AddButton product={product} /> */}
         {/* when data is there */}
-        <LikeButton />
+        <LikeButton filled={false} />
       </div>
 
       <div className={classes.blok}>
