@@ -29,9 +29,9 @@
   line-height: 100%;
   font-size: 1.375rem;
   font-family: 'Mont-Bold', sans-serif;
+  margin-left: auto;
   min-width: 80px;
   text-align: right;
-  transition: all 0.3s ease;
   
   @media screen and (min-width: 640px) {
     min-width: 100px;
@@ -52,7 +52,6 @@
   text-wrap: wrap;
   font-size: 0.875rem;
   flex: 1;
-  font-family: 'Mont', sans-serif;
   min-width: 0;
 }
 
@@ -60,8 +59,6 @@
   margin-inline: 14px;
   font-size: 0.875rem;
   line-height: 32px;
-  font-family: 'Mont', sans-serif;
-  transition: all 0.3s ease;
   min-width: 20px;
   text-align: center;
 }
@@ -80,11 +77,10 @@
   width: 32px;
   box-sizing: border-box;
   line-height: 100%;
-  font-family: 'Mont', sans-serif;
   flex-shrink: 0;
-
+  
   &:not(:disabled) {
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
     
     &:hover {
       border-color: var(--btn-hover-border);
@@ -102,12 +98,10 @@
   display: flex;
   align-items: center;
   width: 100%;
-  justify-content: space-between;
   
   @media screen and (min-width: 640px) {
     width: fit-content;
     gap: 53px;
-    justify-content: flex-end;
   }
 }
 
@@ -120,9 +114,6 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-family: 'Mont', sans-serif;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-
   &:hover {
     border: 1px solid var(--btn-hover-border);
     background-color: var(--btn-hover-bg);

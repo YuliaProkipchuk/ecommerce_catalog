@@ -10,8 +10,7 @@ export function ProductCustomization() {
       <div>
         <div className={classes.head__text}>
           <p className={classes.color__text}>Available colors</p>
-          <p className={classes.id__text}>ID: 1234</p>
-          {/*  Display product ID instead of hardcoded value  */}
+          <p className={classes.id__text}>ID: 802390</p>
         </div>
 
         <div className={classes.available__color}>
@@ -31,34 +30,33 @@ export function ProductCustomization() {
 
       <div className={classes.price}>
         <p className={classes.price__current}>$799</p>
-        <p className={classes.wrong__price}>$1594</p>
+        <p className={classes.wrong__price}>$1199</p>
       </div>
 
       <div className={classes.buttons}>
-        {/* <AddButton product={product} /> */}
-        {/* when data is there */}
+        <AddButton />
         <LikeButton filled={false} />
       </div>
 
       <div className={classes.blok}>
         <div className={classes.info__blok}>
           <p className={classes.parameter}>Screen</p>
-          <p className={classes.info}>8.5' IPS</p>
+          <p className={classes.info}>6.5” OLED</p>
         </div>
 
         <div className={classes.info__blok}>
           <p className={classes.parameter}>Resolution</p>
-          <p className={classes.info}>N/A</p>
+          <p className={classes.info}>2688x1242</p>
         </div>
 
         <div className={classes.info__blok}>
           <p className={classes.parameter}>Processor</p>
-          <p className={classes.info}>N/A</p>
+          <p className={classes.info}>Apple A12 Bionic</p>
         </div>
 
         <div className={classes.info__blok}>
           <p className={classes.parameter}>RAM</p>
-          <p className={classes.info}>6 GB</p>
+          <p className={classes.info}>4 GB</p>
         </div>
       </div>
     </div>
