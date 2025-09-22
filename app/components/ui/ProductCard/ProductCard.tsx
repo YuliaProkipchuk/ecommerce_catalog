@@ -36,7 +36,6 @@ export function ProductCard({ product }: ProductProps) {
   const link = `/${product.category}/${product.itemId}`;
   const { favouritesProducts } = useAppSelector((state) => state.favourites);
   const isFavourite = favouritesProducts.some((p) => p.itemId === product.itemId);
-  const dispatch = useAppDispatch();
   const toggleLike = () => {
     dispatch(toggleFavourites(product));
   };
