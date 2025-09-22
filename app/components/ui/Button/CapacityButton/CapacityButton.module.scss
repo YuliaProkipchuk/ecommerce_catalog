@@ -31,6 +31,11 @@
     line-height: 21px;
     font-weight: 500;
     font-family: "Mont", sans-serif;
-    color: #fff;
+    color: var(--active-text);
     cursor: pointer;
+    border: 1px solid var(--active-bg-color);
+}
+
+.link {
+    text-decoration: none;
 }

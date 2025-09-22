@@ -52,6 +52,7 @@
 .capacity {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .price {

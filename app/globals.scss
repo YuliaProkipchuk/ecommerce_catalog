@@ -35,6 +35,7 @@ body {
   --selected-label-clr: #27ae60;
   --round-border: #e2e6e9;
   --color-white: #fff;
+  --active-text: #f1f2f9;
   @media (min-width: 640px) {
     --def-pad: 32px;
   }
@@ -64,6 +65,7 @@ html[data-theme='dark'] {
   --red-like: #eb5757;
   --nav-shadow-clr: #323542;
   --selected-label-clr: #fff;
+  --active-text: #313237;
 }
 @font-face {
   font-family: 'Mont-Bold';

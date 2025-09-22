@@ -3,6 +3,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getProducts } from '@/app/helpers/products/getProducts';
 import { RootState } from '../index';
 import { prepareData } from '@/app/helpers/products/filterAndSort';
+import { FullProduct } from '@/app/types/fullProduct';
+import { getFullProducts } from '@/app/helpers/products/getFullProduct';
 
 export type SortBy = { param: keyof Product; order: 'asc' | 'desc' };
 
@@ -14,6 +16,7 @@ interface ProductState {
   countItemsPage: number;
   category: string;
   sortBy: SortBy;
+  fullProduct: FullProduct[];
 }
 
 const initialState: ProductState = {
@@ -27,11 +30,26 @@ const initialState: ProductState = {
     param: 'year',
     order: 'desc',
   },
+  fullProduct: []
 };
 
 export const getProductsStore = createAsyncThunk('products/get', async () => {
   return await getProducts();
 });
+
+export const getCategoryFullProducts = createAsyncThunk(
+  'products/getFullCategory',
+  async (category: string, { rejectWithValue }) => {
+    try {
+
+      const products = await getFullProducts(category);
+      return products;
+    } catch (error) {
+
+      return rejectWithValue(error);
+    }
+  }
+);
 
 const productSlice = createSlice({
   name: 'products',
@@ -85,6 +103,18 @@ const productSlice = createSlice({
       .addCase(getProductsStore.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || 'Error';
+      })
+      .addCase(getCategoryFullProducts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getCategoryFullProducts.fulfilled, (state, action: PayloadAction<FullProduct[]>) => {
+        state.loading = false;
+        state.fullProduct = action.payload;
+      })
+      .addCase(getCategoryFullProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
       });
   },
 });
