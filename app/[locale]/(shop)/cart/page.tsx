@@ -4,8 +4,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/app/stores';
 import { CartItem } from '@/app/components/ui/CartItem/CartItem';
-import { CheckoutSummary } from '@/app/components/ui/CheckoutSummary/CheckoutSummary';
 import classes from './Cart.module.scss';
+import { TotalCost } from '@/app/components/ui/TotalCost/TotalCost';
 
 export default function CartPage() {
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -34,7 +34,7 @@ export default function CartPage() {
             <CartItem key={item.itemId} item={item} />
           ))}
         </div>
-        <CheckoutSummary totalItems={totalItems} totalPrice={totalPrice} />
+        <TotalCost totalItems={totalItems} totalPrice={totalPrice} />
       </div>
     </div>
   );
