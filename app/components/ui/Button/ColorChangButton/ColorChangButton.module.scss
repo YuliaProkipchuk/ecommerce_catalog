@@ -1,9 +1,9 @@
-.color {
+.colors {
   height: 30px;
   width: 30px;
   border: 2px solid transparent;
   border-radius: 36px;
-  background-color: var(--chang-color);
+  // background-color: var(--chang-color);
 }
 
 .button {
@@ -30,4 +30,72 @@
   border-radius: 36px;
   border: 2px solid var(--text-clr);
   cursor: pointer;
+}
+
+.black{
+  background-color: black;
+}
+.green{
+  background-color: green;
+}
+.yellow{
+  background-color: yellow;
+}
+.white{
+  background-color: white;
+}
+.purple{
+  background-color: purple;
+}
+.red{
+  background-color: red;
+}
+.silver{
+  background-color: #c0c0c0;
+}
+.gold{
+  background-color: #ffd700;
+}
+
+.spacegray{
+  background-color: #808080;
+}
+.blue{
+  background-color: blue;
+}
+.midnightgreen{
+  background-color: #4e5851;
+}
+.rosegold{
+  background-color: #B76E79;
+}
+.white{
+  background-color: white;
+}
+.coral{
+  background-color: coral;
+}
+.midnight{
+  background-color: #2f3337;
+}
+.spaceblack{
+  background-color: #1b1b1f;
+}
+.pink{
+  background-color: pink;
+}
+.graphite{
+background-color: #36363b;
+}
+.sierrablue{
+  background-color: #A7B3BF;
+}
+.rosegold{
+  background-color: #B76E79;
+}
+.skyblue{
+  background-color: #87CEEB;
+}
+.starlight{
+  background-color: #F0EFE7;
 }

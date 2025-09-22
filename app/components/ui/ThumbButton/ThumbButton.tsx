@@ -5,10 +5,11 @@ import classes from './ThumbButton.module.scss';
 type PropType = {
   selected: boolean;
   onClick: () => void;
+  image: string
 };
 
 export const Thumb: React.FC<PropType> = (props) => {
-  const { selected, onClick } = props;
+  const { selected, onClick, image } = props;
 
   return (
     <div
@@ -16,7 +17,7 @@ export const Thumb: React.FC<PropType> = (props) => {
       onClick={onClick}
     >
       <Image
-        src={ItemImg}
+        src={`/${image}`}
         alt="item image"
         fill
         className={classes.slider_image}
