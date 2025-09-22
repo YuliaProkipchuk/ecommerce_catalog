@@ -11,16 +11,18 @@
   line-height: 21px;
   font-family: 'Mont', sans-serif;
   cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 
   &:hover {
     box-shadow: 0px 3px 13px 0px #17203166;
   }
 }
 
-.button__selected {
+.selected {
   flex: 1;
-  background-color: var(--btn-bg-dark);
-  color: var(--selected-label-clr);
+  background-color: var(--white-color);
+  color: #27AE60;
+  border: 1px solid #E2E6E9;
   display: flex;
   height: 40px;
   width: 100%;
@@ -30,6 +32,10 @@
   font-size: 14px;
   line-height: 21px;
   font-family: 'Mont-SemiBold', sans-serif;
-
   cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+
+  &:hover {
+    box-shadow: none;
+  }
 }

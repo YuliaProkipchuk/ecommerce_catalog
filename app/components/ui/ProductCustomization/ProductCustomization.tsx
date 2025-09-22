@@ -21,6 +21,7 @@ export function ProductCustomization({ products }: ProductProps) {
             {/* <p className={classes.id__text}>ID: {products.namespaceId}</p> */}
           </div>
 
+
           <div className={classes.available__color}>
             <ColorChangButton
               colors={products.colorsAvailable}
@@ -28,6 +29,12 @@ export function ProductCustomization({ products }: ProductProps) {
               activeCapacity={products.capacity}
               itemId={products.namespaceId}
             />
+
+      <div className={classes.buttons}>
+        <AddButton />
+        <LikeButton filled={false} />
+      </div>
+
 
           </div>
         </div>
