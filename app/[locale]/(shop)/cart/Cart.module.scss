@@ -3,60 +3,60 @@
   max-width: 1200px;
   margin: 0 auto;
   font-family: 'Mont', sans-serif;
+}
 
-  .title {
-    font-size: 48px;
-    font-weight: 800;
-    margin-bottom: 32px;
-    text-align: left;
-    font-family: 'Mont', sans-serif;
-    color: var(--text-clr);
+.title {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 32px;
+  text-align: left;
+  font-family: 'Mont-Bold', sans-serif;
+  color: var(--text-clr);
 
-    @media (max-width: 767px) {
-      font-size: 32px;
-      margin-bottom: 24px;
-    }
+  @media screen and (max-width: 767px) {
+    font-size: 32px;
+    margin-bottom: 24px;
   }
+}
 
-  .content {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 
-    @media (min-width: 768px) {
-      flex-direction: row;
-      gap: 80px;
-      align-items: flex-start;
-    }
-  }
-
-  .cart_items_list {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+  @media screen and (min-width: 1200px) {
+    flex-direction: row;
     gap: 16px;
+    align-items: flex-start;
+  }
+}
 
-    @media (min-width: 768px) {
-      flex: 2;
-      gap: 24px;
-    }
+.cart_items_list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media screen and (min-width: 1200px) {
+    flex: 2;
+    gap: 24px;
+  }
+}
+
+.empty_cart {
+  text-align: center;
+  padding: 50px;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-family: 'Mont-Bold', sans-serif;
+    color: var(--text-clr);
   }
 
-  .empty_cart {
-    text-align: center;
-    padding: 50px;
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      font-family: 'Mont-Bold', sans-serif;
-      color: var(--text-clr);
-    }
-
-    p {
-      font-size: 1.2rem;
-      color: var(--gray-secondary);
-      font-family: 'Mont', sans-serif;
-    }
+  p {
+    font-size: 1.2rem;
+    color: var(--gray-secondary);
+    font-family: 'Mont', sans-serif;
   }
 }

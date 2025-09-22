@@ -1,14 +1,39 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect } from 'react';
 import phoneImage from './Image/Phone.png';
 import classes from './ProductCard.module.scss';
 import { AddButton } from '../Button/AddButton/AddButton';
 import { LikeButton } from '../Button/LikeButton/LikeButton';
 import Link from 'next/link';
 import { Product } from '@/app/types/product';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/app/stores';
+import { addItem, removeItem } from '@/app/stores/slices/cartSlice';
+
 type ProductProps = {
   product: Product;
 };
+
 export function ProductCard({ product }: ProductProps) {
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const isInCart = cartItems.some((item) => item.itemId === product.itemId);
+
+  const [buttonText, setButtonText] = React.useState(isInCart ? 'Selected' : 'Add to cart');
+
+  useEffect(() => {
+    setButtonText(isInCart ? 'Selected' : 'Add to cart');
+  }, [isInCart]);
+
+  const handleAddToCartClick = () => {
+    if (isInCart) {
+      dispatch(removeItem(product.itemId));
+    } else {
+      dispatch(addItem(product));
+    }
+  };
+
   const link = `/${product.category}/${product.itemId}`;
   return (
     <div className={classes.card}>
@@ -41,7 +66,11 @@ export function ProductCard({ product }: ProductProps) {
       </div>
 
       <div className={classes.buttons}>
-        <AddButton product={product} />
+        <AddButton
+          onClick={handleAddToCartClick}
+          text={buttonText}
+          isSelected={isInCart}
+        />
         <LikeButton />
       </div>
     </div>
