@@ -1,15 +1,23 @@
+'use client';
 import React from 'react';
-import phoneImage from './Image/Phone.png';
 import classes from './ProductCard.module.scss';
 import { AddButton } from '../Button/AddButton/AddButton';
 import { LikeButton } from '../Button/LikeButton/LikeButton';
 import Link from 'next/link';
 import { Product } from '@/app/types/product';
+import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
+import { toggleFavourites } from '@/app/stores/slices/favouritesSlice';
 type ProductProps = {
   product: Product;
 };
 export function ProductCard({ product }: ProductProps) {
   const link = `/${product.category}/${product.itemId}`;
+  const { favouritesProducts } = useAppSelector((state) => state.favourites);
+  const isFavourite = favouritesProducts.some((p) => p.itemId === product.itemId);
+  const dispatch = useAppDispatch();
+  const toggleLike = () => {
+    dispatch(toggleFavourites(product));
+  };
   return (
     <div className={classes.card}>
       <div className={classes.image}>
@@ -42,7 +50,7 @@ export function ProductCard({ product }: ProductProps) {
 
       <div className={classes.buttons}>
         <AddButton product={product} />
-        <LikeButton />
+        <LikeButton onClick={toggleLike} filled={isFavourite} />
       </div>
     </div>
   );
