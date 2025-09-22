@@ -6,13 +6,22 @@ import {useDispatch } from 'react-redux';
 import {AppDispatch } from '@/app/stores';
 import {useEffect} from 'react';
 import {getProductsStore} from '@/app/stores/slices/productSlice';
+import {getProductsSupa} from "@/app/helpers/supabase/products/getProducts";
+import {getPhones} from "@/app/helpers/supabase/products/phones";
+import {getAcc} from "@/app/helpers/supabase/products/getAcc";
+import {getTablets} from "@/app/helpers/supabase/products/getTablets";
 
 export default function Home() {
 
     const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
         dispatch(getProductsStore());
+        getProductsSupa()
+        getPhones()
+        getAcc()
+        getTablets()
     }, [dispatch]);
+
     return (
         <>
 
