@@ -1,23 +1,22 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import phoneImage from './Image/Phone.png';
 import classes from './ProductCard.module.scss';
 import { AddButton } from '../Button/AddButton/AddButton';
 import { LikeButton } from '../Button/LikeButton/LikeButton';
 import Link from 'next/link';
 import { Product } from '@/app/types/product';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/app/stores';
 import { addItem, removeItem } from '@/app/stores/slices/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
+import { toggleFavourites } from '@/app/stores/slices/favouritesSlice';
 
 type ProductProps = {
   product: Product;
 };
 
 export function ProductCard({ product }: ProductProps) {
-  const dispatch = useDispatch();
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const dispatch = useAppDispatch();
+  const cartItems = useAppSelector(state => state.cart.items);
   const isInCart = cartItems.some((item) => item.itemId === product.itemId);
 
   const [buttonText, setButtonText] = React.useState(isInCart ? 'Selected' : 'Add to cart');
@@ -35,6 +34,12 @@ export function ProductCard({ product }: ProductProps) {
   };
 
   const link = `/${product.category}/${product.itemId}`;
+  const { favouritesProducts } = useAppSelector((state) => state.favourites);
+  const isFavourite = favouritesProducts.some((p) => p.itemId === product.itemId);
+  const dispatch = useAppDispatch();
+  const toggleLike = () => {
+    dispatch(toggleFavourites(product));
+  };
   return (
     <div className={classes.card}>
       <div className={classes.image}>
@@ -71,7 +76,7 @@ export function ProductCard({ product }: ProductProps) {
           text={buttonText}
           isSelected={isInCart}
         />
-        <LikeButton />
+        <LikeButton onClick={toggleLike} filled={isFavourite} />
       </div>
     </div>
   );

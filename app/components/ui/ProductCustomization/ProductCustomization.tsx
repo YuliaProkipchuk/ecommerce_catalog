@@ -35,7 +35,7 @@ export function ProductCustomization() {
 
       <div className={classes.buttons}>
         <AddButton />
-        <LikeButton />
+        <LikeButton filled={false} />
       </div>
 
       <div className={classes.blok}>
