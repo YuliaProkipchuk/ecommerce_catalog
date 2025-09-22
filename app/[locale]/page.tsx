@@ -10,6 +10,8 @@ import {getProductsSupa} from "@/app/helpers/supabase/products/getProducts";
 import {getPhones} from "@/app/helpers/supabase/products/phones";
 import {getAcc} from "@/app/helpers/supabase/products/getAcc";
 import {getTablets} from "@/app/helpers/supabase/products/getTablets";
+import {loginUser} from "@/app/helpers/supabase/auth/login";
+import {registerUser} from "@/app/helpers/supabase/auth/register";
 
 export default function Home() {
 
