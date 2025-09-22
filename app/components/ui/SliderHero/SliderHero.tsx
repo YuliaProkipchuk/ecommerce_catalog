@@ -41,48 +41,48 @@ export const SliderHero = () => {
                 >
                     <SwiperSlide className={'slide-slider-content'}>
                         {currentWidth < 640 &&
-                            <Image src={'/banners/bn1.jpg'} width={320} height={320} sizes="100vw"
+                            <Image src={'/banners/iPhone-17-Pro.jpg'} width={1400} height={791} sizes="100vw"
                                    alt="Image slider Hero"
                                    style={{width: '100%', height: 'auto'}}/>}
                         {(currentWidth >= 640 && currentWidth <= 1200) &&
-                            <Image src={'/banners/bn1-desktop.jpg'} width={320} height={189} sizes="100vw"
+                            <Image src={'/banners/iPhone-17-Pro.jpg'} width={1400} height={791} sizes="100vw"
                                    alt="Image slider Hero"
-                                   style={{width: '100%', height: '189px'}}/>}
+                                   style={{width: '100%', height: 'auto'}}/>}
                         {(currentWidth >= 1200) &&
-                            <Image src={'/banners/bn1-desktop.jpg'} width={320} height={432} sizes="100vw"
+                            <Image src={'/banners/iPhone-17-Pro.jpg'} width={1400} height={791} sizes="100vw"
                                    alt="Image slider Hero"
-                                   style={{width: '100%', height: '432px'}}/>}
+                                   style={{width: '100%', height: 'auto'}}/>}
                     </SwiperSlide>
                     <SwiperSlide className={'slide-slider-content'}>
                         <div className="container-first-slider">
                             {currentWidth < 640 &&
-                                <Image src={'/banners/bn1.jpg'} width={320} height={320} sizes="100vw"
+                                <Image src={'/banners/iphone-15.jpg'} width={1400} height={791} sizes="100vw"
                                        alt="Image slider Hero"
                                        style={{width: '100%', height: 'auto'}}/>}
                             {(currentWidth >= 640 && currentWidth <= 1200) &&
-                                <Image src={'/banners/bn1-desktop.jpg'} width={320} height={320} sizes="100vw"
+                                <Image src={'/banners/iphone-15.jpg'} width={1400} height={791} sizes="100vw"
                                        alt="Image slider Hero"
-                                       style={{width: '100%', height: '189px'}}/>}
+                                       style={{width: '100%', height: 'auto'}}/>}
                             {(currentWidth >= 1200) &&
-                                <Image src={'/banners/bn1-desktop.jpg'} width={320} height={432} sizes="100vw"
+                                <Image src={'/banners/iphone-15.jpg'} width={1400} height={791} sizes="100vw"
                                        alt="Image slider Hero"
-                                       style={{width: '100%', height: '432px'}}/>}
+                                       style={{width: '100%', height: 'auto'}}/>}
                         </div>
                     </SwiperSlide>
                     <SwiperSlide className={'slide-slider-content'}>
                         <div className="container-first-slider">
                             {currentWidth < 640 &&
-                                <Image src={'/banners/bn1.jpg'} width={320} height={320} sizes="100vw"
+                                <Image src={'/banners/apples-iphone-15-m_2.jpg'} width={1400} height={791} sizes="100vw"
                                        alt="Image slider Hero"
                                        style={{width: '100%', height: 'auto'}}/>}
                             {(currentWidth >= 640 && currentWidth <= 1200) &&
-                                <Image src={'/banners/bn1-desktop.jpg'} width={320} height={320} sizes="100vw"
+                                <Image src={'/banners/apples-iphone-15-m_2.jpg'} width={1400} height={791} sizes="100vw"
                                        alt="Image slider Hero"
-                                       style={{width: '100%', height: '189px'}}/>}
+                                       style={{width: '100%', height: 'auto'}}/>}
                             {(currentWidth >= 1200) &&
-                                <Image src={'/banners/bn1-desktop.jpg'} width={320} height={432} sizes="100vw"
+                                <Image src={'/banners/apples-iphone-15-m_2.jpg'} width={1400} height={791} sizes="100vw"
                                        alt="Image slider Hero"
-                                       style={{width: '100%', height: '432px'}}/>}
+                                       style={{width: '100%', height: 'auto'}}/>}
                         </div>
                     </SwiperSlide>
                 </Swiper>
