@@ -1,7 +1,10 @@
-import { FullProduct } from "@/app/types/fullProduct";
-import { Product } from "@/app/types/product";
+import { FullProduct } from '@/app/types/fullProduct';
+import { Product } from '@/app/types/product';
 
-export function prepareProduct(product: FullProduct, category: string): Omit<Product, 'id' | 'year'> {
+export function prepareProduct(
+  product: FullProduct,
+  category: string,
+): Omit<Product, 'id' | 'year'> {
   return {
     itemId: product.id,
     capacity: product.capacity,
@@ -13,5 +16,6 @@ export function prepareProduct(product: FullProduct, category: string): Omit<Pro
     price: product.priceDiscount,
     ram: product.ram,
     screen: product.screen,
+    // screen: product.screen.split(' ').slice(0, 2).join(' '),
   };
 }
