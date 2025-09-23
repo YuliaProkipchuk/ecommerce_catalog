@@ -1,0 +1,142 @@
+.order_summary {
+  width: 100%;
+  border: 1px solid var(--border-clr);
+  padding: 24px;
+  box-sizing: border-box;
+  font-family: 'Mont', sans-serif;
+  background-color: var(--card-bg);
+  @media screen and (min-width: 1200px) {
+    width: 368px;
+  }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  text-align: left;
+  font-family: 'Mont-Bold', sans-serif;
+  color: var(--text-clr);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.detail_item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  color: var(--gray-secondary);
+  align-items: baseline;
+  span:first-child {
+    font-weight: 500;
+    color: var(--text-clr);
+  }
+  .total_price {
+    font-size: 24px;
+    font-weight: 800;
+    font-family: 'Mont-Bold', sans-serif;
+    color: var(--text-clr);
+  }
+}
+
+.line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-clr);
+}
+
+.button_error {
+  border: 1px solid #e74c3c !important;
+  box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
+}
+
+.error_message {
+  margin-top: 0.5rem;
+  span {
+    color: #e74c3c;
+    font-size: 0.875rem;
+    display: block;
+  }
+}
+
+.items_preview {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.order_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.order_item:not(:first-child) {
+  margin-top: 16px;
+}
+
+.left {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border-clr);
+  background-color: var(--card-bg);
+}
+
+.thumb_img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.name_wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-clr);
+}
+
+.qty {
+  font-size: 0.875rem;
+  color: var(--gray-secondary);
+}
+
+.right {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-clr);
+
+}
+
+.items_divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-clr);
+  margin: 16px 0;
+}
+
+.discount_amount {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--selected-label-clr);
+}

@@ -1,0 +1,93 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid var(--border-clr);
+  font-family: 'Mont', sans-serif;
+  background-color: var(--background-clr);
+}
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-size: 0.875rem;
+    color: var(--text-clr);
+  }
+
+  input {
+    padding: 12px 16px;
+    border: 1px solid var(--border-clr);
+    font-size: 1rem;
+    color: var(--text-clr);
+    background-color: transparent;
+
+    &::placeholder {
+      color: var(--gray-secondary);
+    }
+  }
+}
+
+.form_group_row {
+  display: flex;
+  gap: 16px;
+
+  .form_group {
+    flex: 1;
+  }
+}
+
+.error_message {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: #f87171;
+  margin-top: 4px;
+}
+
+.input_error {
+  border-color: #f87171 !important;
+}
+
+.payment_title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  color: var(--text-clr);
+  font-family: 'Mont-Bold', sans-serif;
+}
+
+.phone_group {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-clr);
+  background-color: transparent;
+
+  &.input_error {
+    border-color: #f87171 !important;
+  }
+
+  .prefix {
+    padding: 12px 8px;
+    font-size: 1rem;
+    color: var(--text-clr);
+    border-right: 1px solid var(--border-clr);
+    white-space: nowrap;
+  }
+
+  input {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    background-color: transparent;
+
+    &::placeholder {
+      color: var(--gray-secondary);
+    }
+  }
+}
