@@ -8,7 +8,7 @@ import { useParams } from "next/navigation";
 interface ColorProps {
     colors: string[],
     activeColor: string
-    itemId:string
+    itemId: string
     activeCapacity: string
 }
 
@@ -18,11 +18,14 @@ export function ColorChangButton({ colors, activeColor, itemId, activeCapacity }
     return (
         <>
             {colors.map(color => (
-                <div className={color !== activeColor ? `${classes.button}` : `${classes.active}`} key={color}>
-                    <Link href={`/${category}/${itemId}-${activeCapacity.toLowerCase()}-${color.replace(/ /g, '-')}`} className={classes.colors}>
-                    <button className={`${classes.colors} ${classes[color.replace(/ /g, '')]}`} ></button>
+                
+                    <Link
+                        href={`/${category}/${itemId}-${activeCapacity.toLowerCase()}-${color.replace(/ /g, '-')}`}
+                        className={color !== activeColor ? `${classes.button}` : `${classes.active}`} key={color}
+                    >
+                        <button className={`${classes.colors} ${classes[color.replace(/ /g, '')]}`}></button>
                     </Link>
-                </div>
+                
             ))}</>
     );
 }
