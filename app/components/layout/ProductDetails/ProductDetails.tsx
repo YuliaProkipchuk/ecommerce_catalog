@@ -40,7 +40,6 @@ export function CreateProduct({ slug }: CreateProductProps) {
   if (error) {
     return <div>{error}</div>;
   }
-  console.log(oneProduct.images);
   return (
     <>
       <section className="section">

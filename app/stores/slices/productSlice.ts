@@ -123,7 +123,6 @@ const productSlice = createSlice({
       .addCase(getCategoryFullProducts.fulfilled, (state, action: PayloadAction<FullProduct[]>) => {
         state.loading = false;
         state.fullProduct = action.payload;
-        console.log(action.payload)
       })
       .addCase(getCategoryFullProducts.rejected, (state, action) => {
         state.loading = false;
