@@ -1,4 +1,7 @@
 @use './scss/slider_hero';
+*{
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   min-height: 100vh;
@@ -144,6 +147,6 @@ html[data-theme='dark'] {
     width: 229px;
   }
   @media screen and (min-width: 1200px) {
-    width: 272px;
+    width: 256px;
   }
 }
