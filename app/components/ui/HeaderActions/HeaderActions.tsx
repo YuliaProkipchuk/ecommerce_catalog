@@ -11,12 +11,15 @@ import { Moon } from '../Icons/Moon';
 import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
 import { toggleTheme } from '@/app/stores/slices/mainSlice';
 import { Counter } from '../Counter/Counter';
+import { UserIcon } from '../Icons/UserIcon';
+import { ExitIcon } from '../Icons/ExitIcon';
 
 interface HeaderActionsProps {
   toggleBurgerMenu: () => void;
 }
 
 export function HeaderActions({ toggleBurgerMenu }: HeaderActionsProps) {
+  const user = false;
   const pathname = usePathname();
   const theme = useAppSelector((state) => state.main.theme);
   const cartCount = useAppSelector((state) => state.cart.count);
@@ -35,6 +38,21 @@ export function HeaderActions({ toggleBurgerMenu }: HeaderActionsProps) {
 
   return (
     <div className={classes.header_actions}>
+      {user ? (
+        <Link
+          href="/sign-in"
+          className={`${classes.action_button} ${pathWithoutLocale === '/sign-in' || pathWithoutLocale === '/sign-up' ? classes.active : ''}`}
+        >
+          <ExitIcon />
+        </Link>
+      ) : (
+        <Link
+          href="/sign-in"
+          className={`${classes.action_button} ${pathWithoutLocale === '/sign-in' || pathWithoutLocale === '/sign-up'? classes.active : ''}`}
+        >
+          <UserIcon />
+        </Link>
+      )}
       <button className={classes.theme_button} onClick={() => dispatch(toggleTheme())}>
         {theme === 'light' ? <Sun /> : <Moon />}
       </button>

@@ -13,8 +13,6 @@ import { Moon } from '../Icons/Moon';
 import { toggleTheme } from '@/app/stores/slices/mainSlice';
 import { CartCounter } from '../CartCounter/CartCounter';
 
-
-
 interface BurgerMenuProps {
   onClose: () => void;
 }
@@ -23,7 +21,7 @@ export function BurgerMenu({ onClose }: BurgerMenuProps) {
   const pathname = usePathname();
   const theme = useAppSelector((state) => state.main.theme);
   const dispatch = useAppDispatch();
-
+  const user = false;
   const getPathnameWithoutLocale = (path: string) => {
     const segments = path.split('/').filter(Boolean);
     if (segments.length > 0 && segments[0].length === 2) {
@@ -39,6 +37,7 @@ export function BurgerMenu({ onClose }: BurgerMenuProps) {
     { href: '/phones', label: 'phones' },
     { href: '/tablets', label: 'tablets' },
     { href: '/accessories', label: 'accessories' },
+    { href: '/sign-in', label: !user ? 'sign in' : 'log out' },
   ];
 
   const isActive = (href: string) => {
