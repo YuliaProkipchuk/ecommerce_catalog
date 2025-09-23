@@ -1,0 +1,12 @@
+import React from 'react';
+import classes from './Loader.module.scss';
+
+function Loader() {
+  return (
+    <div className={classes.loader_wrapper}>
+      <div className={classes.loader}></div>
+    </div>
+  );
+}
+
+export default Loader;

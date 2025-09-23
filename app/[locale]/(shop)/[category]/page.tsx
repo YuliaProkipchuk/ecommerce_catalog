@@ -11,6 +11,7 @@ import {
 import { useParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { Pagination } from '@/app/components/ui/Pagination/Pagination';
+import Loader from '@/app/components/ui/Loader/Loader';
 
 const categories = {
   phones: 'Mobile phones',
@@ -21,7 +22,7 @@ type CategoryKey = keyof typeof categories;
 const Page = () => {
   const { category } = useParams();
   const id = category as CategoryKey;
-  const { products, countItemsPage, sortBy } = useAppSelector((state) => state.products);
+  const { products, countItemsPage, sortBy, loading } = useAppSelector((state) => state.products);
   const dispatch = useAppDispatch();
   const data = useAppSelector(selectTotalByCategory(id));
 
@@ -32,7 +33,10 @@ const Page = () => {
         dispatch(getCategoryProducts(id));
       });
   }, [countItemsPage, sortBy]);
-
+  
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <>
       <section className="section">

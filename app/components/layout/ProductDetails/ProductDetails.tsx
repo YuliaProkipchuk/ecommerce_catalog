@@ -11,6 +11,7 @@ import { ProductsCarousel } from '../ProductsCarousel/ProductsCarousel';
 import { ProductSpecification } from '../ProductSpecification/ProductSpecification';
 import { ProductCustomization } from '../../ui/ProductCustomization/ProductCustomization';
 import { prepareProduct } from '@/app/helpers/products/prepareProduct';
+import Loader from '../../ui/Loader/Loader';
 
 interface CreateProductProps {
   slug: string;
@@ -34,7 +35,7 @@ export function CreateProduct({ slug }: CreateProductProps) {
     [fullProduct],
   );
   if (loading || !oneProduct) {
-    return;
+    return <Loader />;
   }
 
   if (error) {
