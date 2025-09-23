@@ -44,6 +44,7 @@ export function CreateProduct({ slug }: CreateProductProps) {
   return (
     <>
       <section className="section">
+        <BackButton />
         <h2 className="section-title">{oneProduct.name}</h2>
       </section>
       <section className="section">
