@@ -6,6 +6,7 @@ import { Plus } from '../Icons/Plus';
 import { useDispatch } from 'react-redux';
 import { removeItem, incrementQuantity, decrementQuantity } from '@/app/stores/slices/cartSlice';
 import { Product } from '@/app/types/product';
+import { toast } from 'react-toastify';
 
 interface CartItemProps {
   item: {
@@ -20,6 +21,16 @@ export function CartItem({ item }: CartItemProps) {
 
   const handleRemove = () => {
     dispatch(removeItem(item.itemId));
+    
+    toast.info(`${item.product.name} was removed from the cart.`, {
+      position: 'bottom-right',
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   const handleIncrement = () => {

@@ -10,6 +10,9 @@ import { ThemeProvider } from '../ThemeProvider';
 import { ThemeInit } from "@/app/components/ui/ThemeInit/ThemeInit";
 import { CartInit } from '@/app/components/ui/CartInit/CartInit';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -52,6 +55,7 @@ export default async function LocaleLayout({
             <main className="main">
               <BreadCrumbs />
               {children}
+              <ToastContainer toastClassName="my-custom-toast"/>
             </main>
             <Footer />
           </ThemeProvider>

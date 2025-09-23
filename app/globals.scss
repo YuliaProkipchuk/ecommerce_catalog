@@ -37,6 +37,7 @@ body {
   --round-border: #e2e6e9;
   --color-white: #fff;
   --active-text: #f1f2f9;
+  --active-select-text: #b4bdc3;
   @media (min-width: 640px) {
     --def-pad: 32px;
   }
@@ -66,8 +67,8 @@ html[data-theme='dark'] {
   --nav-shadow-clr: #323542;
   --selected-label-clr: #fff;
   --selected-bg: #fff;
-
   --active-text: #313237;
+  --active-select-text: #313237;
 }
 @font-face {
   font-family: 'Mont-Bold';
@@ -146,4 +147,19 @@ html[data-theme='dark'] {
   @media screen and (min-width: 1200px) {
     width: 272px;
   }
+}
+
+.Toastify__toast.my-custom-toast {
+  background-color: var(--main-bg); 
+  color: var(--text-clr);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  border-radius: 0;
+}
+.Toastify__toast-container .Toastify__close-button {
+  color: var(--text-clr);
+}
+
+.Toastify__close-button:hover {
+  color: var(--active-bg-color);
 }
