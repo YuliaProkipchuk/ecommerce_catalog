@@ -11,6 +11,7 @@ import { toggleFavourites } from '@/app/stores/slices/favouritesSlice';
 import { useEffect, useState } from 'react';
 import { addItem, removeItem } from '@/app/stores/slices/cartSlice';
 import { prepareProduct } from '@/app/helpers/products/prepareProduct';
+import { toast } from 'react-toastify';
 
 interface ProductProps {
   products: FullProduct;
@@ -24,6 +25,27 @@ export function ProductCustomization({ products, category }: ProductProps) {
   const isFavourite = favouritesProducts.some((p) => p.itemId === products.id);
   const toggleLike = () => {
     dispatch(toggleFavourites(pr));
+    if (!isFavourite) {
+        toast.info(`${products.name} was add to favourit.`, {
+              position: 'bottom-right',
+              autoClose: 4000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          } else {
+            toast.info(`${products.name} was delete to favourit.`, {
+              position: 'bottom-right',
+              autoClose: 4000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
   };
   const cartItems = useAppSelector((state) => state.cart.items);
   const isInCart = cartItems.some((item) => item.itemId === pr.itemId);
@@ -37,8 +59,26 @@ export function ProductCustomization({ products, category }: ProductProps) {
   const handleAddToCartClick = () => {
     if (isInCart) {
       dispatch(removeItem(pr.itemId));
+      toast.info(`${products.name} was delete to cart.`, {
+                position: 'bottom-right',
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
     } else {
       dispatch(addItem(pr));
+      toast.info(`${products.name} was add to cart.`, {
+                position: 'bottom-right',
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
     }
   };
   return (

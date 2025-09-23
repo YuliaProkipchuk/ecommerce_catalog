@@ -9,6 +9,7 @@ import { Product } from '@/app/types/product';
 import { addItem, removeItem } from '@/app/stores/slices/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
 import { toggleFavourites } from '@/app/stores/slices/favouritesSlice';
+import { toast } from 'react-toastify';
 
 type ProductProps = {
   product: Product | Omit<Product, 'id' | 'year'>;
@@ -28,8 +29,26 @@ export function ProductCard({ product }: ProductProps) {
   const handleAddToCartClick = () => {
     if (isInCart) {
       dispatch(removeItem(product.itemId));
+      toast.info(`${product.name} was delete to cart.`, {
+          position: 'bottom-right',
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
     } else {
       dispatch(addItem(product));
+      toast.info(`${product.name} was add to cart.`, {
+          position: 'bottom-right',
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
     }
   };
 
@@ -38,6 +57,27 @@ export function ProductCard({ product }: ProductProps) {
   const isFavourite = favouritesProducts.some((p) => p.itemId === product.itemId);
   const toggleLike = () => {
     dispatch(toggleFavourites(product));
+    if (!isFavourite) {
+    toast.info(`${product.name} was add to favourit.`, {
+          position: 'bottom-right',
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        toast.info(`${product.name} was delete to favourit.`, {
+          position: 'bottom-right',
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
   };
   return (
     <div className={classes.card}>
