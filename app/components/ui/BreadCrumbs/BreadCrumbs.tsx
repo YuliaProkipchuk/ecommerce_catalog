@@ -17,7 +17,7 @@ export function BreadCrumbs() {
   function transformName(name: string) {
     return name
       .split('-')
-      .map((word) => t(`links.${word}`))
+      .map((word) => word[0].toUpperCase() + word.slice(1))
       .join(' ');
   }
   const buildPath = (index: number) => {
@@ -32,8 +32,12 @@ export function BreadCrumbs() {
       </li>
       {segments.map((seg, i) => (
         <li key={i} className={classes.segment}>
-          <ArrowRight disabled/>
-          <Link href={buildPath(i)}>{t(`links.${seg}`)}</Link>
+          <ArrowRight disabled />
+          <Link href={buildPath(i)}>
+            {i === segments.length - 1 && segments.length > 1
+              ? transformName(seg)
+              : t(`links.${seg}`)}
+          </Link>
         </li>
       ))}
     </ul>

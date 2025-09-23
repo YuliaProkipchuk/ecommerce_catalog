@@ -17,12 +17,12 @@ export const ContentSection: React.FC<ContentSectionProps> = ({ title, sections 
     <div className={classes.contentSection}>
       <h3 className={classes.sectionTitle}>{title}</h3>
       {sections.map(section => (
-        <div className={classes.contentItem}>
+        <div className={classes.contentItem} key={section.title}>
           <h4 className={classes.contentItemTitle}>{section.title}</h4>
           <div className={classes.contentItemText}>
             
-            {section.text.map(productText => (
-              <p>{productText}</p>
+            {section.text.map((productText, ind) => (
+              <p key={ind}>{productText}</p>
             ))}
 
           </div>

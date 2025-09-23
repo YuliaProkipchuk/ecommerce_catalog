@@ -1,7 +1,13 @@
-import classes from './Counter.module.scss'
+import React from 'react';
+import classes from './Counter.module.scss';
 
-export function Counter () {
-    return (
-        <div className={classes.counter}>12</div>
-    );
+type Props = {
+  count: number;
+};
+export function Counter({ count }: Props) {
+  if (count === 0) {
+    return null;
+  }
+
+  return <span className={classes.counter}>{count}</span>;
 }

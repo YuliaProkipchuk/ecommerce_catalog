@@ -1,5 +1,5 @@
 import React from 'react';
-import { CreateProduct } from '@/app/components/createProduct/createProduct';
+import { CreateProduct } from '@/app/components/layout/ProductDetails/ProductDetails';
 
 async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

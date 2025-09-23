@@ -4,15 +4,17 @@ import { Product } from '@/app/types/product';
 interface CartItem {
   itemId: string;
   quantity: number;
-  product: Product;
+  product: Omit<Product, 'id' | 'year'>;
 }
 
 interface CartState {
   items: CartItem[];
+  count: number;
 }
 
 const initialState: CartState = {
   items: [],
+  count: 0,
 };
 
 const saveState = (state: CartState) => {
@@ -37,6 +39,7 @@ const cartSlice = createSlice({
             const parsedState = JSON.parse(savedCartState);
             if (parsedState && Array.isArray(parsedState.items)) {
               state.items = parsedState.items;
+              state.count = parsedState.items.length;
             }
           } catch (error) {
             console.error('Error parsing cart state from localStorage:', error);
@@ -45,10 +48,8 @@ const cartSlice = createSlice({
         }
       }
     },
-    addItem: (state, action: PayloadAction<Product>) => {
-      const existingItem = state.items.find(
-        (item) => item.itemId === action.payload.itemId
-      );
+    addItem: (state, action: PayloadAction<Omit<Product, 'id' | 'year'>>) => {
+      const existingItem = state.items.find((item) => item.itemId === action.payload.itemId);
 
       if (existingItem) {
         if (existingItem.quantity < 10) {
@@ -61,16 +62,20 @@ const cartSlice = createSlice({
           product: action.payload,
         });
       }
+      state.count++;
       saveState(state);
     },
     removeItem: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter((item) => item.itemId !== action.payload);
+      state.count--;
       saveState(state);
     },
     incrementQuantity: (state, action: PayloadAction<string>) => {
       const item = state.items.find((item) => item.itemId === action.payload);
       if (item && item.quantity < 10) {
         item.quantity++;
+        state.count++;
+
         saveState(state);
       }
     },
@@ -78,6 +83,8 @@ const cartSlice = createSlice({
       const item = state.items.find((item) => item.itemId === action.payload);
       if (item && item.quantity > 1) {
         item.quantity--;
+        state.count--;
+
         saveState(state);
       }
     },

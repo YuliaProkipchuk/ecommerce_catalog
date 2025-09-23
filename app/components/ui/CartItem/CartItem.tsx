@@ -4,18 +4,14 @@ import { Close } from '../Icons/Close';
 import { Minus } from '../Icons/Minus';
 import { Plus } from '../Icons/Plus';
 import { useDispatch } from 'react-redux';
-import {
-  removeItem,
-  incrementQuantity,
-  decrementQuantity,
-} from '@/app/stores/slices/cartSlice';
+import { removeItem, incrementQuantity, decrementQuantity } from '@/app/stores/slices/cartSlice';
 import { Product } from '@/app/types/product';
 
 interface CartItemProps {
   item: {
     itemId: string;
     quantity: number;
-    product: Product;
+    product: Omit<Product, 'id' | 'year'>;
   };
 }
 
