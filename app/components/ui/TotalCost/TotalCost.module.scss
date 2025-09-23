@@ -44,3 +44,14 @@
     cursor: pointer;
   }
 }
+
+.wrong__price {
+  font-weight: 500;
+  line-height: 100%;
+  color: #89939a;
+  text-decoration: line-through;
+  font-size: 32px;
+  font-family: 'Mont', sans-serif;
+  margin: 0;
+  margin-right: 8px;
+}

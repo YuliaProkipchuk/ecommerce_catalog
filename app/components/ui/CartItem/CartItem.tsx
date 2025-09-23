@@ -30,6 +30,9 @@ export function CartItem({ item }: CartItemProps) {
     dispatch(decrementQuantity(item.itemId));
   };
 
+  const priceToShow = item.product.price;
+  const fullPriceToShow = item.product.fullPrice;
+
   return (
     <div className={classes.cart_item}>
       <button className={classes.close_btn} onClick={handleRemove}>
@@ -62,7 +65,12 @@ export function CartItem({ item }: CartItemProps) {
           </button>
         </div>
 
-        <span className={classes.price}>${item.product.price * item.quantity}</span>
+        <div className={classes.price}>
+          {fullPriceToShow && fullPriceToShow !== priceToShow && (
+            <span className={classes.wrong__price}>${fullPriceToShow * item.quantity}</span>
+          )}
+          <span className={classes.price__current}>${priceToShow * item.quantity}</span>
+        </div>
       </div>
     </div>
   );

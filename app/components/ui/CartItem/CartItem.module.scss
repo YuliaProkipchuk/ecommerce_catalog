@@ -24,20 +24,6 @@
   flex-shrink: 0;
 }
 
-.price {
-  font-weight: 700;
-  line-height: 100%;
-  font-size: 1.375rem;
-  font-family: 'Mont-Bold', sans-serif;
-  margin-left: auto;
-  min-width: 80px;
-  text-align: right;
-  
-  @media screen and (min-width: 640px) {
-    min-width: 100px;
-  }
-}
-
 .close_btn {
   width: 16px;
   height: 16px;
@@ -103,6 +89,37 @@
     width: fit-content;
     gap: 53px;
   }
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  width: 120px;
+  justify-content: flex-end;
+  
+  @media screen and (min-width: 640px) {
+    width: 140px;
+  }
+}
+
+.price__current {
+  font-weight: 700;
+  line-height: 100%;
+  font-size: 1.375rem;
+  font-family: 'Mont-Bold', sans-serif;
+  text-align: right;
+}
+
+.wrong__price {
+  font-weight: 500;
+  line-height: 100%;
+  color: #89939a;
+  text-decoration: line-through;
+  font-size: 22px;
+  font-family: 'Mont', sans-serif;
+  margin: 0;
 }
 
 .button {

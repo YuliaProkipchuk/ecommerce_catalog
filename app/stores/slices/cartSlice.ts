@@ -39,7 +39,7 @@ const cartSlice = createSlice({
             const parsedState = JSON.parse(savedCartState);
             if (parsedState && Array.isArray(parsedState.items)) {
               state.items = parsedState.items;
-              state.count = parsedState.items.length;
+              state.count = parsedState.items.reduce((sum: number, item: CartItem) => sum + item.quantity, 0);
             }
           } catch (error) {
             console.error('Error parsing cart state from localStorage:', error);
@@ -54,6 +54,7 @@ const cartSlice = createSlice({
       if (existingItem) {
         if (existingItem.quantity < 10) {
           existingItem.quantity++;
+          state.count++;
         }
       } else {
         state.items.push({
@@ -61,13 +62,17 @@ const cartSlice = createSlice({
           quantity: 1,
           product: action.payload,
         });
+        state.count++;
       }
-      state.count++;
       saveState(state);
     },
     removeItem: (state, action: PayloadAction<string>) => {
-      state.items = state.items.filter((item) => item.itemId !== action.payload);
-      state.count--;
+      const itemIndex = state.items.findIndex((item) => item.itemId === action.payload);
+      if (itemIndex > -1) {
+        const removedItemQuantity = state.items[itemIndex].quantity;
+        state.items.splice(itemIndex, 1);
+        state.count -= removedItemQuantity;
+      }
       saveState(state);
     },
     incrementQuantity: (state, action: PayloadAction<string>) => {
@@ -75,7 +80,6 @@ const cartSlice = createSlice({
       if (item && item.quantity < 10) {
         item.quantity++;
         state.count++;
-
         saveState(state);
       }
     },
@@ -83,8 +87,7 @@ const cartSlice = createSlice({
       const item = state.items.find((item) => item.itemId === action.payload);
       if (item && item.quantity > 1) {
         item.quantity--;
-        state.count--;
-
+        state.count--; 
         saveState(state);
       }
     },
