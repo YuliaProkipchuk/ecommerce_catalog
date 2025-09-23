@@ -14,12 +14,16 @@ import { loginUser } from '@/app/helpers/supabase/auth/login';
 import { registerUser } from '@/app/helpers/supabase/auth/register';
 import { useAppSelector } from '../stores/hooks';
 import Loader from '../components/ui/Loader/Loader';
+import {getProductsSupaId} from "@/app/helpers/supabase/products/getProductId";
+import {getOnlyProdSupaId} from "@/app/helpers/supabase/products/getOnlyProdSupaId";
 
 export default function Home() {
   const { loading } = useAppSelector((state) => state.products);
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(getProductsStore());
+      getProductsSupaId(2, 'products')
+
   }, [dispatch]);
 
   if (loading) {
