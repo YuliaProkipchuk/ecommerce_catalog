@@ -7,15 +7,19 @@ import { RightButton } from '../../ui/Button/RightButton/RightButton';
 import { Product } from '@/app/types/product';
 import { useAppSelector } from '@/app/stores/hooks';
 import { sortProductsForCarousel } from '@/app/helpers/products/sortProductsForCarousel';
+import { shuffleArray } from '@/app/helpers/products/relatedProducts';
 type Props = {
   title?: string;
   param?: keyof Product;
+  products?: Product[] | Omit<Product, 'id' | 'year'>[];
 };
-export function ProductsCarousel({ title = 'Brand new models', param = 'year' }: Props) {
+export function ProductsCarousel({ title = 'Brand new models', param = 'year', products }: Props) {
   const customLeft = title.split(' ')[0].toLowerCase() + '-custom-prev';
   const customRight = title.split(' ')[0].toLowerCase() + '-custom-next';
   const { clearProduts } = useAppSelector((state) => state.products);
-  const dataForCarousel = clearProduts.toSorted(sortProductsForCarousel(param));
+  const dataForCarousel = products
+    ? shuffleArray(products)
+    : clearProduts.toSorted(sortProductsForCarousel(param));
   return (
     <section className="section">
       <div className={classes.carousel_header}>

@@ -7,24 +7,12 @@ import { ProductCard } from '../ProductCard/ProductCard';
 import { Product } from '@/app/types/product';
 
 type CarouselProps = {
-  slides: Product[];
+  slides: Product[] | Omit<Product, 'id' | 'year'>[];
   leftBtnClass: string;
   rightBtnClass: string;
 };
 
 export function Carousel({ slides, leftBtnClass, rightBtnClass }: CarouselProps) {
-  const defaultSlides = [
-    'Slide 1',
-    'Slide 2',
-    'Slide 3',
-    'Slide 4',
-    'Slide 5',
-    'Slide 6',
-    'Slide 7',
-  ];
-
-  const content = slides ?? defaultSlides;
-
   return (
     <Swiper
       observer={true}

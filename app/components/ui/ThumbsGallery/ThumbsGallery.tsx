@@ -14,6 +14,7 @@ interface ImagesProps {
 }
 
 export function ThumbsGallery({ images }: ImagesProps) {
+  console.log(images)
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel();
   const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({

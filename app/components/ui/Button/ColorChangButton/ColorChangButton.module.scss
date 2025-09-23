@@ -2,8 +2,9 @@
   height: 30px;
   width: 30px;
   border: 2px solid transparent;
-  border-radius: 36px;
-  // background-color: var(--chang-color);
+  border-radius: 50%;
+  cursor: pointer;
+
 }
 
 .button {
@@ -12,7 +13,7 @@
   align-items: center;
   width: 32px;
   height: 32px;
-  border-radius: 36px;
+  border-radius: 50%;
   border: 1px solid var(--border-clr);
   cursor: pointer;
 
@@ -21,14 +22,14 @@
   }
 }
 
-.activ {
+.active {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 32px;
   height: 32px;
-  border-radius: 36px;
-  border: 2px solid var(--text-clr);
+  border-radius: 50%;
+  border: 1px solid var(--text-clr);
   cursor: pointer;
 }
 

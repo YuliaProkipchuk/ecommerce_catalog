@@ -5,6 +5,9 @@ import { RootState } from '../index';
 import { prepareData } from '@/app/helpers/products/filterAndSort';
 import { FullProduct } from '@/app/types/fullProduct';
 import { getFullProducts } from '@/app/helpers/products/getFullProduct';
+import { getPhones } from '@/app/helpers/supabase/products/phones';
+import { getTablets } from '@/app/helpers/supabase/products/getTablets';
+import { getAcc } from '@/app/helpers/supabase/products/getAcc';
 
 export type SortBy = { param: keyof Product; order: 'asc' | 'desc' };
 
@@ -30,7 +33,7 @@ const initialState: ProductState = {
     param: 'year',
     order: 'desc',
   },
-  fullProduct: []
+  fullProduct: [],
 };
 
 export const getProductsStore = createAsyncThunk('products/get', async () => {
@@ -41,14 +44,23 @@ export const getCategoryFullProducts = createAsyncThunk(
   'products/getFullCategory',
   async (category: string, { rejectWithValue }) => {
     try {
+      switch (category) {
+        case 'phones': {
+          return await getPhones();
+          // return await getFullProducts('phones');
 
-      const products = await getFullProducts(category);
-      return products;
+        }
+        case 'tablets': {
+          return await getTablets();
+        }
+        default: {
+          return await getAcc();
+        }
+      }
     } catch (error) {
-
       return rejectWithValue(error);
     }
-  }
+  },
 );
 
 const productSlice = createSlice({
@@ -111,6 +123,7 @@ const productSlice = createSlice({
       .addCase(getCategoryFullProducts.fulfilled, (state, action: PayloadAction<FullProduct[]>) => {
         state.loading = false;
         state.fullProduct = action.payload;
+        console.log(action.payload)
       })
       .addCase(getCategoryFullProducts.rejected, (state, action) => {
         state.loading = false;

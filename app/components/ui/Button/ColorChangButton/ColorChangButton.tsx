@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react"
+import React from "react"
 import classes from './ColorChangButton.module.scss';
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -18,8 +18,8 @@ export function ColorChangButton({ colors, activeColor, itemId, activeCapacity }
     return (
         <>
             {colors.map(color => (
-                <div className={color !== activeColor ? `${classes.button}` : `${classes.active}`}>
-                    <Link href={`/${category}/${itemId}-${activeCapacity.toLowerCase()}-${color.replace(/ /g, '-')}`}>
+                <div className={color !== activeColor ? `${classes.button}` : `${classes.active}`} key={color}>
+                    <Link href={`/${category}/${itemId}-${activeCapacity.toLowerCase()}-${color.replace(/ /g, '-')}`} className={classes.colors}>
                     <button className={`${classes.colors} ${classes[color.replace(/ /g, '')]}`} ></button>
                     </Link>
                 </div>

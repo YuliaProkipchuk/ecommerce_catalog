@@ -10,9 +10,7 @@ import { Sun } from '../Icons/Sun';
 import { Moon } from '../Icons/Moon';
 import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
 import { toggleTheme } from '@/app/stores/slices/mainSlice';
-import { CartCounter } from '../CartCounter/CartCounter';
-
-
+import { Counter } from '../Counter/Counter';
 
 interface HeaderActionsProps {
   toggleBurgerMenu: () => void;
@@ -21,6 +19,8 @@ interface HeaderActionsProps {
 export function HeaderActions({ toggleBurgerMenu }: HeaderActionsProps) {
   const pathname = usePathname();
   const theme = useAppSelector((state) => state.main.theme);
+  const cartCount = useAppSelector((state) => state.cart.count);
+  const favouritesCount = useAppSelector((state) => state.favourites.count);
   const dispatch = useAppDispatch();
 
   const getPathnameWithoutLocale = (path: string) => {
@@ -42,15 +42,15 @@ export function HeaderActions({ toggleBurgerMenu }: HeaderActionsProps) {
         href="/favourites"
         className={`${classes.action_button} ${pathWithoutLocale === '/favourites' ? classes.active : ''}`}
       >
-
         <Heart />
+        <Counter count={favouritesCount} />
       </Link>
       <Link
         href="/cart"
         className={`${classes.action_button} ${pathWithoutLocale === '/cart' ? classes.active : ''}`}
       >
         <ShoppingBag />
-        <CartCounter />
+        <Counter count={cartCount} />
       </Link>
 
       <button className={classes.burger_button} onClick={toggleBurgerMenu} aria-label="Toggle menu">

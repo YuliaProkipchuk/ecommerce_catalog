@@ -11,12 +11,12 @@ import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
 import { toggleFavourites } from '@/app/stores/slices/favouritesSlice';
 
 type ProductProps = {
-  product: Product;
+  product: Product | Omit<Product, 'id' | 'year'>;
 };
 
 export function ProductCard({ product }: ProductProps) {
   const dispatch = useAppDispatch();
-  const cartItems = useAppSelector(state => state.cart.items);
+  const cartItems = useAppSelector((state) => state.cart.items);
   const isInCart = cartItems.some((item) => item.itemId === product.itemId);
 
   const [buttonText, setButtonText] = React.useState(isInCart ? 'Selected' : 'Add to cart');
@@ -70,11 +70,7 @@ export function ProductCard({ product }: ProductProps) {
       </div>
 
       <div className={classes.buttons}>
-        <AddButton
-          onClick={handleAddToCartClick}
-          text={buttonText}
-          isSelected={isInCart}
-        />
+        <AddButton onClick={handleAddToCartClick} text={buttonText} isSelected={isInCart} />
         <LikeButton onClick={toggleLike} filled={isFavourite} />
       </div>
     </div>
