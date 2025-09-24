@@ -1,16 +1,57 @@
 'use client';
-import React, { useActionState } from 'react';
+import React, { useState } from 'react';
 import classes from './AuthForm.module.scss';
 import Link from 'next/link';
-import { signUp } from '@/app/actions/actions';
-
+import { useRouter } from 'next/router';
+import { useAppDispatch } from '@/app/stores/hooks';
+import z from 'zod';
+import { register } from '@/app/stores/slices/authSlice';
+const signUpSchema = z.object({
+  fullName: z.string().min(2, 'Full name is required'),
+  email: z.email('Invalid email'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
+});
 export function SignUpForm() {
-  const [state, action, isLoading] = useActionState(signUp, {
-    errors: { email: undefined, password: undefined, fullName: undefined },
-  });
+  const [errors, setErrors] = useState<{
+    email: string[] | undefined;
+    password: string[] | undefined;
+    fullName: string[] | undefined;
+  }>();
+  const router = useRouter();
+  const [isLoading, setLoading] = useState(false);
+  const dispatch = useAppDispatch();
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    const fullName = formData.get('fullName') as string;
+    const validated = signUpSchema.safeParse({ email, password, fullName });
+
+    if (!validated.success) {
+      const formFieldErrors = z.flattenError(validated.error);
+      setErrors(() => ({
+        email: formFieldErrors.fieldErrors.email,
+        password: formFieldErrors.fieldErrors.password,
+        fullName: formFieldErrors.fieldErrors.fullName,
+      }));
+      return {
+        errors: {
+          email: formFieldErrors.fieldErrors.email,
+          password: formFieldErrors.fieldErrors.password,
+          fullName: formFieldErrors.fieldErrors.fullName,
+        },
+      };
+    }
+    await dispatch(register({ email, password })).unwrap();
+    setLoading(false);
+    router.replace('/');
+  }
   const text = 'Already have an account? Sign in.';
   return (
-    <form action={action} className={classes.form}>
+    <form onSubmit={handleSubmit} className={classes.form}>
       <h1 className={`heading ${classes.title}`}>Sign Up</h1>
 
       <div className={classes['input-item']}>
@@ -24,9 +65,7 @@ export function SignUpForm() {
           placeholder="John Donn"
           className={classes.input}
         />
-        {state && state.errors.fullName && (
-          <span className={classes.form_error}>{state.errors.fullName}</span>
-        )}
+        {errors && errors.fullName && <span className={classes.form_error}>{errors.fullName}</span>}
       </div>
 
       <div className={classes['input-item']}>
@@ -40,9 +79,9 @@ export function SignUpForm() {
           placeholder="johndonn@gmail.com"
           className={classes.input}
         />
-        {state.errors.email && (
+        {errors && errors.email && (
           <div className={classes.errors}>
-            {state.errors.email.map((err, i) => (
+            {errors.email.map((err, i) => (
               <span className={classes.form_error} key={i}>
                 {err}
               </span>
@@ -61,9 +100,9 @@ export function SignUpForm() {
           placeholder="1234"
           className={classes.input}
         />
-        {state.errors.password && (
+        {errors && errors.password && (
           <div className={classes.errors}>
-            {state.errors.password.map((err, i) => (
+            {errors.password.map((err, i) => (
               <span className={classes.form_error} key={i}>
                 {err}
               </span>

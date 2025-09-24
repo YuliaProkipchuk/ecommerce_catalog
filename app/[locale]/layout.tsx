@@ -7,11 +7,12 @@ import { Header } from '../components/layout/Header/Header';
 import { Footer } from '../components/layout/Footer/Footer';
 import { BreadCrumbs } from '../components/ui/BreadCrumbs/BreadCrumbs';
 import { ThemeProvider } from '../ThemeProvider';
-import { ThemeInit } from "@/app/components/ui/ThemeInit/ThemeInit";
+import { ThemeInit } from '@/app/components/ui/ThemeInit/ThemeInit';
 import { CartInit } from '@/app/components/ui/CartInit/CartInit';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthProvider } from '../components/AuthProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -24,9 +25,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: 'Nice Gadgets',
-    description: 'Your one-stop shop for the latest and greatest in tech gadgets.',
-    
+  title: 'Nice Gadgets',
+  description: 'Your one-stop shop for the latest and greatest in tech gadgets.',
 };
 
 export default async function LocaleLayout({
@@ -49,13 +49,14 @@ export default async function LocaleLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider>
-            <ThemeInit/>
+            <ThemeInit />
+            <AuthProvider />
             <CartInit />
             <Header />
             <main className="main">
               <BreadCrumbs />
               {children}
-              <ToastContainer toastClassName="my-custom-toast"/>
+              <ToastContainer toastClassName="my-custom-toast" />
             </main>
             <Footer />
           </ThemeProvider>

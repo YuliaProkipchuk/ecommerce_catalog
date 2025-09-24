@@ -7,6 +7,7 @@ import classes from './CheckoutPage.module.scss';
 import { CheckoutForm } from '@/app/components/ui/CheckoutForm/CheckoutForm';
 import { OrderSummary } from '@/app/components/ui/OrderSummary/OrderSummary';
 import { RootState } from '@/app/stores';
+import { BackButton } from '../../ui/Button/BackButton/BackButton';
 
 export function CheckoutPage() {
   const router = useRouter();
@@ -46,6 +47,7 @@ export function CheckoutPage() {
 
   return (
     <div className={classes.cart_page}>
+      <BackButton/>
       <h1 className={classes.title}>Checkout</h1>
       <div className={classes.content}>
         <div className={classes.checkout_form_section}>

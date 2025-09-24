@@ -7,17 +7,20 @@ import { CartItem } from '@/app/components/ui/CartItem/CartItem';
 import classes from './Cart.module.scss';
 import { TotalCost } from '@/app/components/ui/TotalCost/TotalCost';
 import { BackButton } from '@/app/components/ui/Button/BackButton/BackButton';
+import { useAppSelector } from '@/app/stores/hooks';
 
 export default function CartPage() {
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartItems = useAppSelector((state) => state.cart.items);
   const user = 'mockUser';
+  const session = useAppSelector((state) => state.auth.session);
+
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const totalOriginalPrice = cartItems.reduce((sum, item) => {
     return sum + item.product.price * item.quantity;
   }, 0);
 
   const discountRate = 0.05;
-  const totalDiscountedPrice = user
+  const totalDiscountedPrice = session
     ? Math.round(totalOriginalPrice * (1 - discountRate))
     : totalOriginalPrice;
 

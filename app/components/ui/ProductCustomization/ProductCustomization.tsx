@@ -5,50 +5,45 @@ import { CapacityButton } from '../Button/CapacityButton/CapacityButton';
 import { ColorChangButton } from '../Button/ColorChangButton/ColorChangButton';
 import { LikeButton } from '../Button/LikeButton/LikeButton';
 import { FullProduct } from '@/app/types/fullProduct';
-import { Product } from '@/app/types/product';
 import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
 import { toggleFavourites } from '@/app/stores/slices/favouritesSlice';
 import { useEffect, useState } from 'react';
 import { addItem, removeItem } from '@/app/stores/slices/cartSlice';
 import { prepareProduct } from '@/app/helpers/products/prepareProduct';
-import { toast } from 'react-toastify';
+import { toast, ToastPosition } from 'react-toastify';
+import { getProductsSupaId } from '@/app/helpers/supabase/products/getProductId';
+import { getOnlyProdSupaId } from '@/app/helpers/supabase/products/getOnlyProdSupaId';
 
 interface ProductProps {
   products: FullProduct;
   category: string;
 }
-
+const options = {
+  position: 'bottom-right' as ToastPosition,
+  autoClose: 4000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 export function ProductCustomization({ products, category }: ProductProps) {
   const pr = prepareProduct(products, category);
   const dispatch = useAppDispatch();
   const { favouritesProducts } = useAppSelector((state) => state.favourites);
   const isFavourite = favouritesProducts.some((p) => p.itemId === products.id);
-  const toggleLike = () => {
-    dispatch(toggleFavourites(pr));
+  const { selectedForCart } = useAppSelector((state) => state.products);
+  const preparedProduct = selectedForCart || pr;
+  const toggleLike = async () => {
+    dispatch(toggleFavourites(preparedProduct));
     if (!isFavourite) {
-        toast.info(`${products.name} was add to favourit.`, {
-              position: 'bottom-right',
-              autoClose: 4000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          } else {
-            toast.info(`${products.name} was delete to favourit.`, {
-              position: 'bottom-right',
-              autoClose: 4000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          }
+      toast.info(`${products.name} was add to favourites.`, options);
+    } else {
+      toast.info(`${products.name} was removed from favourites.`, options);
+    }
   };
   const cartItems = useAppSelector((state) => state.cart.items);
-  const isInCart = cartItems.some((item) => item.itemId === pr.itemId);
+  const isInCart = cartItems.some((item) => item.itemId === preparedProduct.itemId);
 
   const [buttonText, setButtonText] = useState(isInCart ? 'Selected' : 'Add to cart');
 
@@ -58,27 +53,11 @@ export function ProductCustomization({ products, category }: ProductProps) {
 
   const handleAddToCartClick = () => {
     if (isInCart) {
-      dispatch(removeItem(pr.itemId));
-      toast.info(`${products.name} was delete to cart.`, {
-                position: 'bottom-right',
-                autoClose: 4000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
+      dispatch(removeItem(preparedProduct.itemId));
+      toast.info(`${products.name} was removed from the cart.`, options);
     } else {
-      dispatch(addItem(pr));
-      toast.info(`${products.name} was add to cart.`, {
-                position: 'bottom-right',
-                autoClose: 4000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
+      dispatch(addItem(preparedProduct));
+      toast.info(`${products.name} was added to the cart.`, options);
     }
   };
   return (
@@ -116,7 +95,7 @@ export function ProductCustomization({ products, category }: ProductProps) {
         </div>
 
         <div className={classes.buttons}>
-          <AddButton text={buttonText} onClick={handleAddToCartClick} isSelected={isInCart}/>
+          <AddButton text={buttonText} onClick={handleAddToCartClick} isSelected={isInCart} />
           <LikeButton filled={isFavourite} onClick={toggleLike} />
         </div>
 
