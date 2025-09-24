@@ -22,17 +22,20 @@ type CategoryKey = keyof typeof categories;
 const Page = () => {
   const { category } = useParams();
   const id = category as CategoryKey;
-  const { products, countItemsPage, sortBy, loading } = useAppSelector((state) => state.products);
+  const { products, countItemsPage, sortBy, searchQuery, loading } = useAppSelector((state) => state.products);
   const dispatch = useAppDispatch();
   const data = useAppSelector(selectTotalByCategory(id));
 
   useEffect(() => {
-    dispatch(getProductsStore())
-      .unwrap()
-      .then(() => {
+  if (products.length === 0 && !loading) {
+      dispatch(getProductsStore()).then(() => {
         dispatch(getCategoryProducts(id));
       });
-  }, [countItemsPage, sortBy]);
+    } else {
+      dispatch(getCategoryProducts(id));
+    }
+  }, [id, countItemsPage, sortBy, searchQuery, dispatch]); 
+
   
   if (loading) {
     return <Loader />;
