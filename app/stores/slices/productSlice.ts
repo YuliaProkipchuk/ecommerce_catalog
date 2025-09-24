@@ -25,6 +25,8 @@ interface ProductState {
   fullProduct: FullProduct[];
   selectedProduct: FullProduct | null;
   selectedForCart: Product | null;
+  searchQuery: string; 
+  // fullProduct: FullProduct | null;
 }
 
 const initialState: ProductState = {
@@ -41,6 +43,9 @@ const initialState: ProductState = {
   fullProduct: [],
   selectedForCart: null,
   selectedProduct: null,
+  searchQuery: '',
+  // fullProduct: null,
+
 };
 
 export const getProductsStore = createAsyncThunk('products/get', async () => {
@@ -98,7 +103,7 @@ const productSlice = createSlice({
     getCategoryProducts(state: ProductState, action: PayloadAction<string>) {
       if (!state.clearProduts.length) return;
       const category = action.payload;
-      state.products = prepareData(state.clearProduts, category, state.sortBy).slice(
+      state.products = prepareData(state.clearProduts, category, state.sortBy, state.searchQuery).slice(
         0,
         state.countItemsPage,
       );
@@ -109,7 +114,7 @@ const productSlice = createSlice({
         return;
       state.products = [
         ...state.products,
-        ...prepareData(state.clearProduts, action.payload, state.sortBy).slice(
+        ...prepareData(state.clearProduts, action.payload, state.sortBy, state.searchQuery).slice(
           state.products.length,
           state.products.length + state.countItemsPage,
         ),
@@ -124,6 +129,9 @@ const productSlice = createSlice({
     },
     changeSortValue(state: ProductState, action: PayloadAction<SortBy>) {
       state.sortBy = action.payload;
+    },
+    setSearchQuery: (state, action: PayloadAction<string>) => {
+      state.searchQuery = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -189,5 +197,6 @@ export const {
   setCategory,
   changeSortValue,
   findById,
+  setSearchQuery,
 } = productSlice.actions;
 export default productSlice.reducer;
