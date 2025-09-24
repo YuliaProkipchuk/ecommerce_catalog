@@ -25,15 +25,12 @@ const options = {
   progress: undefined,
 };
 export function ProductCard({ product }: ProductProps) {
+  const link = `/${product.category}/${product.itemId}`;
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector((state) => state.cart.items);
+  const { favouritesProducts } = useAppSelector((state) => state.favourites);
   const isInCart = cartItems.some((item) => item.itemId === product.itemId);
-
-  const [buttonText, setButtonText] = React.useState(isInCart ? 'Selected' : 'Add to cart');
-
-  useEffect(() => {
-    setButtonText(isInCart ? 'Selected' : 'Add to cart');
-  }, [isInCart]);
+  const isFavourite = favouritesProducts.some((p) => p.itemId === product.itemId);
 
   const handleAddToCartClick = () => {
     if (isInCart) {
@@ -45,9 +42,6 @@ export function ProductCard({ product }: ProductProps) {
     }
   };
 
-  const link = `/${product.category}/${product.itemId}`;
-  const { favouritesProducts } = useAppSelector((state) => state.favourites);
-  const isFavourite = favouritesProducts.some((p) => p.itemId === product.itemId);
   const toggleLike = () => {
     dispatch(toggleFavourites(product));
     if (!isFavourite) {
@@ -87,7 +81,7 @@ export function ProductCard({ product }: ProductProps) {
       </div>
 
       <div className={classes.buttons}>
-        <AddButton onClick={handleAddToCartClick} text={buttonText} isSelected={isInCart} />
+        <AddButton onClick={handleAddToCartClick} isSelected={isInCart} />
         <LikeButton onClick={toggleLike} filled={isFavourite} />
       </div>
     </div>

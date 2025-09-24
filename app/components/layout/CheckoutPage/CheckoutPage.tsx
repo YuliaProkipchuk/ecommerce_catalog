@@ -8,12 +8,15 @@ import { CheckoutForm } from '@/app/components/ui/CheckoutForm/CheckoutForm';
 import { OrderSummary } from '@/app/components/ui/OrderSummary/OrderSummary';
 import { RootState } from '@/app/stores';
 import { BackButton } from '../../ui/Button/BackButton/BackButton';
+import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
+import { clearCart } from '@/app/stores/slices/cartSlice';
 
 export function CheckoutPage() {
   const router = useRouter();
-
+  const { session } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
-
+  const isLoggedIn = session ? true : false;
   const itemsShort = useMemo(
     () =>
       cartItems.map((item) => ({
@@ -23,12 +26,12 @@ export function CheckoutPage() {
         image: item.product.image,
         price: item.product.price,
       })),
-    [cartItems]
+    [cartItems],
   );
 
   const subtotal = useMemo(
     () => itemsShort.reduce((sum, it) => sum + it.price * it.quantity, 0),
-    [itemsShort]
+    [itemsShort],
   );
 
   const shipping = 15.0;
@@ -42,12 +45,13 @@ export function CheckoutPage() {
   const handlePlaceOrder = () => {
     if (isFormValid) {
       router.push('/contacts');
+      dispatch(clearCart());
     }
   };
 
   return (
     <div className={classes.cart_page}>
-      <BackButton/>
+      <BackButton />
       <h1 className={classes.title}>Checkout</h1>
       <div className={classes.content}>
         <div className={classes.checkout_form_section}>
@@ -59,7 +63,7 @@ export function CheckoutPage() {
             items={itemsShort}
             subtotal={subtotal}
             shipping={shipping}
-            isLoggedIn={true}
+            isLoggedIn={isLoggedIn}
             isFormValid={isFormValid}
             onPlaceOrder={handlePlaceOrder}
           />

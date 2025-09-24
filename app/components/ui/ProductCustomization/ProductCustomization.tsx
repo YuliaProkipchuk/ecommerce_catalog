@@ -45,12 +45,6 @@ export function ProductCustomization({ products, category }: ProductProps) {
   const cartItems = useAppSelector((state) => state.cart.items);
   const isInCart = cartItems.some((item) => item.itemId === preparedProduct.itemId);
 
-  const [buttonText, setButtonText] = useState(isInCart ? 'Selected' : 'Add to cart');
-
-  useEffect(() => {
-    setButtonText(isInCart ? 'Selected' : 'Add to cart');
-  }, [isInCart]);
-
   const handleAddToCartClick = () => {
     if (isInCart) {
       dispatch(removeItem(preparedProduct.itemId));
@@ -95,7 +89,7 @@ export function ProductCustomization({ products, category }: ProductProps) {
         </div>
 
         <div className={classes.buttons}>
-          <AddButton text={buttonText} onClick={handleAddToCartClick} isSelected={isInCart} />
+          <AddButton onClick={handleAddToCartClick} isSelected={isInCart} />
           <LikeButton filled={isFavourite} onClick={toggleLike} />
         </div>
 

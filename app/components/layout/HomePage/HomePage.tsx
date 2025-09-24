@@ -8,7 +8,6 @@ import { HeroCategory } from '../HeroCategory/HeroCategory';
 import { HeroSection } from '../HeroSection/HeroSection';
 import { ProductsCarousel } from '../ProductsCarousel/ProductsCarousel';
 
-
 export function HomePage() {
   const { loading } = useAppSelector((state) => state.products);
   const dispatch = useAppDispatch();
