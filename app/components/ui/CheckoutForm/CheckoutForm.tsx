@@ -83,12 +83,10 @@ export function CheckoutForm({ onValidationChange }: CheckoutFormProps) {
   };
 
   const formatCardExpiry = (value: string) => {
-    const digits = value.replace(/\D/g, '');
-    const limitedDigits = digits.slice(0, 4);
-    if (limitedDigits.length >= 2) {
-      return limitedDigits.slice(0, 2) + '/' + limitedDigits.slice(2);
-    }
-    return limitedDigits;
+    const digits = value.replace(/\D/g, '').slice(0, 4);
+    if (digits.length === 0) return '';
+    if (digits.length <= 2) return digits;
+    return `${digits.slice(0, 2)}/${digits.slice(2)}`;
   };
 
   const formatCVV = (value: string) => {
@@ -158,6 +156,7 @@ export function CheckoutForm({ onValidationChange }: CheckoutFormProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     let formattedValue = value;
+    let cursorPosition: number | null = e.target.selectionStart;
 
     if (nonPaymentFields.includes(name)) {
       switch (name) {
@@ -177,13 +176,23 @@ export function CheckoutForm({ onValidationChange }: CheckoutFormProps) {
     } else {
       switch (name) {
         case 'cardName':
-          formattedValue = value.replace(/\d/g, '');
+          formattedValue = value.replace(/\D/g, '');
           break;
         case 'cardNumber':
           formattedValue = formatCardNumber(value);
           break;
         case 'cardExpiry':
           formattedValue = formatCardExpiry(value);
+          if (cursorPosition !== null && formattedValue.includes('/')) {
+            const digitsBefore = value.replace(/\D/g, '').slice(0, cursorPosition);
+            const prevValue = paymentData.cardExpiry;
+            const prevDigits = prevValue.replace(/\D/g, '');
+            if (digitsBefore.length >= 2 && !prevValue.includes('/')) {
+              cursorPosition += 1; // Move cursor after slash when it’s added
+            } else if (digitsBefore.length > 2 && prevDigits.length >= digitsBefore.length) {
+              cursorPosition = formattedValue.length; // Place cursor at end for further digits
+            }
+          }
           break;
         case 'cardCvv':
           formattedValue = formatCVV(value);
@@ -201,6 +210,15 @@ export function CheckoutForm({ onValidationChange }: CheckoutFormProps) {
       ...prev,
       [name]: false,
     }));
+
+    if (name === 'cardExpiry' && cursorPosition !== null) {
+      setTimeout(() => {
+        const input = document.getElementById('cardExpiry') as HTMLInputElement;
+        if (input) {
+          input.setSelectionRange(cursorPosition, cursorPosition);
+        }
+      }, 0);
+    }
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
