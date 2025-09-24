@@ -8,9 +8,11 @@ import { CheckoutForm } from '@/app/components/ui/CheckoutForm/CheckoutForm';
 import { OrderSummary } from '@/app/components/ui/OrderSummary/OrderSummary';
 import { RootState } from '@/app/stores';
 import { BackButton } from '../../ui/Button/BackButton/BackButton';
+import { OrderConfirmationModal } from '@/app/components/ui/OrderConfirmationModal/OrderConfirmationModal';
 
 export function CheckoutPage() {
   const router = useRouter();
+  const [showOrderConfirmation, setShowOrderConfirmation] = useState(false);
 
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
@@ -41,8 +43,13 @@ export function CheckoutPage() {
 
   const handlePlaceOrder = () => {
     if (isFormValid) {
-      router.push('/contacts');
+      setShowOrderConfirmation(true);
     }
+  };
+
+  const handleCloseOrderConfirmation = () => {
+    setShowOrderConfirmation(false);
+    router.push('/');
   };
 
   return (
@@ -65,6 +72,10 @@ export function CheckoutPage() {
           />
         </div>
       </div>
+
+      {showOrderConfirmation && (
+        <OrderConfirmationModal onClose={handleCloseOrderConfirmation} />
+      )}
     </div>
   );
 }

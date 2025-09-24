@@ -5,6 +5,7 @@ import favouritesReducer from './slices/favouritesSlice';
 import authReducer from './slices/authSlice';
 
 import cartReducer from './slices/cartSlice';
+import checkoutFormReducer from './slices/checkoutFormSlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     cart: cartReducer,
     favourites: favouritesReducer,
     auth: authReducer,
+    checkoutForm: checkoutFormReducer,
   },
 });
 

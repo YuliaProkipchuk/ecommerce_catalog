@@ -7,102 +7,109 @@ import classes from "./TermsPage.module.scss";
 export default function TermsPage() {
   return (
     <div className={classes.container}>
-      <h1 className={classes.title}>Угода користувача</h1>
+      <h1 className={classes.title}>User Agreement</h1>
       <p className={classes.description}>
-        Ця Угода (надалі — «Угода») визначає умови користування веб-сайтом{" "}
-        <strong>Nice Gadgets</strong> (надалі — «Сайт»), а також порядок
-        взаємодії між Користувачем та Адміністрацією Сайту. Використовуючи
-        Сайт, ви підтверджуєте свою повну та безумовну згоду з положеннями цієї
-        Угоди.
+        This Agreement (hereinafter referred to as the “Agreement”) defines the
+        terms of use of the <strong>Nice Gadgets</strong> website (hereinafter
+        referred to as the “Website”), as well as the procedure for interaction
+        between the User and the Website Administration. By using the Website,
+        you confirm your full and unconditional agreement with the terms of this
+        Agreement.
       </p>
 
       <section className={classes.section}>
-        <h2>1. Загальні положення</h2>
+        <h2>1. General Provisions</h2>
         <p>
-          1.1. Дана Угода є публічною офертою відповідно до чинного законодавства України.  
-          1.2. Користування Сайтом можливе лише за умови повного прийняття Угоди.  
-          1.3. У разі незгоди з будь-яким пунктом Угоди, Користувач зобов’язаний негайно
-          припинити використання Сайту.
+          1.1. This Agreement is a public offer in accordance with the current
+          legislation of Ukraine.  
+          1.2. Use of the Website is possible only with full acceptance of the
+          Agreement.  
+          1.3. If you do not agree with any provision of the Agreement, you must
+          immediately stop using the Website.
         </p>
       </section>
 
       <section className={classes.section}>
-        <h2>2. Реєстрація та обліковий запис</h2>
+        <h2>2. Registration and Account</h2>
         <p>
-          2.1. Для оформлення замовлення Користувач може пройти процедуру реєстрації.  
-          2.2. Користувач несе повну відповідальність за достовірність наданих даних.  
-          2.3. Забороняється передавати дані облікового запису третім особам.
+          2.1. To place an order, the User may complete the registration
+          procedure.  
+          2.2. The User bears full responsibility for the accuracy of the data
+          provided.  
+          2.3. It is forbidden to transfer account data to third parties.
         </p>
       </section>
 
       <section className={classes.section}>
-        <h2>3. Персональні дані</h2>
+        <h2>3. Personal Data</h2>
         <p>
-          3.1. Адміністрація Сайту здійснює обробку персональних даних відповідно до
-          Закону України «Про захист персональних даних».  
-          3.2. Метою обробки є забезпечення роботи Сайту, обробка замовлень,
-          інформування Користувачів про товари та послуги.  
-          3.3. Користувач погоджується на використання його персональних даних
-          у межах, необхідних для належного виконання Угоди.
+          3.1. The Website Administration processes personal data in accordance
+          with the Law of Ukraine “On Personal Data Protection.”  
+          3.2. The purpose of data processing is to ensure the operation of the
+          Website, process orders, and inform Users about products and services.  
+          3.3. The User agrees to the use of their personal data within the
+          scope necessary for proper execution of the Agreement.
         </p>
       </section>
 
       <section className={classes.section}>
-        <h2>4. Оформлення замовлення та оплата</h2>
+        <h2>4. Ordering and Payment</h2>
         <p>
-          4.1. Замовлення, розміщене через Сайт, є офертою Користувача.  
-          4.2. Договір купівлі-продажу вважається укладеним після підтвердження замовлення
-          Адміністрацією.  
-          4.3. Вартість товарів визначається на момент оформлення замовлення та може
-          бути змінена до його підтвердження.  
-          4.4. Оплата здійснюється у порядку, вказаному на Сайті.
+          4.1. An order placed through the Website constitutes the User’s offer.  
+          4.2. The sales contract is considered concluded after the order is
+          confirmed by the Administration.  
+          4.3. The price of goods is determined at the time of placing the order
+          and may be changed before it is confirmed.  
+          4.4. Payment is made in the manner specified on the Website.
         </p>
       </section>
 
       <section className={classes.section}>
-        <h2>5. Доставка та повернення</h2>
+        <h2>5. Delivery and Returns</h2>
         <p>
-          5.1. Умови доставки, повернення та гарантійного обслуговування товарів
-          регламентуються окремими положеннями, опублікованими на Сайті.  
-          5.2. Користувач має право на повернення товару у строки та на умовах,
-          передбачених чинним законодавством України.
+          5.1. The terms of delivery, returns, and warranty service of goods are
+          regulated by separate provisions published on the Website.  
+          5.2. The User has the right to return goods within the terms and under
+          the conditions provided by the current legislation of Ukraine.
         </p>
       </section>
 
       <section className={classes.section}>
-        <h2>6. Обмеження відповідальності</h2>
+        <h2>6. Limitation of Liability</h2>
         <p>
-          6.1. Адміністрація Сайту не несе відповідальності за перебої у роботі Сайту,
-          спричинені технічними несправностями чи діями третіх осіб.  
-          6.2. Відповідальність за достовірність інформації, наданої Користувачем,
-          несе виключно Користувач.  
-          6.3. Адміністрація залишає за собою право змінювати асортимент, ціни та інші
-          характеристики товарів без попереднього повідомлення.
+          6.1. The Website Administration is not responsible for interruptions
+          in the operation of the Website caused by technical malfunctions or
+          actions of third parties.  
+          6.2. Responsibility for the accuracy of the information provided lies
+          solely with the User.  
+          6.3. The Administration reserves the right to change the assortment,
+          prices, and other characteristics of the goods without prior notice.
         </p>
       </section>
 
       <section className={classes.section}>
-        <h2>7. Заключні положення</h2>
+        <h2>7. Final Provisions</h2>
         <p>
-          7.1. Угода набирає чинності з моменту початку використання Сайту.  
-          7.2. Адміністрація має право змінювати умови Угоди в односторонньому порядку.
-          Нові редакції публікуються на цій сторінці.  
-          7.3. Подальше використання Сайту після внесення змін означає згоду
-          Користувача з оновленою Угодою.
+          7.1. This Agreement comes into force from the moment you start using
+          the Website.  
+          7.2. The Administration has the right to unilaterally change the terms
+          of the Agreement. The new version is published on this page.  
+          7.3. Further use of the Website after changes are made constitutes the
+          User’s consent to the updated Agreement.
         </p>
       </section>
 
       <section className={classes.section}>
-        <h2>8. Контактна інформація</h2>
+        <h2>8. Contact Information</h2>
         <p>
-          Для отримання додаткової інформації або вирішення спірних питань ви можете
-          звернутися до служби підтримки:{" "}
+          For additional information or to resolve disputes, you can contact
+          customer support:{" "}
           <a href="mailto:support@nicegadgets.com">support@nicegadgets.com</a>.
         </p>
       </section>
 
       <Link href="/" className={classes.homeLink}>
-        Повернутися на головну
+        Return to Home
       </Link>
     </div>
   );
