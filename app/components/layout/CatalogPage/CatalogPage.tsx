@@ -23,7 +23,7 @@ type Props = {
 }
 export const CatalogPage = ({category}:Props) => {
 const id = category as CategoryKey;
-  const { products, countItemsPage, sortBy, loading } = useAppSelector((state) => state.products);
+  const { products, countItemsPage, sortBy, searchQuery, loading } = useAppSelector((state) => state.products);
   const dispatch = useAppDispatch();
   const data = useAppSelector(selectTotalByCategory(id));
 
@@ -33,7 +33,7 @@ const id = category as CategoryKey;
       .then(() => {
         dispatch(getCategoryProducts(id));
       });
-  }, [countItemsPage, sortBy]);
+  }, [countItemsPage, sortBy, searchQuery, dispatch]);
   
   if (loading) {
     return <Loader />;

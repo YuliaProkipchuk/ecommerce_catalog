@@ -25,8 +25,7 @@ interface ProductState {
   fullProduct: FullProduct[];
   selectedProduct: FullProduct | null;
   selectedForCart: Product | null;
-  searchQuery: string; 
-  // fullProduct: FullProduct | null;
+  searchQuery: string
 }
 
 const initialState: ProductState = {
@@ -44,7 +43,6 @@ const initialState: ProductState = {
   selectedForCart: null,
   selectedProduct: null,
   searchQuery: '',
-  // fullProduct: null,
 
 };
 

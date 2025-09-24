@@ -16,7 +16,7 @@ export const FilterControls: React.FC<FilterControlsProps> = ({ className }) => 
         <label className={classes.label}>Sort by</label>
         <SortDropdown />
       </div>
-      
+
       <div className={classes.section}>
         <label className={classes.label}>Items on page</label>
         <ItemsPerPageDropdown />
