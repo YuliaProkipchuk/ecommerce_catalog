@@ -2,7 +2,6 @@
 import React from 'react';
 import classes from './CategoryItem.module.scss';
 import Link from 'next/link';
-import phonesImg from '../../../../public/img/category-phones.png';
 import { selectTotalByCategory } from '@/app/stores/slices/productSlice';
 import { useAppSelector } from '@/app/stores/hooks';
 

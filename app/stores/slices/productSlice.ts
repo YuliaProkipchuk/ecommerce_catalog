@@ -25,7 +25,6 @@ interface ProductState {
   fullProduct: FullProduct[];
   selectedProduct: FullProduct | null;
   selectedForCart: Product | null;
-  // fullProduct: FullProduct | null;
 }
 
 const initialState: ProductState = {
@@ -42,7 +41,6 @@ const initialState: ProductState = {
   fullProduct: [],
   selectedForCart: null,
   selectedProduct: null,
-  // fullProduct: null,
 };
 
 export const getProductsStore = createAsyncThunk('products/get', async () => {

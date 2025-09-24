@@ -1,9 +1,9 @@
 'use client';
-import React, { useActionState, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './AuthForm.module.scss';
 import Link from 'next/link';
-import { useAppDispatch } from '@/app/stores/hooks';
-import { login } from '@/app/stores/slices/authSlice';
+import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
+import { clearError, login } from '@/app/stores/slices/authSlice';
 import z from 'zod';
 import { useRouter } from 'next/navigation';
 export const signInSchema = z.object({
@@ -15,13 +15,14 @@ export function SignInForm() {
     email: string[] | undefined;
     password: string[] | undefined;
   }>();
-  const router = useRouter()
-  const [isLoading, setLoading] = useState(false);
+  const router = useRouter();
+  const { error, isPending } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
-
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch]);
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setLoading(true);
     const formData = new FormData(e.currentTarget);
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
@@ -40,9 +41,12 @@ export function SignInForm() {
         },
       };
     }
-    await dispatch(login({ email, password })).unwrap();
-    setLoading(false);
-    router.replace('/')
+    try {
+      await dispatch(login({ email, password })).unwrap();
+      router.replace('/');
+    } catch (error) {
+      console.log(email, password);
+    }
   }
   const text = 'Create new account';
   return (
@@ -91,11 +95,12 @@ export function SignInForm() {
           </div>
         )}
       </div>
+      {error && <span className={classes.form_error}>{error}</span>}
       <Link href={'/sign-up'} className={classes.link}>
         {text}
       </Link>
       <button type="submit" className={classes.submit_btn}>
-        {isLoading ? 'Loading...' : 'Continue'}
+        {isPending ? 'Loading...' : 'Continue'}
       </button>
     </form>
   );

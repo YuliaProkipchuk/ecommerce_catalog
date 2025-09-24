@@ -1,11 +1,11 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './AuthForm.module.scss';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useAppDispatch } from '@/app/stores/hooks';
+import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
 import z from 'zod';
-import { register } from '@/app/stores/slices/authSlice';
+import { clearError, register } from '@/app/stores/slices/authSlice';
 const signUpSchema = z.object({
   fullName: z.string().min(2, 'Full name is required'),
   email: z.email('Invalid email'),
@@ -18,12 +18,15 @@ export function SignUpForm() {
     fullName: string[] | undefined;
   }>();
   const router = useRouter();
-  const [isLoading, setLoading] = useState(false);
-  const dispatch = useAppDispatch();
+  const { error, isPending } = useAppSelector((state) => state.auth);
 
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch]);
+  
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setLoading(true);
     const formData = new FormData(e.currentTarget);
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
@@ -45,9 +48,12 @@ export function SignUpForm() {
         },
       };
     }
-    await dispatch(register({ email, password })).unwrap();
-    setLoading(false);
-    router.replace('/');
+    try {
+      await dispatch(register({ email, password })).unwrap();
+      router.replace('/');
+    } catch (error) {
+      console.log(email, password);
+    }
   }
   const text = 'Already have an account? Sign in.';
   return (
@@ -110,11 +116,13 @@ export function SignUpForm() {
           </div>
         )}
       </div>
+      {error && <span className={classes.form_error}>{error}</span>}
+
       <Link href={'/sign-in'} className={classes.link}>
         {text}
       </Link>
       <button type="submit" className={classes.submit_btn}>
-        {isLoading ? 'Loading...' : 'Continue'}
+        {isPending ? 'Loading...' : 'Continue'}
       </button>
     </form>
   );

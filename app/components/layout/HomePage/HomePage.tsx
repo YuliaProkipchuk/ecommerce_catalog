@@ -9,7 +9,6 @@ import { HeroSection } from '../HeroSection/HeroSection';
 import { ProductsCarousel } from '../ProductsCarousel/ProductsCarousel';
 import { Modal } from '../../Modal/Modal';
 
-
 export function HomePage() {
   const { loading } = useAppSelector((state) => state.products);
   const dispatch = useAppDispatch();

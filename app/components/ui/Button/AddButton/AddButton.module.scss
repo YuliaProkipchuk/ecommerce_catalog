@@ -21,8 +21,8 @@
 .selected {
   flex: 1;
   background-color: var(--selected-bg);
-  color: #27AE60;
-  border: 1px solid #E2E6E9;
+  color: var(--selected-label-clr);
+  border: 1px solid var(--border-clr);
   display: flex;
   height: 40px;
   width: 100%;
@@ -37,6 +37,5 @@
 
   &:hover {
     box-shadow: none;
-    color: var(--active-select-text);
   }
 }
