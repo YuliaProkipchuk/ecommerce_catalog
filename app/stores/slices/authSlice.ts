@@ -5,11 +5,17 @@ import { loginUser } from '@/app/helpers/supabase/auth/login';
 import { registerUser } from '@/app/helpers/supabase/auth/register';
 interface AuthState {
   session: Session | null;
+  isPending: boolean;
+  error: string;
 }
 
 const initialState: AuthState = {
   session: null,
+  isPending: false,
+  error: '',
 };
+const E_MESSAGE = 'Something went wrong';
+
 export const login = createAsyncThunk(
   'auth/login',
   async ({ email, password }: { email: string; password: string }) => {
@@ -35,18 +41,45 @@ const authSlice = createSlice({
       state.session = null;
       localStorage.removeItem('authSession');
     },
+    clearError: (state) => {
+      state.error = '';
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(login.fulfilled, (state, action) => {
-      state.session = action.payload.session;
-      localStorage.setItem('authSession', JSON.stringify(action.payload));
-    });
-    builder.addCase(register.fulfilled, (state, action) => {
-      state.session = action.payload.session;
-      localStorage.setItem('authSession', JSON.stringify(action.payload));
-    });
+    builder
+      .addCase(login.fulfilled, (state, action) => {
+        state.session = action.payload.session;
+        state.isPending = false;
+
+        localStorage.setItem('authSession', JSON.stringify(action.payload));
+      })
+      .addCase(login.pending, (state) => {
+        state.isPending = true;
+        state.error = '';
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isPending = false;
+        state.error = action.error.message || E_MESSAGE;
+      });
+    builder
+      .addCase(register.fulfilled, (state, action) => {
+        state.session = action.payload.session;
+        state.isPending = false;
+
+        localStorage.setItem('authSession', JSON.stringify(action.payload));
+      })
+      .addCase(register.pending, (state) => {
+        state.isPending = true;
+        state.error = '';
+        console.log('loading...');
+      })
+      .addCase(register.rejected, (state, action) => {
+        console.log('rejected...');
+        state.isPending = false;
+        state.error = action.error.message || E_MESSAGE;
+      });
   },
 });
 
-export const { setSession, clearSession } = authSlice.actions;
+export const { setSession, clearSession, clearError } = authSlice.actions;
 export default authSlice.reducer;

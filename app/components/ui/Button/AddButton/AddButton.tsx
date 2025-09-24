@@ -4,16 +4,13 @@ import React from 'react';
 import classes from './AddButton.module.scss';
 interface AddButtonProps {
   onClick?: () => void;
-  text?: string;
   isSelected?: boolean;
 }
 
-export function AddButton({ onClick, text, isSelected }: AddButtonProps) {
+export function AddButton({ onClick, isSelected }: AddButtonProps) {
+  const text = isSelected ? 'Added to cart' : 'Add to cart';
   return (
-    <button
-      className={`${classes.button} ${isSelected ? classes.selected : ''}`}
-      onClick={onClick}
-    >
+    <button className={`${classes.button} ${isSelected ? classes.selected : ''}`} onClick={onClick}>
       {text}
     </button>
   );

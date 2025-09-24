@@ -1,10 +1,9 @@
-import { ContactsPage } from "@/app/components/ContactsPage/ContactsPage";
+import { ContactsPage } from '@/app/components/ContactsPage/ContactsPage';
 
 async function Page() {
-
   return (
     <>
-    <ContactsPage />
+      <ContactsPage />
     </>
   );
 }

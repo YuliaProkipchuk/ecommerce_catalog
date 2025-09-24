@@ -1,17 +1,5 @@
-'use client';
-import { Layout } from '@/app/components/ui/Layout/Layout';
-import classes from './Catalog.module.scss';
-import { FilterControls } from '@/app/components/ui/FilterControls/FilterControls';
-import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
-import {
-  getCategoryProducts,
-  getProductsStore,
-  selectTotalByCategory,
-} from '@/app/stores/slices/productSlice';
-import { useParams } from 'next/navigation';
-import { useEffect } from 'react';
-import { Pagination } from '@/app/components/ui/Pagination/Pagination';
-import Loader from '@/app/components/ui/Loader/Loader';
+import { CatalogPage } from '@/app/components/layout/CatalogPage/CatalogPage';
+import { notFound } from 'next/navigation';
 
 const categories = {
   phones: 'Mobile phones',
@@ -39,20 +27,18 @@ const Page = () => {
   
   if (loading) {
     return <Loader />;
+type Categories = 'phones' | 'tablets' | 'accessories';
+const Page = async ({ params }: { params: Promise<{ category: string }> }) => {
+  const { category } = await params;
+  function isValidCategoryKey(key: string): key is Categories {
+    return ['phones', 'tablets', 'accessories'].includes(key as Categories);
   }
-  return (
-    <>
-      <section className="section">
-        <h1 className={`main-heading`}>{categories[id]}</h1>
-        <span className={classes.info}>{data.length} models</span>
-      </section>
-      <section className="section">
-        <FilterControls />
-        <Layout products={products} />
-        <Pagination category={id} />
-      </section>
-    </>
-  );
+
+  if (!isValidCategoryKey(category)) {
+    notFound();
+  }
+
+  return <CatalogPage category={category}/>;
 };
 
 export default Page;

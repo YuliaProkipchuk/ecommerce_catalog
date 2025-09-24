@@ -45,6 +45,7 @@ const initialState: ProductState = {
   selectedProduct: null,
   searchQuery: '',
   // fullProduct: null,
+
 };
 
 export const getProductsStore = createAsyncThunk('products/get', async () => {

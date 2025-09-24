@@ -15,7 +15,6 @@
   justify-content: center;
   height: 100%;
   aspect-ratio: 1;
-  // border-left: 1px solid var(--nav-shadow-clr);
   text-decoration: none;
 
   cursor: pointer;
@@ -24,8 +23,6 @@
   @media screen and (min-width: 640px) {
     display: flex;
   }
-
-  
 
   &:last-child {
     border-right: none;
