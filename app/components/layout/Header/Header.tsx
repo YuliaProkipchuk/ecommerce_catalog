@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import classes from './Header.module.scss';
-import Link from 'next/link';
 import { HeaderNavbar } from '../../ui/HeaderNavbar/HeaderNavbar';
 import { HeaderActions } from '../../ui/HeaderActions/HeaderActions';
 import { BurgerMenu } from '../../ui/BurgerMenu/BurgerMenu';
