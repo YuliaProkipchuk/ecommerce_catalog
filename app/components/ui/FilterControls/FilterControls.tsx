@@ -22,6 +22,7 @@ export const FilterControls: React.FC<FilterControlsProps> = ({ className }) => 
         <ItemsPerPageDropdown />
       </div>
       </div>
+
       <div className={classes.input}>
         <FilterInput />
       </div>

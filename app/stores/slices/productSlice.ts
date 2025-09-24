@@ -43,6 +43,7 @@ const initialState: ProductState = {
   selectedForCart: null,
   selectedProduct: null,
   searchQuery: '',
+
 };
 
 export const getProductsStore = createAsyncThunk('products/get', async () => {

@@ -8,11 +8,13 @@ import { CheckoutForm } from '@/app/components/ui/CheckoutForm/CheckoutForm';
 import { OrderSummary } from '@/app/components/ui/OrderSummary/OrderSummary';
 import { RootState } from '@/app/stores';
 import { BackButton } from '../../ui/Button/BackButton/BackButton';
+import { OrderConfirmationModal } from '@/app/components/ui/OrderConfirmationModal/OrderConfirmationModal';
 import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
 import { clearCart } from '@/app/stores/slices/cartSlice';
 
 export function CheckoutPage() {
   const router = useRouter();
+  const [showOrderConfirmation, setShowOrderConfirmation] = useState(false);
   const { session } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -44,9 +46,14 @@ export function CheckoutPage() {
 
   const handlePlaceOrder = () => {
     if (isFormValid) {
-      router.push('/contacts');
+      setShowOrderConfirmation(true);
       dispatch(clearCart());
     }
+  };
+
+  const handleCloseOrderConfirmation = () => {
+    setShowOrderConfirmation(false);
+    router.push('/');
   };
 
   return (
@@ -69,6 +76,10 @@ export function CheckoutPage() {
           />
         </div>
       </div>
+
+      {showOrderConfirmation && (
+        <OrderConfirmationModal onClose={handleCloseOrderConfirmation} />
+      )}
     </div>
   );
 }
