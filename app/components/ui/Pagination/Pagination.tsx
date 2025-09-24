@@ -9,11 +9,8 @@ type Props = {
 }
 export const Pagination = ({category}:Props) => {
     const dispatch = useDispatch<AppDispatch>();
-    const {products} = useSelector((state:RootState) => state.products)
     const t = useTranslations()
-    useEffect(() => {
-        console.log(products)
-    }, [products]);
+
     const handlerLoadMore = () => {
         dispatch(getPagProducts(category))
     }

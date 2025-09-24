@@ -4,6 +4,7 @@ import { getProducts } from '@/app/helpers/products/getProducts';
 import { getProductsSupa } from '@/app/helpers/supabase/products/getProducts';
 
 interface FavouritesState {
+  // favouritesProducts: Product[];
   favouritesProducts: Omit<Product, 'id' | 'year'>[];
   count: number;
 }
@@ -14,7 +15,7 @@ const initialState: FavouritesState = {
 };
 
 export const getProductsStore = createAsyncThunk('products/get', async () => {
-  return await getProductsSupa();
+  return await getProducts();
 });
 
 const favouritesSlice = createSlice({
@@ -30,7 +31,8 @@ const favouritesSlice = createSlice({
       state.favouritesProducts = initFavourites;
       state.count = initFavourites.length;
     },
-    toggleFavourites(state: FavouritesState, action: PayloadAction<Omit<Product, 'id' | 'year'>>) {
+    // toggleFavourites(state: FavouritesState, action: PayloadAction<Product>) {
+      toggleFavourites(state: FavouritesState, action: PayloadAction<Omit<Product, 'id' | 'year'>>) {
       const existingProduct = state.favouritesProducts.some(
         (p) => p.itemId === action.payload.itemId,
       );

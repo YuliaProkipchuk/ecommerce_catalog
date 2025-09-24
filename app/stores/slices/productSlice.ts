@@ -8,6 +8,9 @@ import { getFullProducts } from '@/app/helpers/products/getFullProduct';
 import { getPhones } from '@/app/helpers/supabase/products/phones';
 import { getTablets } from '@/app/helpers/supabase/products/getTablets';
 import { getAcc } from '@/app/helpers/supabase/products/getAcc';
+import { getProductsSupaId } from '@/app/helpers/supabase/products/getProductId';
+import { getProductsSupa } from '@/app/helpers/supabase/products/getProducts';
+import { getOnlyProdSupaId } from '@/app/helpers/supabase/products/getOnlyProdSupaId';
 
 export type SortBy = { param: keyof Product; order: 'asc' | 'desc' };
 
@@ -20,6 +23,9 @@ interface ProductState {
   category: string;
   sortBy: SortBy;
   fullProduct: FullProduct[];
+  selectedProduct: FullProduct | null;
+  selectedForCart: Product | null;
+  // fullProduct: FullProduct | null;
 }
 
 const initialState: ProductState = {
@@ -34,12 +40,27 @@ const initialState: ProductState = {
     order: 'desc',
   },
   fullProduct: [],
+  selectedForCart: null,
+  selectedProduct: null,
+  // fullProduct: null,
 };
 
 export const getProductsStore = createAsyncThunk('products/get', async () => {
-  return await getProducts();
+  return await getProductsSupa();
+  // return await getProducts();
 });
-
+export const getProductById = createAsyncThunk(
+  'products/getById',
+  async ({ id, table }: { id: string | number; table: string }) => {
+    return await getProductsSupaId(id, table);
+  },
+);
+export const getProductByIdForCart = createAsyncThunk(
+  'products/getByIdForCart',
+  async (id:string) => {
+    return await getOnlyProdSupaId(id);
+  },
+);
 export const getCategoryFullProducts = createAsyncThunk(
   'products/getFullCategory',
   async (category: string, { rejectWithValue }) => {
@@ -48,13 +69,14 @@ export const getCategoryFullProducts = createAsyncThunk(
         case 'phones': {
           return await getPhones();
           // return await getFullProducts('phones');
-
         }
         case 'tablets': {
           return await getTablets();
+          // return await getFullProducts('tablets');
         }
         default: {
           return await getAcc();
+          // return await getFullProducts('accesssories');
         }
       }
     } catch (error) {
@@ -69,6 +91,11 @@ const productSlice = createSlice({
   reducers: {
     setCategory(state, action: PayloadAction<string>) {
       state.category = action.payload;
+    },
+    findById(state, action: PayloadAction<string>) {
+      const id = action.payload;
+      state.selectedProduct = state.fullProduct.find((p) => p.id === id) || null;
+      state.selectedForCart = state.clearProduts.find((p) => p.itemId === id) || null;
     },
     getCategoryProducts(state: ProductState, action: PayloadAction<string>) {
       if (!state.clearProduts.length) return;
@@ -127,6 +154,30 @@ const productSlice = createSlice({
       .addCase(getCategoryFullProducts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
+      })
+       .addCase(getProductById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getProductById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.selectedProduct = action.payload[0];
+      })
+      .addCase(getProductById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+         .addCase(getProductByIdForCart.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getProductByIdForCart.fulfilled, (state, action) => {
+        state.loading = false;
+        state.selectedForCart = action.payload[0];
+      })
+      .addCase(getProductByIdForCart.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
       });
   },
 });
@@ -139,5 +190,6 @@ export const {
   getCategoryProducts,
   setCategory,
   changeSortValue,
+  findById,
 } = productSlice.actions;
 export default productSlice.reducer;

@@ -13,19 +13,25 @@ import { toggleTheme } from '@/app/stores/slices/mainSlice';
 import { Counter } from '../Counter/Counter';
 import { UserIcon } from '../Icons/UserIcon';
 import { ExitIcon } from '../Icons/ExitIcon';
+import { supabase } from '@/app/helpers/supabase/supabaseclient';
+import { clearSession } from '@/app/stores/slices/authSlice';
 
 interface HeaderActionsProps {
   toggleBurgerMenu: () => void;
 }
 
 export function HeaderActions({ toggleBurgerMenu }: HeaderActionsProps) {
-  const user = false;
+  const session = useAppSelector((state) => state.auth.session);
   const pathname = usePathname();
   const theme = useAppSelector((state) => state.main.theme);
   const cartCount = useAppSelector((state) => state.cart.count);
   const favouritesCount = useAppSelector((state) => state.favourites.count);
   const dispatch = useAppDispatch();
 
+  const handleLogOut = async () => {
+    await supabase.auth.signOut();
+    dispatch(clearSession());
+  };
   const getPathnameWithoutLocale = (path: string) => {
     const segments = path.split('/').filter(Boolean);
     if (segments.length > 0 && segments[0].length === 2) {
@@ -38,17 +44,18 @@ export function HeaderActions({ toggleBurgerMenu }: HeaderActionsProps) {
 
   return (
     <div className={classes.header_actions}>
-      {user ? (
+      {session ? (
         <Link
           href="/sign-in"
           className={`${classes.action_button} ${pathWithoutLocale === '/sign-in' || pathWithoutLocale === '/sign-up' ? classes.active : ''}`}
+          onClick={handleLogOut}
         >
           <ExitIcon />
         </Link>
       ) : (
         <Link
           href="/sign-in"
-          className={`${classes.action_button} ${pathWithoutLocale === '/sign-in' || pathWithoutLocale === '/sign-up'? classes.active : ''}`}
+          className={`${classes.action_button} ${pathWithoutLocale === '/sign-in' || pathWithoutLocale === '/sign-up' ? classes.active : ''}`}
         >
           <UserIcon />
         </Link>

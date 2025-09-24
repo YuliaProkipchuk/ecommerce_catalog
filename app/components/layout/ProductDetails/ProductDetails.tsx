@@ -6,7 +6,13 @@ import { ThumbsGallery } from '../../ui/ThumbsGallery/ThumbsGallery';
 import classes from './ProductDetails.module.scss';
 import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
 import { useEffect, useMemo } from 'react';
-import { getCategoryFullProducts } from '@/app/stores/slices/productSlice';
+import {
+  findById,
+  getCategoryFullProducts,
+  getProductById,
+  getProductByIdForCart,
+  getProductsStore,
+} from '@/app/stores/slices/productSlice';
 import { ProductsCarousel } from '../ProductsCarousel/ProductsCarousel';
 import { ProductSpecification } from '../ProductSpecification/ProductSpecification';
 import { ProductCustomization } from '../../ui/ProductCustomization/ProductCustomization';
@@ -20,15 +26,27 @@ interface CreateProductProps {
 export function CreateProduct({ slug }: CreateProductProps) {
   const { category } = useParams();
   const dispatch = useAppDispatch();
-  const { fullProduct, loading, error } = useAppSelector((state) => state.products);
+  const { fullProduct, loading, error, selectedProduct } = useAppSelector(
+    (state) => state.products,
+  );
 
   useEffect(() => {
-    if (category) {
-      dispatch(getCategoryFullProducts(category as string));
-    }
-  }, [category, dispatch]);
+    async function fetchData() {
+      if (!category) return;
 
-  const oneProduct = fullProduct.find((p) => p.id === slug);
+      try {
+        await Promise.all([
+          dispatch(getCategoryFullProducts(category as string)).unwrap(),
+          dispatch(getProductById({ id: slug, table: category as string })).unwrap(),
+          dispatch(getProductByIdForCart(slug)).unwrap(),
+        ]);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    fetchData();
+  }, [category, dispatch]);
+  const oneProduct = selectedProduct;
   const relatedProducts = useMemo(
     () =>
       fullProduct.filter((p) => p.id !== slug).map((p) => prepareProduct(p, category as string)),

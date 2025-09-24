@@ -1,17 +1,52 @@
 'use client';
-import React, { useActionState } from 'react';
+import React, { useActionState, useState } from 'react';
 import classes from './AuthForm.module.scss';
 import Link from 'next/link';
-import { signIn } from '@/app/actions/actions';
-
+import { useAppDispatch } from '@/app/stores/hooks';
+import { login } from '@/app/stores/slices/authSlice';
+import z from 'zod';
+import { useRouter } from 'next/navigation';
+export const signInSchema = z.object({
+  email: z.email('Invalid email'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
+});
 export function SignInForm() {
-  const [state, action, isLoading] = useActionState(signIn, {
-    errors: { email: undefined, password: undefined },
-  });
-  console.log(state);
+  const [errors, setErrors] = useState<{
+    email: string[] | undefined;
+    password: string[] | undefined;
+  }>();
+  const router = useRouter()
+  const [isLoading, setLoading] = useState(false);
+  const dispatch = useAppDispatch();
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    const validated = signInSchema.safeParse({ email, password });
+
+    if (!validated.success) {
+      const formFieldErrors = z.flattenError(validated.error);
+      setErrors(() => ({
+        email: formFieldErrors.fieldErrors.email,
+        password: formFieldErrors.fieldErrors.password,
+      }));
+      return {
+        errors: {
+          email: formFieldErrors.fieldErrors.email,
+          password: formFieldErrors.fieldErrors.password,
+        },
+      };
+    }
+    await dispatch(login({ email, password })).unwrap();
+    setLoading(false);
+    router.replace('/')
+  }
   const text = 'Create new account';
   return (
-    <form action={action} className={classes.form}>
+    <form onSubmit={handleSubmit} className={classes.form}>
       <h1 className={`heading ${classes.title}`}>Sign In</h1>
 
       <div className={classes['input-item']}>
@@ -25,9 +60,9 @@ export function SignInForm() {
           placeholder="johndonn@gmail.com"
           className={classes.input}
         />
-        {state.errors.email && (
+        {errors && errors.email && (
           <div className={classes.errors}>
-            {state.errors.email.map((err, i) => (
+            {errors.email.map((err, i) => (
               <span className={classes.form_error} key={i}>
                 {err}
               </span>
@@ -46,9 +81,9 @@ export function SignInForm() {
           placeholder="1234"
           className={classes.input}
         />
-        {state.errors.password && (
+        {errors && errors.password && (
           <div className={classes.errors}>
-            {state.errors.password.map((err, i) => (
+            {errors.password.map((err, i) => (
               <span className={classes.form_error} key={i}>
                 {err}
               </span>

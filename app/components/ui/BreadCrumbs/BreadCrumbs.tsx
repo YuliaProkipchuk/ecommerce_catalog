@@ -14,7 +14,9 @@ export function BreadCrumbs() {
     segments.length === 0 ||
     segments.includes('cart') ||
     segments.includes('sign-in') ||
-    segments.includes('sign-up')
+    segments.includes('sign-up') ||
+    segments.includes('checkout')
+
   ) {
     return;
   }

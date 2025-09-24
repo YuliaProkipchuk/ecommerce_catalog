@@ -15,7 +15,7 @@ export function prepareProduct(
     name: product.name,
     price: product.priceDiscount,
     ram: product.ram,
-    screen: product.screen,
-    // screen: product.screen.split(' ').slice(0, 2).join(' '),
+    // screen: product.screen,
+    screen: product.screen.split(' ').slice(0, 2).join(' '),
   };
 }
