@@ -7,28 +7,28 @@ import {  Linkedin } from '../ui/Icons/Linkedin';
 const peoples = [
     {
         name: 'Serhii Nesmiianov',
-        photo: 'img/contacts/Serhii_Nesmiianov.PNG',
+        photo: 'img/contacts/Serhii_Nesmiianov.png',
         git: 'https://github.com/BlackUserSide',
         linedin: 'https://www.linkedin.com/in/serhii-nesmiianov-707539155',
         title: 'Tech lead'
     },
     {
         name: 'Yuliia Prokipchuk',
-        photo: 'img/contacts/Yuliia_Prokipchuk.PNG',
+        photo: 'img/contacts/Yuliia_Prokipchuk.png',
         git: 'https://github.com/YuliaProkipchuk',
         linedin: 'https://www.linkedin.com/in/yulia-prokipchuk',
         title: 'Project Manager'
     },
     {
         name: 'Ruslan Koval',
-        photo: 'img/contacts/Ruslan_Koval.PNG',
+        photo: 'img/contacts/Ruslan_Koval.png',
         git: 'https://github.com/DidZhara',
         linedin: 'https://www.linkedin.com/in/ruslan-koval-223ba9373/',
         title: 'Frontend Defeloper'
     },
     {
         name: 'Oleksandr Mykyteichuk',
-        photo: 'img/contacts/Oleksandr_Mykyteichuk.JPG',
+        photo: 'img/contacts/Oleksandr_Mykyteichuk.jpg',
         git: 'https://github.com/Oleksandr-Mykyteichuk',
         linedin: 'https://www.linkedin.com/in/oleksandr-m-73a17537a/?trk=opento_sprofile_goalscard',
         title: 'Frontend Defeloper'

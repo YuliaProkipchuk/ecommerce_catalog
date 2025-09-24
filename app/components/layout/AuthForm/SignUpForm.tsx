@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import classes from './AuthForm.module.scss';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/app/stores/hooks';
 import z from 'zod';
 import { register } from '@/app/stores/slices/authSlice';
