@@ -1,0 +1,26 @@
+.input {
+
+    padding: 10px;
+    color: var(--text-clr);
+    border: 1px solid var(--border-clr);
+    border-radius: 5px;
+    background-color: transparent;
+
+    &:focus,
+    &:focus-visible {
+        outline: none;
+        border-color: var(--accent);
+    }
+
+    height: 40px;
+    width: 100%;
+    max-width: 290px;
+
+    @media screen and (min-width: 640px) {
+    max-width: 340px;
+  }
+
+    @media screen and (min-width: 1200px) {
+    max-width: 400px;
+  }
+}

@@ -2,11 +2,24 @@
   display: flex;
   gap: 16px;
   margin-bottom: 24px;
+  flex-direction: column-reverse;
+  @media screen and (min-width: 640px) {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+.dropdown{
+  display: flex;
+  gap: 16px;
 }
 
 .section {
   display: flex;
   flex-direction: column;
+}
+.input{
+  width: 100%;
+  padding-top: 29px;
 }
 
 .label {
