@@ -141,7 +141,7 @@ html[data-theme='dark'] {
   min-width: 212px;
 }
 .card_layout {
-  min-width: 212px;
+  width: 100%;
   @media screen and (min-width: 640px) {
     max-width: 288px;
   }
