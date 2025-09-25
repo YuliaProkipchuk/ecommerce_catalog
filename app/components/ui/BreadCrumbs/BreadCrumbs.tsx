@@ -2,13 +2,11 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import classes from './BreadCrumbs.module.scss';
-import { useTranslations } from 'next-intl';
 import { Home } from '../Icons/Home';
 import { ArrowRight } from '../Icons/ArrowRight';
 
 export function BreadCrumbs() {
   const pathname = usePathname();
-  const t = useTranslations();
   const segments = pathname.split('/').slice(2);
   if (
     segments.length === 0 ||
@@ -41,9 +39,7 @@ export function BreadCrumbs() {
         <li key={i} className={classes.segment}>
           <ArrowRight disabled />
           <Link href={buildPath(i)}>
-            {i === segments.length - 1 && segments.length > 1
-              ? transformName(seg)
-              : t(`links.${seg}`)}
+            {transformName(seg)}
           </Link>
         </li>
       ))}
