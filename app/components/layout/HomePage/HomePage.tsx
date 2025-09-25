@@ -15,13 +15,13 @@ export function HomePage() {
 
   const { session } = useAppSelector((state) => state.auth);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [hasShownModal, setHasShownModal] = useState(false);
-  const text = !session ? 'Welcome to Nice Gadgets store!' : `Welcome, ${session.user.email}`;
+  const text = !session ? 'Welcome to Nice Gadgets store!' : `Welcome, ${session.user.user_metadata.full_name}`;
   useEffect(() => {
-    if (!session && !hasShownModal) {
+    const hasShownHomepageModal = localStorage.getItem('hasShownHomepageModal');
+    if (!session && !hasShownHomepageModal) {
       const timer = setTimeout(() => {
         setIsModalOpen(true);
-        setHasShownModal(true);
+        localStorage.setItem('hasShownHomepageModal', 'true');
       }, 3000);
 
       return () => clearTimeout(timer);
@@ -30,7 +30,7 @@ export function HomePage() {
     if (session) {
       setIsModalOpen(false);
     }
-  }, [session, hasShownModal]);
+  }, [session]);
 
   const closeModal = () => {
     setIsModalOpen(false);

@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
 import z from 'zod';
 import { clearError, register } from '@/app/stores/slices/authSlice';
+import { EmailConfirmationModal } from '../../ui/EmailConfirmationModal/EmailConfirmationModal';
 const signUpSchema = z.object({
   fullName: z.string().min(2, 'Full name is required'),
   email: z.email('Invalid email'),
@@ -17,6 +18,7 @@ export function SignUpForm() {
     password: string[] | undefined;
     fullName: string[] | undefined;
   }>();
+  const [showEmailConfirmationModal, setShowEmailConfirmationModal] = useState(false);
   const router = useRouter();
   const { error, isPending } = useAppSelector((state) => state.auth);
 
@@ -49,81 +51,90 @@ export function SignUpForm() {
       };
     }
     try {
-      await dispatch(register({ email, password })).unwrap();
-      router.replace('/');
+      await dispatch(register({ email, password, full_name:fullName })).unwrap();
+      setShowEmailConfirmationModal(true);
     } catch (error) {
       console.log(email, password);
     }
   }
+
+  const closeEmailConfirmationModal = () => {
+    setShowEmailConfirmationModal(false);
+    router.replace('/');
+  };
+
   const text = 'Already have an account? Sign in.';
   return (
-    <form onSubmit={handleSubmit} className={classes.form}>
-      <h1 className={`heading ${classes.title}`}>Sign Up</h1>
+    <>
+      <form onSubmit={handleSubmit} className={classes.form}>
+        <h1 className={`heading ${classes.title}`}>Sign Up</h1>
 
-      <div className={classes['input-item']}>
-        <label htmlFor="fullName" className={classes.label}>
-          Full Name
-        </label>
-        <input
-          type="text"
-          id="fullName"
-          name="fullName"
-          placeholder="John Donn"
-          className={classes.input}
-        />
-        {errors && errors.fullName && <span className={classes.form_error}>{errors.fullName}</span>}
-      </div>
+        <div className={classes['input-item']}>
+          <label htmlFor="fullName" className={classes.label}>
+            Full Name
+          </label>
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            placeholder="John Donn"
+            className={classes.input}
+          />
+          {errors && errors.fullName && <span className={classes.form_error}>{errors.fullName}</span>}
+        </div>
 
-      <div className={classes['input-item']}>
-        <label htmlFor="email" className={classes.label}>
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="johndonn@gmail.com"
-          className={classes.input}
-        />
-        {errors && errors.email && (
-          <div className={classes.errors}>
-            {errors.email.map((err, i) => (
-              <span className={classes.form_error} key={i}>
-                {err}
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
-      <div className={classes['input-item']}>
-        <label htmlFor="password" className={classes.label}>
-          Password
-        </label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="password"
-          className={classes.input}
-        />
-        {errors && errors.password && (
-          <div className={classes.errors}>
-            {errors.password.map((err, i) => (
-              <span className={classes.form_error} key={i}>
-                {err}
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
-      {error && <span className={classes.form_error}>{error}</span>}
+        <div className={classes['input-item']}>
+          <label htmlFor="email" className={classes.label}>
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="johndonn@gmail.com"
+            className={classes.input}
+          />
+          {errors && errors.email && (
+            <div className={classes.errors}>
+              {errors.email.map((err, i) => (
+                <span className={classes.form_error} key={i}>
+                  {err}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className={classes['input-item']}>
+          <label htmlFor="password" className={classes.label}>
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="password"
+            className={classes.input}
+          />
+          {errors && errors.password && (
+            <div className={classes.errors}>
+              {errors.password.map((err, i) => (
+                <span className={classes.form_error} key={i}>
+                  {err}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+        {error && <span className={classes.form_error}>{error}</span>}
 
-      <Link href={'/sign-in'} className={classes.link}>
-        {text}
-      </Link>
-      <button type="submit" className={classes.submit_btn}>
-        {isPending ? 'Loading...' : 'Continue'}
-      </button>
-    </form>
+        <Link href={'/sign-in'} className={classes.link}>
+          {text}
+        </Link>
+        <button type="submit" className={classes.submit_btn}>
+          {isPending ? 'Loading...' : 'Continue'}
+        </button>
+      </form>
+      {showEmailConfirmationModal && <EmailConfirmationModal onClose={closeEmailConfirmationModal} />}
+    </>
   );
 }

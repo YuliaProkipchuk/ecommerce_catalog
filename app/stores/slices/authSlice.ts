@@ -24,8 +24,8 @@ export const login = createAsyncThunk(
 );
 export const register = createAsyncThunk(
   'auth/register',
-  async ({ email, password }: { email: string; password: string }) => {
-    return await registerUser(email, password);
+  async ({ email, password, full_name }: { email: string; password: string; full_name: string }) => {
+    return await registerUser(email, password, full_name);
   },
 );
 const authSlice = createSlice({

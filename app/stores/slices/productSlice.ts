@@ -92,6 +92,7 @@ const productSlice = createSlice({
   reducers: {
     setCategory(state, action: PayloadAction<string>) {
       state.category = action.payload;
+      state.searchQuery = '';
     },
     findById(state, action: PayloadAction<string>) {
       const id = action.payload;
