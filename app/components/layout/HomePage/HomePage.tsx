@@ -12,27 +12,25 @@ import { Modal } from '../../Modal/Modal';
 export function HomePage() {
   const { loading } = useAppSelector((state) => state.products);
   const dispatch = useAppDispatch();
-  
-  const { session } = useAppSelector((state) => state.auth)
+
+  const { session } = useAppSelector((state) => state.auth);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasShownModal, setHasShownModal] = useState(false);
-
-   useEffect(() => {
-
+  const text = !session ? 'Welcome to Nice Gadgets store!' : `Welcome, ${session.user.email}`;
+  useEffect(() => {
     if (!session && !hasShownModal) {
       const timer = setTimeout(() => {
         setIsModalOpen(true);
         setHasShownModal(true);
-      }, 1000);
+      }, 3000);
 
       return () => clearTimeout(timer);
     }
-    
+
     if (session) {
       setIsModalOpen(false);
     }
-
-  }, [session, dispatch]);
+  }, [session, hasShownModal]);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -52,7 +50,7 @@ export function HomePage() {
   return (
     <>
       <section className="section">
-        <HeroSection />
+        <HeroSection title={text}/>
       </section>
 
       <section className="section">

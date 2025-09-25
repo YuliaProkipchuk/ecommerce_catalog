@@ -82,7 +82,7 @@ export function SignInForm() {
           type="password"
           id="password"
           name="password"
-          placeholder="1234"
+          placeholder="password"
           className={classes.input}
         />
         {errors && errors.password && (

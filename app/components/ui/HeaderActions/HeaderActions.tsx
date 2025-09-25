@@ -15,6 +15,7 @@ import { UserIcon } from '../Icons/UserIcon';
 import { ExitIcon } from '../Icons/ExitIcon';
 import { supabase } from '@/app/helpers/supabase/supabaseclient';
 import { clearSession } from '@/app/stores/slices/authSlice';
+import { resetForm } from '@/app/stores/slices/checkoutFormSlice';
 
 interface HeaderActionsProps {
   toggleBurgerMenu: () => void;
@@ -31,6 +32,7 @@ export function HeaderActions({ toggleBurgerMenu }: HeaderActionsProps) {
   const handleLogOut = async () => {
     await supabase.auth.signOut();
     dispatch(clearSession());
+    dispatch(resetForm());
   };
   const getPathnameWithoutLocale = (path: string) => {
     const segments = path.split('/').filter(Boolean);

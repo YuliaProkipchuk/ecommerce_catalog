@@ -5,7 +5,7 @@ export function Linkedin() {
         <svg
             stroke="#fff"
             fill="var(--active-bg-color)"
-            stroke-width="0"
+            strokeWidth="0"
             viewBox="0 0 448 512"
             height={40}
             width={40}

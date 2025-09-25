@@ -10,29 +10,17 @@ interface CheckoutFormState {
   address: string;
 }
 
-const loadState = (): CheckoutFormState | undefined => {
-  try {
-    const serializedState = localStorage.getItem('checkoutForm');
-    if (serializedState === null) {
-      return undefined;
-    }
-    return JSON.parse(serializedState);
-  } catch (err) {
-    console.error("Error loading state from localStorage:", err);
-    return undefined;
-  }
-};
 
 const saveState = (state: CheckoutFormState) => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem('checkoutForm', serializedState);
   } catch (err) {
-    console.error("Error saving state to localStorage:", err);
+    console.error('Error saving state to localStorage:', err);
   }
 };
 
-const initialState: CheckoutFormState = loadState() || {
+const initialState: CheckoutFormState = {
   mobilePhone: '+38',
   email: '',
   name: '',
@@ -46,7 +34,24 @@ const checkoutFormSlice = createSlice({
   name: 'checkoutForm',
   initialState,
   reducers: {
-    setFormField: (state, action: PayloadAction<{ field: keyof CheckoutFormState; value: string }>) => {
+    initForm: (state) => {
+      if (typeof window === "undefined") return;
+      const initFormLocal: null | string = localStorage.getItem('checkoutForm');
+      if (initFormLocal) {
+        const data: CheckoutFormState = JSON.parse(initFormLocal);
+        state.mobilePhone = data.mobilePhone;
+        state.email = data.email;
+        state.name = data.name;
+        state.surname = data.surname;
+        state.town = data.town;
+        state.oblast = data.oblast;
+        state.address = data.address;
+      }
+    },
+    setFormField: (
+      state,
+      action: PayloadAction<{ field: keyof CheckoutFormState; value: string }>,
+    ) => {
       state[action.payload.field] = action.payload.value;
       saveState(state);
     },
@@ -63,5 +68,5 @@ const checkoutFormSlice = createSlice({
   },
 });
 
-export const { setFormField, resetForm } = checkoutFormSlice.actions;
+export const { setFormField, resetForm, initForm } = checkoutFormSlice.actions;
 export default checkoutFormSlice.reducer;
