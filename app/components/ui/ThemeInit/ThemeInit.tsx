@@ -5,6 +5,7 @@ import {useDispatch} from "react-redux";
 import {AppDispatch} from "@/app/stores";
 import {initTheme} from "@/app/stores/slices/mainSlice";
 import { initFavourites } from "@/app/stores/slices/favouritesSlice";
+import { initForm } from "@/app/stores/slices/checkoutFormSlice";
 
 export function ThemeInit() {
     const dispatch = useDispatch<AppDispatch>();
@@ -12,6 +13,7 @@ export function ThemeInit() {
     useEffect(() => {
         dispatch(initTheme());
         dispatch(initFavourites())
+        dispatch(initForm())
     }, [dispatch]);
 
     return null;

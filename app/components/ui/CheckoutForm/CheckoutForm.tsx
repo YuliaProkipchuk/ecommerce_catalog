@@ -62,15 +62,7 @@ export function CheckoutForm({ onValidationChange }: CheckoutFormProps) {
     'cardCvv',
   ];
 
-  const nonPaymentFields = [
-    'mobilePhone',
-    'email',
-    'name',
-    'surname',
-    'town',
-    'oblast',
-    'address',
-  ];
+  const nonPaymentFields = ['mobilePhone', 'email', 'name', 'surname', 'town', 'oblast', 'address'];
 
   const formatMobilePhone = (digits: string) => {
     return '+38' + digits.replace(/\D/g, '').slice(0, 10);
@@ -172,11 +164,13 @@ export function CheckoutForm({ onValidationChange }: CheckoutFormProps) {
         default:
           formattedValue = value;
       }
-      dispatch(setFormField({ field: name as keyof typeof checkoutFormData, value: formattedValue }));
+      dispatch(
+        setFormField({ field: name as keyof typeof checkoutFormData, value: formattedValue }),
+      );
     } else {
       switch (name) {
         case 'cardName':
-          formattedValue = value.replace(/\D/g, '');
+          formattedValue = value.replace(/[^a-zA-Z\s]/g, '');
           break;
         case 'cardNumber':
           formattedValue = formatCardNumber(value);
@@ -264,14 +258,14 @@ export function CheckoutForm({ onValidationChange }: CheckoutFormProps) {
             {['name', 'surname', 'town', 'oblast', 'cardName'].includes(fieldName)
               ? 'This field requires at least 3 characters'
               : fieldName === 'address'
-              ? 'This field requires at least 3 characters'
-              : fieldName === 'cardNumber'
-              ? 'Card number must be 16 digits'
-              : fieldName === 'cardExpiry'
-              ? 'Expiry must be 4 digits with a valid month (01-12)'
-              : fieldName === 'cardCvv'
-              ? 'CVV must be 3 digits'
-              : 'This field is required'}
+                ? 'This field requires at least 3 characters'
+                : fieldName === 'cardNumber'
+                  ? 'Card number must be 16 digits'
+                  : fieldName === 'cardExpiry'
+                    ? 'Expiry must be 4 digits with a valid month (01-12)'
+                    : fieldName === 'cardCvv'
+                      ? 'CVV must be 3 digits'
+                      : 'This field is required'}
           </span>
         </div>
       );

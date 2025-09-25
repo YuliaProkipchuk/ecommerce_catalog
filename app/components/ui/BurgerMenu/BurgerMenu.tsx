@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import classes from './BurgerMenu.module.scss';
 import Link from 'next/link';
 
@@ -12,6 +12,9 @@ import { Sun } from '../Icons/Sun';
 import { Moon } from '../Icons/Moon';
 import { toggleTheme } from '@/app/stores/slices/mainSlice';
 import { CartCounter } from '../CartCounter/CartCounter';
+import { supabase } from '@/app/helpers/supabase/supabaseclient';
+import { clearSession } from '@/app/stores/slices/authSlice';
+import { resetForm } from '@/app/stores/slices/checkoutFormSlice';
 
 interface BurgerMenuProps {
   onClose: () => void;
@@ -21,7 +24,13 @@ export function BurgerMenu({ onClose }: BurgerMenuProps) {
   const pathname = usePathname();
   const theme = useAppSelector((state) => state.main.theme);
   const dispatch = useAppDispatch();
-  const user = false;
+  const { session } = useAppSelector((state) => state.auth);
+
+  const handleLogOut = async () => {
+    await supabase.auth.signOut();
+    dispatch(clearSession());
+    dispatch(resetForm());
+  };
   const getPathnameWithoutLocale = (path: string) => {
     const segments = path.split('/').filter(Boolean);
     if (segments.length > 0 && segments[0].length === 2) {
@@ -37,13 +46,21 @@ export function BurgerMenu({ onClose }: BurgerMenuProps) {
     { href: '/phones', label: 'phones' },
     { href: '/tablets', label: 'tablets' },
     { href: '/accessories', label: 'accessories' },
-    { href: '/sign-in', label: !user ? 'sign in' : 'log out' },
+    { href: '/sign-in', label: !session ? 'sign in' : 'log out' },
   ];
 
   const isActive = (href: string) => {
     return pathWithoutLocale === href;
   };
+  const router = useRouter();
 
+  const handleClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    router.push(href);
+    setTimeout(() => {
+      onClose();
+    }, 50);
+  };
   return (
     <div className={classes.burger_menu}>
       <div className={classes.burger_menu_header}>
@@ -55,12 +72,14 @@ export function BurgerMenu({ onClose }: BurgerMenuProps) {
       </div>
       <nav className={classes.burger_nav}>
         <ul className={classes.burger_nav_list}>
-          {navItems.map((item) => (
+          {navItems.map((item, i) => (
             <li key={item.href}>
               <Link
                 href={item.href}
                 className={`${classes.burger_nav_link} ${isActive(item.href) ? classes.active : ''}`}
-                onClick={onClose}
+                onClick={
+                  i === navItems.length - 1 ? handleLogOut : (e) => handleClick(e, item.href)
+                }
               >
                 {item.label}
               </Link>
@@ -75,14 +94,14 @@ export function BurgerMenu({ onClose }: BurgerMenuProps) {
         <Link
           href="/favourites"
           className={`${classes.burger_action_button} ${pathWithoutLocale === '/favourites' ? classes.active : ''}`}
-          onClick={onClose}
+          onClick={(e) => handleClick(e, '/favourites')}
         >
           <Heart />
         </Link>
         <Link
           href="/cart"
           className={`${classes.burger_action_button} ${pathWithoutLocale === '/cart' ? classes.active : ''}`}
-          onClick={onClose}
+          onClick={(e) => handleClick(e, '/cart')}
         >
           <ShoppingBag />
           <CartCounter />

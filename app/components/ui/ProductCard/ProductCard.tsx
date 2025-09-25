@@ -55,7 +55,7 @@ export function ProductCard({ product }: ProductProps) {
       <div className={classes.image}>
         <img src={`/${product.image}`} alt={product.name} className={classes.image__img} />
       </div>
-      <Link href={link} className={classes.name}>
+      <Link href={link} className={classes.name} scroll={true}>
         <h4>{product.name}</h4>
       </Link>
       <div className={classes.price}>

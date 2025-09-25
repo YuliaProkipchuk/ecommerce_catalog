@@ -11,6 +11,7 @@ import { BackButton } from '../../ui/Button/BackButton/BackButton';
 import { OrderConfirmationModal } from '@/app/components/ui/OrderConfirmationModal/OrderConfirmationModal';
 import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
 import { clearCart } from '@/app/stores/slices/cartSlice';
+import { resetForm } from '@/app/stores/slices/checkoutFormSlice';
 
 export function CheckoutPage() {
   const router = useRouter();
@@ -48,6 +49,7 @@ export function CheckoutPage() {
     if (isFormValid) {
       setShowOrderConfirmation(true);
       dispatch(clearCart());
+      dispatch(resetForm());
     }
   };
 

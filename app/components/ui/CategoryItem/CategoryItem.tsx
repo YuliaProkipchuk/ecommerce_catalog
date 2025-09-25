@@ -17,7 +17,8 @@ interface CategoryProps {
 }
 
 export function CategoryItem({ categories }: CategoryProps) {
-  const data = useAppSelector(selectTotalByCategory(categories.alt.toLowerCase()));
+  const data = useAppSelector((state) => state.products.clearProduts);
+  const len = data.filter((product) => product.category === categories.alt.toLowerCase());
   return (
     <Link href={categories.href} className={classes.category_item}>
       <div className={classes.category_img}>
