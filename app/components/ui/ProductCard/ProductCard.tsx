@@ -38,14 +38,14 @@ export function ProductCard({ product }: ProductProps) {
       toast.info(`${product.name} was removed from the cart.`, options);
     } else {
       dispatch(addItem(product));
-      toast.info(`${product.name} was add to the cart.`, options);
+      toast.info(`${product.name} was added to the cart.`, options);
     }
   };
 
   const toggleLike = () => {
     dispatch(toggleFavourites(product));
     if (!isFavourite) {
-      toast.info(`${product.name} was addes to favourites.`, options);
+      toast.info(`${product.name} was added to favourites.`, options);
     } else {
       toast.info(`${product.name} was removed from favourites.`, options);
     }

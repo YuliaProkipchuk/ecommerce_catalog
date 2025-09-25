@@ -7,6 +7,7 @@ import {
   getCategoryProducts,
   getProductsStore,
   selectTotalByCategory,
+  setCategory,
 } from '@/app/stores/slices/productSlice';
 import { useEffect } from 'react';
 import { Pagination } from '@/app/components/ui/Pagination/Pagination';
@@ -30,12 +31,16 @@ export const CatalogPage = ({ category }: Props) => {
   const data = useAppSelector(selectTotalByCategory(id));
 
   useEffect(() => {
+    dispatch(setCategory(id));
+  }, [id, dispatch]);
+
+  useEffect(() => {
     dispatch(getProductsStore())
       .unwrap()
       .then(() => {
         dispatch(getCategoryProducts(id));
       });
-  }, [countItemsPage, sortBy, searchQuery]);
+  }, [countItemsPage, sortBy, searchQuery, id, dispatch]);
 
   return (
     <>

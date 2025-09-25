@@ -24,6 +24,10 @@ export const FilterInput: React.FC = () => {
     debouncedDispatch(localValue);
   }, [localValue, debouncedDispatch]);
 
+  useEffect(() => {
+    setLocalValue(searchQuery);
+  }, [searchQuery]);
+
   return (
     <input
       type="text"
