@@ -1,7 +1,7 @@
 
 import Link from 'next/link'
 import React from 'react'
-import classes from './components/ui/PageNotFound/NotFound.module.scss';
+import classes from './components/(pages)/PageNotFound/NotFound.module.scss';
 
  
 export default function NotFound() {

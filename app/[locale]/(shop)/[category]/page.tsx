@@ -1,4 +1,4 @@
-import { CatalogPage } from '@/app/components/layout/CatalogPage/CatalogPage';
+import { CatalogPage } from '@/app/components/(pages)/CatalogPage/CatalogPage';
 import { notFound } from 'next/navigation';
 
 type Categories = 'phones' | 'tablets' | 'accessories';

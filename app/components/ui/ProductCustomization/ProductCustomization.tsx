@@ -1,9 +1,9 @@
 'use client';
 import classes from './ProductCustomization.module.scss';
-import { AddButton } from '../Button/AddButton/AddButton';
-import { CapacityButton } from '../Button/CapacityButton/CapacityButton';
-import { ColorChangButton } from '../Button/ColorChangButton/ColorChangButton';
-import { LikeButton } from '../Button/LikeButton/LikeButton';
+import { AddButton } from '../Buttons/AddButton/AddButton';
+import { CapacityButton } from '../Buttons/CapacityButton/CapacityButton';
+import { ColorChangeButtons } from '../Buttons/ColorChangeButtons/ColorChangeButtons';
+import { LikeButton } from '../Buttons/LikeButton/LikeButton';
 import { FullProduct } from '@/app/types/fullProduct';
 import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
 import { toggleFavourites } from '@/app/stores/slices/favouritesSlice';
@@ -64,7 +64,7 @@ export function ProductCustomization({ products, category }: ProductProps) {
           </div>
 
           <div className={classes.available__color}>
-            <ColorChangButton
+            <ColorChangeButtons
               colors={products.colorsAvailable}
               activeColor={products.color}
               activeCapacity={products.capacity}

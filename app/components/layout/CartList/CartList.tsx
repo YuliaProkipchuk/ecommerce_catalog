@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import classes from './CartList.module.scss';
 import Link from 'next/link';

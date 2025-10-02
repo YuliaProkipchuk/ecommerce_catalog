@@ -1,0 +1,47 @@
+.button {
+  border: none;
+  outline: none;
+  width: 100%;
+  background-color: var(--accent);
+  padding-block: 13.5px;
+  height: 48px;
+  box-sizing: border-box;
+  line-height: 21px;
+  color: #fff;
+  font-size: 0.875rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.nav_button,
+.nav_button__active,
+.nav_button__disabled {
+  height: 32px;
+  width: 32px;
+  line-height: 100%;
+  padding: 0;
+  background-color: var(--btn-bg-dark);
+  border: 1px solid var(--border-clr);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border: 1px solid var(--btn-hover-border);
+    background-color: var(--btn-hover-bg);
+  }
+}
+
+.nav_button__active {
+  cursor: pointer;
+  outline: none;
+  &:hover {
+    border: 1px solid var(--btn-hover-border);
+    background-color: var(--btn-hover-bg);
+  }
+}
+
+.nav_button__disabled {
+  background-color: transparent;
+}

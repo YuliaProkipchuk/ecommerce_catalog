@@ -2,8 +2,8 @@
 
 import React, { useEffect } from 'react';
 import classes from './ProductCard.module.scss';
-import { AddButton } from '../Button/AddButton/AddButton';
-import { LikeButton } from '../Button/LikeButton/LikeButton';
+import { AddButton } from '../Buttons/AddButton/AddButton';
+import { LikeButton } from '../Buttons/LikeButton/LikeButton';
 import Link from 'next/link';
 import { Product } from '@/app/types/product';
 import { addItem, removeItem } from '@/app/stores/slices/cartSlice';
