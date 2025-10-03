@@ -1,4 +1,3 @@
-@use './scss/slider_hero';
 * {
   box-sizing: border-box;
 }
@@ -87,8 +86,7 @@ html[data-theme='dark'] {
   src: url('/fonts/Mont-Regular.otf') format('opentype');
 }
 .main {
-  max-width: var(--max-width);
-  margin-inline: auto;
+  width: 100%;
   min-height: calc(100vh - 254px - 48px);
   padding-inline: 16px;
   padding-top: 24px;
@@ -106,6 +104,17 @@ html[data-theme='dark'] {
     padding-bottom: 80px;
   }
 }
+.section {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: 16px;
+  @media screen and (min-width: 640px) {
+    padding-inline: 24px;
+  }
+  @media screen and (min-width: 1200px) {
+    padding-inline: 32px;
+  }
+}
 .main-heading {
   color: var(--text-clr);
   font-family: 'Mont-Bold', sans-serif;
@@ -119,7 +128,7 @@ html[data-theme='dark'] {
     font-size: 3rem;
   }
 }
-.section:not(:last-child) {
+.section:not(:first-child):not(:last-child){
   margin-bottom: 56px;
   @media screen and (min-width: 640px) {
     margin-bottom: 64px;

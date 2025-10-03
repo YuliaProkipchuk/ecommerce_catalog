@@ -54,7 +54,9 @@ export default async function LocaleLayout({
             <CartInit />
             <Header />
             <main className="main">
-              <BreadCrumbs />
+              <section className="section">
+                <BreadCrumbs />
+              </section>
               {children}
               <ToastContainer toastClassName="my-custom-toast" />
             </main>

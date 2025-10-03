@@ -6,7 +6,8 @@ import { useRouter } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/app/stores/hooks';
 import z from 'zod';
 import { clearError, register } from '@/app/stores/slices/authSlice';
-import { EmailConfirmationModal } from '../../ui/EmailConfirmationModal/EmailConfirmationModal';
+import cs from '../../ui/Modal/Modal.module.scss';
+import { Modal } from '../../ui/Modal/Modal';
 const signUpSchema = z.object({
   fullName: z.string().min(2, 'Full name is required'),
   email: z.email('Invalid email'),
@@ -26,7 +27,7 @@ export function SignUpForm() {
   useEffect(() => {
     dispatch(clearError());
   }, [dispatch]);
-  
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -51,7 +52,7 @@ export function SignUpForm() {
       };
     }
     try {
-      await dispatch(register({ email, password, full_name:fullName })).unwrap();
+      await dispatch(register({ email, password, full_name: fullName })).unwrap();
       setShowEmailConfirmationModal(true);
     } catch (error) {
       console.log(email, password);
@@ -80,7 +81,9 @@ export function SignUpForm() {
             placeholder="John Donn"
             className={classes.input}
           />
-          {errors && errors.fullName && <span className={classes.form_error}>{errors.fullName}</span>}
+          {errors && errors.fullName && (
+            <span className={classes.form_error}>{errors.fullName}</span>
+          )}
         </div>
 
         <div className={classes['input-item']}>
@@ -134,7 +137,20 @@ export function SignUpForm() {
           {isPending ? 'Loading...' : 'Continue'}
         </button>
       </form>
-      {showEmailConfirmationModal && <EmailConfirmationModal onClose={closeEmailConfirmationModal} />}
+      {showEmailConfirmationModal && (
+        <Modal onClose={closeEmailConfirmationModal}>
+          <div className={cs.text}>
+            <h2>Confirm Your Email</h2>
+            <p>
+              A confirmation email has been sent to your address. Please check your inbox and spam
+              folder to complete your registration.
+            </p>
+            <Link href={`/`} className={cs.home_button} onClick={closeEmailConfirmationModal}>
+              Go to Home Page
+            </Link>
+          </div>
+        </Modal>
+      )}
     </>
   );
 }

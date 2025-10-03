@@ -47,7 +47,7 @@ export const SliderHero = () => {
           modules={[Autoplay]}
           pagination={true}
           loop={true}
-          className="main-slider-hero"
+          className={cs["main-slider-hero"]}
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
           }}
@@ -58,7 +58,7 @@ export const SliderHero = () => {
             disableOnInteraction: false,
           }}
         >
-          <SwiperSlide className={'slide-slider-content'}>
+          <SwiperSlide className={cs['slide-slider-content']}>
             {currentWidth < 640 && (
               <Image
                 src={'/banners/iPhone-17-Pro.jpg'}
@@ -90,7 +90,7 @@ export const SliderHero = () => {
               />
             )}
           </SwiperSlide>
-          <SwiperSlide className={'slide-slider-content'}>
+          <SwiperSlide className={cs['slide-slider-content']}>
             <div className="container-first-slider">
               {currentWidth < 640 && (
                 <Image
@@ -124,7 +124,7 @@ export const SliderHero = () => {
               )}
             </div>
           </SwiperSlide>
-          <SwiperSlide className={'slide-slider-content'}>
+          <SwiperSlide className={cs['slide-slider-content']}>
             <div className="container-first-slider">
               {currentWidth < 640 && (
                 <Image

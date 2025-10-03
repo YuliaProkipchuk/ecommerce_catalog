@@ -1,6 +1,6 @@
+import FavouritesPage from '@/app/components/(pages)/FavouritesPage/FavouritesPage';
 import React from 'react';
 
-import FavouritesPage from '@/app/components/layout/FavouritesPage/FavouritesPage';
 function Page() {
   return <FavouritesPage />;
 }
